@@ -1,0 +1,24 @@
+/**
+* Component: Grid
+* Description: Container & row placeholders
+*/
+
+%outer-container {
+	@include outer-container();
+}
+
+%row {
+	@include row();
+}
+
+// 20px left/right padding on rows
+// removed when viewport reaches row width + padding
+%row-padd {
+	padding-left: em(20);
+	padding-right: em(20);
+
+	@include media(min-width $max-width + em(40)) {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}

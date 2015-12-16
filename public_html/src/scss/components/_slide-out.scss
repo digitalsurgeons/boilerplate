@@ -1,0 +1,52 @@
+/**
+* Component: Slide Out
+* Description: Simple slide out menu using toggles and switches
+*
+* .slide-out-canvas should wrap entire page
+* Toggle should target body with class .slide-out-active
+*/
+
+// slide out vars
+$slide-out-bg: $gray;
+$slide-out-canvas-bg: $white;
+
+.slide-out {
+	background: $slide-out-bg;
+	box-shadow: inset 3px 0 6px 0 rgba(0, 0, 0, .3);
+	height: 100%;
+	position: fixed;
+	right: 0;
+	top: 0;
+	width: 80%;
+}
+
+.slide-out__list {
+	margin: 0;
+	padding: 0;
+}
+
+.slide-out__item {
+	display: block;
+}
+
+.slide-out__link {
+	border-bottom: solid 1px darken($slide-out-bg, 30);
+	display: block;
+	padding: em(20);
+}
+
+// element should wrap entire page
+.slide-out-canvas {
+	@include transition($transition);
+	background: $slide-out-canvas-bg;
+	position: relative;
+}
+
+// active class should be applied to body
+.slide-out-active {
+	overflow: hidden;
+
+	.slide-out-canvas {
+		@include transform(translateX(-80%));
+	}
+}

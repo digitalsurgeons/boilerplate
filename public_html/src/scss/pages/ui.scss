@@ -1,0 +1,51 @@
+@import '../util/global';
+
+@import '../components/picker';
+@import '../components/modal';
+
+// UI.html exmample styles only
+.outer-container {
+	@include outer-container();
+}
+
+.feature {
+	@extend %row-padd;
+	margin: 40px 0;
+}
+
+.feature-title {
+	border-bottom: solid 1px lighten($black, 20);
+	margin-bottom: 20px;
+	padding-bottom: 10px;
+}
+
+.icon {
+	display: block;
+}
+
+.icon:before {
+	font-size: 2em;
+	padding-right: .25em;
+}
+
+.ui-buttons {
+	.btn,
+	.btn--outline,
+	.btn--warning {
+		margin: 0 em(10) em(10) 0;
+	}
+}
+
+.ui-pickers {
+	.picker,
+	.picker--error {
+		margin-right: em(10);
+	}
+}
+
+.ui-icons {
+	[class^='icon-'],
+	[class*=' icon-'] {
+		margin: 10px;
+	}
+}

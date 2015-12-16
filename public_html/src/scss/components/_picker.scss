@@ -1,0 +1,64 @@
+.picker {
+	@include transition($transition);
+	background: $forms-bg;
+	border: $forms-border;
+	border-color: $forms-border-default;
+	display: inline-block;
+	padding: .5em 6em .5em .8em;
+	position: relative;
+
+	&:after {
+		@include transform(translateY(-50%));
+		border-left: 5px solid transparent;
+		border-right: 5px solid transparent;
+		border-top: 5px solid $base-font-color;
+		content: '';
+		display: block;
+		font-size: 0;
+		height: 0;
+		line-height: 0;
+		position: absolute;
+		right: 15px;
+		top: 50%;
+		width: 0;
+	}
+
+	&:hover {
+		border-color: darken($forms-border-default, 10);
+	}
+
+	&:focus {
+		border-color: $forms-border-active;
+		outline: none;
+	}
+}
+
+.picker--error {
+	@extend .picker;
+
+	&,
+	&:hover,
+	&:focus,
+	&:active {
+		background: lighten($forms-error, 45);
+		border-color: $forms-error;
+	}
+}
+
+.picker__label {
+	margin: 0;
+}
+
+.picker__select {
+	-webkit-appearance: menulist-button;
+	display: inline;
+	height: 100%;
+	left: 0;
+	margin: 0;
+	max-height: none;
+	max-width: none;
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
