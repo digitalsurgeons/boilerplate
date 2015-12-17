@@ -31,8 +31,8 @@ module.exports = function() {
 	}
 
 	//check if we need to uglify
-	//run uglify if useing --ugly flag
-	var doUglify = util.env.ugly || !config.dev ? true : false;
+	//run uglify if useing --prod flag
+	var doUglify = util.env.prod ? true : false;
 
 	// pipe all JS pages files through browserify, uglify and save to dist
 	gulp.src([config.paths.src + '/js/pages/*.js'])
