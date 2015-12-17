@@ -47,3 +47,7 @@ Run Gulp Watch and set your vhost (You'll only need to do this once).
 Run Gulp Watch to start up a Browser-Sync session. (optional --maps and --hint)
 
 	$ gulp watch
+
+# Server configs
+
+Refer to [h5bp/server-configs-apache](https://github.com/h5bp/server-configs-apache) or [h5bp/server-configs-nginx](https://github.com/h5bp/server-configs-nginx) when constructing the server configuration for your project.
