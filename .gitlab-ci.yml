@@ -25,8 +25,6 @@ before_script:
 
 deploy_prod:
   script:
-    # Copy config to the default so load balancer healthchecks and cron jobs succeed
-    - cp config/config.prod.php config/config.local.php
     - rsync --copy-unsafe-links -prvzcSle 'ssh -p 22 -o StrictHostKeyChecking=no -i id_rsa' --exclude 'id_rsa' ./ user@ip:/path/to/project
   stage: deploy
   only:
@@ -34,8 +32,6 @@ deploy_prod:
 
 deploy_stage:
   script:
-    # Copy config to the default so load balancer healthchecks and cron jobs succeed
-    - cp config/config.stage.php config/config.local.php
     - rsync --copy-unsafe-links -prvzcSle 'ssh -p 22 -o StrictHostKeyChecking=no -i id_rsa' --exclude 'id_rsa' ./ user@ip:/path/to/project
   stage: deploy
   only:
@@ -43,8 +39,6 @@ deploy_stage:
 
 deploy_dev:
   script:
-    # Copy config to the default so load balancer healthchecks and cron jobs succeed
-    - cp config/config.dev.php config/config.local.php
     - rsync --copy-unsafe-links -prvzcSle 'ssh -p 22 -o StrictHostKeyChecking=no -i id_rsa' --exclude 'id_rsa' ./ user@ip:/path/to/project
   stage: deploy
   only:
