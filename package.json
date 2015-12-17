@@ -27,6 +27,7 @@
     "gulp-watch": "~0.6.8",
     "gulp-wrap": "~0.10.0",
     "handlebars": "~4.0.5",
+    "imagemin-pngquant": "~4.2.0",
     "jquery": "~2.1.4",
     "jshint-stylish": "~1.0.1",
     "lodash": "~3.10.1",
@@ -38,5 +39,8 @@
     "transform": [
       "browserify-shim"
     ]
+  },
+  "devDependencies": {
+    "gulp-imagemin": "~2.4.0"
   }
 }

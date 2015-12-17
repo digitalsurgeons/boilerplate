@@ -18,6 +18,7 @@ var config = require('../config'),
 function _watchFiles() {
 	gulp.watch(config.paths.src + '/scss/**/*.scss', ['scss-lint', 'sass']);
 	gulp.watch(config.paths.src + '/js/**/*.js', ['jshint', 'handlebars', 'browserify']);
+	gulp.watch(config.paths.images + '/**/*.+(jpg|jpeg|gif|png|svg)', ['imagemin']);
 
 	gulp.watch([
 		config.paths.dist + '/css/**/*.css'

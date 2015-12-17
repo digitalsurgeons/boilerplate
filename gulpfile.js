@@ -33,12 +33,14 @@ var gulp = require('./gulp')([
     'polyfill',
 	'scss-lint',
 	'sass',
-    'watch'
+    'watch',
+    'imagemin'
 ], [
 	'jshint',
     'browserify',
     'handlebars',
     'polyfill',
 	'scss-lint',
-	'sass'
+	'sass',
+    'imagemin'
 ]);
