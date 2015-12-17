@@ -40,10 +40,6 @@ Compile source
 
 	$ gulp
 
-Finally, remove .git directory
-
-	$ sudo rm -rf .git
-
 Run Gulp Watch and set your vhost (You'll only need to do this once).
 
 	$ gulp watch
