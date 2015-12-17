@@ -8,8 +8,6 @@ var imgDest = config.paths.dist + '/img';
 
 // Minify any new images
 module.exports = function() {
-
-    // Add the newer pipe to pass through newer images only
     gulp.src(imgSrc)
         .pipe(imagemin({
             progressive: true,
