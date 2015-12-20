@@ -1,6 +1,6 @@
 {
   "name": "DSBoilerplate",
-  "version": "2.0.0",
+  "version": "1.0.2",
   "dependencies": {
     "browser-sync": "~2.4.0",
     "browserify": "~8.1.1",
@@ -11,8 +11,6 @@
     "gulp-consolidate": "~0.1.2",
     "gulp-declare": "~0.3.0",
     "gulp-handlebars": "~3.0.1",
-    "gulp-iconfont": "~1.0.0",
-    "gulp-iconfont-css": "0.0.9",
     "gulp-if": "~1.2.5",
     "gulp-jscs": "~1.4.0",
     "gulp-jscs-stylish": "~1.0.2",
@@ -30,6 +28,7 @@
     "gulp-watch": "~0.6.8",
     "gulp-wrap": "~0.10.0",
     "handlebars": "~4.0.5",
+    "imagemin-pngquant": "~4.2.0",
     "jquery": "~2.1.4",
     "jshint-stylish": "~1.0.1",
     "lodash": "~3.10.1",
@@ -41,5 +40,8 @@
     "transform": [
       "browserify-shim"
     ]
+  },
+  "devDependencies": {
+    "gulp-imagemin": "~2.4.0"
   }
 }

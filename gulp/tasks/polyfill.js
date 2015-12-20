@@ -11,7 +11,7 @@ var util = require('gulp-util');
 var gulpif = require('gulp-if');
 
 module.exports = function() {
-	var doUglify = util.env.ugly ? true : false;
+	var doUglify = util.env.prod ? true : false;
 
 	gulp.src([
 		config.paths.bower + '/html5shiv/html5shiv.js',

@@ -6,7 +6,6 @@
 // configuration object should contain useful properties and functions
 // require this module within task files and use as you wish
 module.exports = {
-	dev: false,
 	paths: {
 		modules: 'node_modules',
 		documentRoot: 'public_html',
