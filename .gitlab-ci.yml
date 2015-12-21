@@ -18,7 +18,7 @@ before_script:
   #   Prod has no sourcemaps, but other envs do, so conditionally remove src
   - if [ "$CI_BUILD_REF_NAME" == "production" ] ; then rm -rf public_html/src; fi
   #   Dotfiles and config files relevant only for compilation and dev
-  - rm .* bower.json gulpfile.js package.json README.md
+  - rm .bowerrc .gitignore .jscsrc .jshintrc .npmrc .scss-lint.yml bower.json gulpfile.js package.json README.md
   # Add private key so we can connect to destination server
   - echo "$SSH_PRIVATE_KEY" > id_rsa
   - chmod 0600 id_rsa
