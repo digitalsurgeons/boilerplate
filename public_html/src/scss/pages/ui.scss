@@ -2,6 +2,7 @@
 
 @import '../components/picker';
 @import '../components/modal';
+@import '../components/animations';
 
 // UI.html exmample styles only
 .outer-container {
@@ -47,5 +48,108 @@
 	[class^='icon-'],
 	[class*=' icon-'] {
 		margin: 10px;
+	}
+}
+.animation-demo {
+	border: solid 1px #ccc;
+	height: 16em;
+	margin-top: 1em;
+	position: relative;
+
+	&__square {
+		background: $black;
+		display: inline-block;
+		height: 3.3em;
+		left: 50%;
+		top: 50%;
+		margin-left:-1.65em;
+		margin-top:-1.65em;
+		position: absolute;
+		width: 3.3em;
+
+		/*
+			These are for demo
+		*/
+		&.fadeIn {
+			@include fadeIn();
+		}
+		&.fadeInUp {
+			@include fadeInUp();
+		}
+		&.fadeInRight {
+			@include fadeInRight();
+		}
+		&.fadeInDown {
+			@include fadeInDown();
+		}
+		&.fadeInLeft {
+			@include fadeInLeft();
+		}
+		&.fadeOut {
+			@include fadeOut();
+		}
+		&.fadeOutUp {
+			@include fadeOutUp();
+		}
+		&.fadeOutRight {
+			@include fadeOutRight();
+		}
+		&.fadeOutDown {
+			@include fadeOutDown();
+		}
+		&.fadeOutLeft {
+			@include fadeOutLeft();
+		}
+		&.slideInUp {
+			@include slideInUp();
+		}
+		&.slideInRight {
+			@include slideInRight();
+		}
+		&.slideInDown {
+			@include slideInDown();
+		}
+		&.slideInLeft {
+			@include slideInLeft();
+		}
+		&.slideOutUp {
+			@include slideOutUp();
+		}
+		&.slideOutRight {
+			@include slideOutRight();
+		}
+		&.slideOutDown {
+			@include slideOutDown();
+		}
+		&.slideOutLeft {
+			@include slideOutLeft();
+		}
+		&.zoomIn {
+			@include zoomIn();
+		}
+		&.zoomInShrink {
+			@include zoomInShrink();
+		}
+		&.zoomOut {
+			@include zoomOut();
+		}
+		&.zoomOutGrow {
+			@include zoomOutGrow();
+		}
+		&.bounce {
+			@include bounce();
+		}
+		&.flash {
+			@include flash();
+		}
+		&.pulse {
+			@include pulse();
+		}
+		&.shake {
+			@include shake();
+		}
+		&.wobble {
+			@include wobble();
+		}
 	}
 }

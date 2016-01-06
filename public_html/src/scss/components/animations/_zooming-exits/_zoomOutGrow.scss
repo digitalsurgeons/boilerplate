@@ -1,0 +1,22 @@
+@include keyframes(zoomOutGrow) {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+    @include transform(scale3d(1.3, 1.3, 1.3));
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@mixin zoomOutGrow($count: $countDefault, $duration: $durationDefault, $delay: $delayDefault, $function: $functionDefault, $fill: $fillDefault, $visibility: $visibilityDefault) {
+  @include animation-name(zoomOutGrow);
+  @include count($count);
+  @include duration($duration);
+  @include delay($delay);
+  @include function($function);
+  @include fill-mode($fill);
+  @include visibility($visibility);
+}

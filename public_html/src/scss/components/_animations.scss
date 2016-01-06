@@ -1,0 +1,66 @@
+// INDEX OF ANIMATIONS
+// This is a port of Den Eden's Animate.css, converted for SASS by
+// Geoff Graham, and cherry-picked by Aaron Sherrill.
+//
+// Source: https://daneden.me/animate/
+// Source: https://github.com/geoffgraham/animate.scss
+//
+// @import this index into your project.
+// I've selected the most common animations to reduce overall file size
+// and to make it easier to adopt.
+//-----------------------------------------------------------------------
+
+// Always required (Animations are complex, this gives us some base capability)
+@import "animations/_properties";
+
+// Import Animations
+/*
+	Fade <in or out> <direction>
+	ex: @include fadeIn();
+*/
+@import 
+  "animations/_fading-entrances/_fadeIn",
+  "animations/_fading-entrances/_fadeInDown",
+  "animations/_fading-entrances/_fadeInLeft",
+  "animations/_fading-entrances/_fadeInRight",
+  "animations/_fading-entrances/_fadeInUp",
+  "animations/_fading-exits/_fadeOut",
+  "animations/_fading-exits/_fadeOutDown",
+  "animations/_fading-exits/_fadeOutLeft",
+  "animations/_fading-exits/_fadeOutRight",
+  "animations/_fading-exits/_fadeOutUp";
+
+/*
+	Slide <in or out> <direction>
+	ex: @include slideInLeft();
+*/
+@import
+ "animations/_sliding-entrances/_slideInDown",
+ "animations/_sliding-entrances/_slideInLeft",
+ "animations/_sliding-entrances/_slideInRight",
+ "animations/_sliding-entrances/_slideInUp",
+ "animations/_sliding-exits/_slideOutDown",
+ "animations/_sliding-exits/_slideOutLeft",
+ "animations/_sliding-exits/_slideOutRight",
+ "animations/_sliding-exits/_slideOutUp";
+
+/*
+	Zoom In and Zoom Out only - No funny business
+*/
+@import
+  "animations/_zooming-entrances/_zoomIn",
+  "animations/_zooming-entrances/_zoomInShrink",
+  "animations/_zooming-exits/_zoomOut",
+  "animations/_zooming-exits/_zoomOutGrow";
+
+/*
+	Attention Seekers - The classy ones.
+*/
+@import
+  "animations/_attention-seekers/_bounce",
+  "animations/_attention-seekers/_flash",
+  "animations/_attention-seekers/_pulse",
+  "animations/_attention-seekers/_shake",
+  "animations/_attention-seekers/_wobble";
+
+//27 in total.
