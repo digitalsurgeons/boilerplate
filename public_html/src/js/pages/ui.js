@@ -46,18 +46,17 @@
 		console.log(str.slice(0, -1) + '...');
 
 		// Animation Picker Example
-		var squareStartClass = $('[data-animation-square]').attr("class");
-		
+		var squareStartClass = $('[data-animation-square]').attr('class');
 		$('[data-animation-picker]').on('change', function() {
 			//clear class(es)
-			$('[data-animation-square]').attr("class", "");
+			$('[data-animation-square]').attr('class', '');
 
 			//store selected value
 			var selectedMixin = $(this).val();
 
 			//add original class
 			$('[data-animation-square]').addClass(squareStartClass);
-			
+
 			//add newly selected class
 			$('[data-animation-square]').addClass(selectedMixin);
 		});

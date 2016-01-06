@@ -12,6 +12,15 @@ $functionDefault: ease !default;
 $fillDefault: both;
 $visibilityDefault: hidden !default;
 
+//use $animation-feel to set $functionDefault and $durationDefault
+@if $animation-feel == "fluffy" {
+  $functionDefault: cubic-bezier(.45,.06,.43,.98) !default;
+  $durationDefault: $durationDefault * 2 ;
+} @else if $animation-feel == "rigid" {
+  $functionDefault: cubic-bezier(.24,.03,.64,.93) !default;
+  $durationDefault: $durationDefault * .6 ;
+}
+
 @mixin count($count: 1) {
   -webkit-animation-iteration-count: $count;
      -moz-animation-iteration-count: $count;
