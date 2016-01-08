@@ -6,6 +6,8 @@ exclude:
 linters:
   Comment:
     enabled: false
+  ImportPath: # let _non-compilable files through please
+    leading_underscore: true
   Indentation: # Line should be indented 4 spaces, but was indented 2 spaces
     severity: warning
     width: 1

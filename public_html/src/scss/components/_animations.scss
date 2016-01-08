@@ -11,14 +11,15 @@
 //-----------------------------------------------------------------------
 
 // Always required (Animations are complex, this gives us some base capability)
-@import "animations/_properties";
+
+@import 'animations/_properties';
 
 // Import Animations
 /*
 	Fade <in or out> <direction>
 	ex: @include fadeIn();
 */
-@import 
+@import
   "animations/_fading-entrances/_fadeIn",
   "animations/_fading-entrances/_fadeInDown",
   "animations/_fading-entrances/_fadeInLeft",

@@ -1,9 +1,31 @@
+/*
+  This file includes an option for the $animation-feel of "bounce"
+*/
+
 @include keyframes(fadeInDown) {
-  0% {
+  from {
     opacity: 0;
     @include transform(translateY(-20px));
+    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
   }
-  100% {
+
+  @if $animation-feel == "bouncy" {
+    70% {
+      animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+      transform: translate3d(0, -15px, 0);
+    }
+
+    80% {
+      animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+      transform: translate3d(0,0,0);
+    }
+
+    90% {
+      transform: translate3d(0,-4px,0);
+    }
+  }
+
+  to {
     opacity: 1;
     @include transform(translateY(0));
   }

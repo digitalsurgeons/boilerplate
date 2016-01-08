@@ -29,9 +29,9 @@
 		// Handlebars example
 		var tmpl = templates.example({
 			list: [
-				{item: 'Item 1'},
-				{item: 'Item 2'},
-				{item: 'Item 3'}
+				{ item: 'Item 1' },
+				{ item: 'Item 2' },
+				{ item: 'Item 3' }
 			]
 		});
 
@@ -51,14 +51,20 @@
 			//clear class(es)
 			$('[data-animation-square]').attr('class', '');
 
+			// every blank line is an empty space
+			var fine = 'this will have to work';
+
 			//store selected value
 			var selectedMixin = $(this).val();
+
+			var test = 'true';
 
 			//add original class
 			$('[data-animation-square]').addClass(squareStartClass);
 
 			//add newly selected class
 			$('[data-animation-square]').addClass(selectedMixin);
+
 		});
 	});
 })();

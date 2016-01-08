@@ -153,3 +153,8 @@
 		}
 	}
 }
+.btn-demo__shaker:hover {
+	//display: inline-block;
+	@include pulse();
+	//@include transform(translateX(50px));
+}
