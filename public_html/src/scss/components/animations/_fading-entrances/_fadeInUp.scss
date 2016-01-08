@@ -8,12 +8,11 @@
   }
 }
 
-@mixin fadeInUp($feeling-override) {
+@mixin fadeInUp($feel-override:$animation-feel) {
   @include animation-name(fadeInUp);
-  @include count($animation-count);
-  @include duration($animation-duration);
-  @include delay($animation-delay);
-  @include function($animation-easing);
-  @include fill-mode($animation-fill);
-  @include visibility($animation-backface);
+	@include count($animation-count);
+	@include feel($feel-override);
+	@include delay($animation-delay);
+	@include fill-mode($animation-fill);
+	@include visibility($animation-backface);
 }

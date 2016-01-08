@@ -3,12 +3,11 @@
 	100% {opacity: 1;}
 }
 
-@mixin fadeIn($feel-override) {
+@mixin fadeIn($feel-override:$animation-feel) {
 	@include animation-name(fadeIn);
 	@include count($animation-count);
-	@include duration($animation-duration);
+	@include feel($feel-override);
 	@include delay($animation-delay);
-	@include function($animation-function);
 	@include fill-mode($animation-fill);
 	@include visibility($animation-backface);
 }

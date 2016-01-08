@@ -4,12 +4,11 @@
 	20%, 40%, 60%, 80% {@include transform(translateX(10px));}
 }
 
-@mixin shake($feeling-override) {
+@mixin shake($feel-override:$animation-feel) {
 	@include animation-name(shake);
-	@include count($count);
-	@include duration($duration);
-	@include delay($delay);
-	@include function($function);
-	@include fill-mode($fill);
-	@include visibility($visibility);
+	@include count($animation-count);
+	@include feel($feel-override);
+	@include delay($animation-delay);
+	@include fill-mode($animation-fill);
+	@include visibility($animation-backface);
 }

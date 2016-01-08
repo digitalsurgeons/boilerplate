@@ -6,12 +6,11 @@
   100% {@include transform(scale(1));}
 }
 
-@mixin pulse($feeling-override) {
+@mixin pulse($feel-override:$animation-feel) {
   @include animation-name(pulse);
-  @include count($animation-count);
-  @include duration($animation-duration);
-  @include delay($animation-delay);
-  @include function($animation-easing);
-  @include fill-mode($animation-fill);
-  @include visibility($animation-backface);
+	@include count($animation-count);
+	@include feel($feel-override);
+	@include delay($animation-delay);
+	@include fill-mode($animation-fill);
+	@include visibility($animation-backface);
 }

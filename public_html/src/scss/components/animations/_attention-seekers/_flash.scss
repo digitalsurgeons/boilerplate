@@ -3,12 +3,11 @@
 	25%, 75% {opacity: 0;}
 }
 
-@mixin flash($feeling-override) {
+@mixin flash($feel-override:$animation-feel) {
 	@include animation-name(flash);
-	@include count($count);
-	@include duration($duration);
-	@include delay($delay);
-	@include function($function);
-	@include fill-mode($fill);
-	@include visibility($visibility);
+	@include count($animation-count);
+	@include feel($feel-override);
+	@include delay($animation-delay);
+	@include fill-mode($animation-fill);
+	@include visibility($animation-backface);
 }
