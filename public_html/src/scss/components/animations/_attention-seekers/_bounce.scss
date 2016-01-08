@@ -4,7 +4,7 @@
 	60% {@include transform(translateY(-15px));}
 }
 
-@mixin bounce($count: $countDefault, $duration: $durationDefault, $delay: $delayDefault, $function: $functionDefault, $fill: $fillDefault, $visibility: $visibilityDefault) {
+@mixin bounce($feeling-override) {
 	@include animation-name(bounce);
 	@include count($count);
 	@include duration($duration);

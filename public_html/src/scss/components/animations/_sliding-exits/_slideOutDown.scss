@@ -8,12 +8,12 @@
   }
 }
 
-@mixin slideOutDown($count: $countDefault, $duration: $durationDefault, $delay: $delayDefault, $function: $functionDefault, $fill: $fillDefault, $visibility: $visibilityDefault) {
+@mixin slideOutDown($feeling-override) {
   @include animation-name(slideOutDown);
-  @include count($count);
-  @include duration($duration);
-  @include delay($delay);
-  @include function($function);
-  @include fill-mode($fill);
-  @include visibility($visibility);
+  @include count($animation-count);
+  @include duration($animation-duration);
+  @include delay($animation-delay);
+  @include function($animation-easing);
+  @include fill-mode($animation-fill);
+  @include visibility($animation-backface);
 }

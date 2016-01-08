@@ -3,7 +3,7 @@
 	25%, 75% {opacity: 0;}
 }
 
-@mixin flash($count: $countDefault, $duration: $durationDefault, $delay: $delayDefault, $function: $functionDefault, $fill: $fillDefault, $visibility: $visibilityDefault) {
+@mixin flash($feeling-override) {
 	@include animation-name(flash);
 	@include count($count);
 	@include duration($duration);
