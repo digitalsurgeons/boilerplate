@@ -61,6 +61,8 @@ $animation-backface : hidden !default;
 
 @mixin feel($feel: $animation-feel) {
 
+  @include transition(all);
+
   @if $feel == "confident" {
 
     @include function($confident);
@@ -81,7 +83,14 @@ $animation-backface : hidden !default;
     @include function($selective);
     @include duration(200ms);
 
+  } @else if $feel == "lazy" {
+
+    @include function($easeInOutQuad);
+    @include duration(2000ms);
+
   }
+
+  @content;
 
 }
 
@@ -99,6 +108,12 @@ $animation-backface : hidden !default;
       -ms-animation-duration: $duration;
        -o-animation-duration: $duration;
           animation-duration: $duration;
+
+  -webkit-transition-duration: $duration;
+     -moz-transition-duration: $duration;
+      -ms-transition-duration: $duration;
+       -o-transition-duration: $duration;
+          transition-duration: $duration;
 }
 
 @mixin delay($delay: $animation-delay) {
@@ -115,6 +130,12 @@ $animation-backface : hidden !default;
       -ms-animation-timing-function: $function;
        -o-animation-timing-function: $function;
           animation-timing-function: $function;
+
+  -webkit-transition-timing-function: $function;
+     -moz-transition-timing-function: $function;
+      -ms-transition-timing-function: $function;
+       -o-transition-timing-function: $function;
+          transition-timing-function: $function;
 }
 
 @mixin fill-mode($fill: $animation-fill) {

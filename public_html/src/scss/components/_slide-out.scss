@@ -37,7 +37,7 @@ $slide-out-canvas-bg: $white;
 
 // element should wrap entire page
 .slide-out-canvas {
-	@include transition($transition);
+	@include feel();
 	background: $slide-out-canvas-bg;
 	position: relative;
 }
@@ -47,6 +47,7 @@ $slide-out-canvas-bg: $white;
 	overflow: hidden;
 
 	.slide-out-canvas {
+		@include feel();
 		@include transform(translateX(-80%));
 	}
 }

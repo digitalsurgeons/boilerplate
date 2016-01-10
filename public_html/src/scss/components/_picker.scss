@@ -1,5 +1,5 @@
 .picker {
-	@include transition($transition);
+	@include feel();
 	background: $forms-bg;
 	border: $forms-border;
 	border-color: $forms-border-default;
