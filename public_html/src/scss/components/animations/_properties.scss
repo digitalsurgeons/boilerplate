@@ -53,7 +53,7 @@ $strong         :  cubic-bezier(0.665, 0.005, 0.275, 1) !default;
 $selective      :  cubic-bezier(0.275, 0.985, 0.275, 1) !default;
 
 $animation-count    : 1 !default;
-$animation-duration : $transition;
+$animation-duration : 1s * $animation-timescale;
 $animation-delay    : 0s !default;
 $animation-easing   : $easeOutQuad !default;
 $animation-fill     : both;
@@ -66,27 +66,32 @@ $animation-backface : hidden !default;
   @if $feel == "confident" {
 
     @include function($confident);
-    @include duration(300ms);
+    @include duration(300ms * $animation-timescale);
 
   } @else if $feel == "bouncy" {
 
     @include function($bouncy);
-    @include duration(800ms);
+    @include duration(800ms* $animation-timescale);
 
   } @else if $feel == "strong" {
 
     @include function($strong);
-    @include duration(450ms);
+    @include duration(450ms * $animation-timescale);
 
   } @else if $feel == "selective" {
 
     @include function($selective);
-    @include duration(200ms);
+    @include duration(200ms * $animation-timescale);
 
   } @else if $feel == "lazy" {
 
     @include function($easeInOutQuad);
-    @include duration(2000ms);
+    @include duration(2000ms * $animation-timescale);
+
+  } @else {
+
+    @include function($feel);
+    @include duration(1s * $animation-timescale);
 
   }
 

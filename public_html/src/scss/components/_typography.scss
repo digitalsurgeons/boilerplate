@@ -48,7 +48,9 @@ p {
 }
 
 a {
-	@include transition(color #{$transition});
+	@include feel(){
+		@include transition-property(color);
+	}
 	color: $primary-color;
 	text-decoration: none;
 
