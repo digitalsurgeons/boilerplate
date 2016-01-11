@@ -59,7 +59,7 @@ $animation-easing   : $easeOutQuad !default;
 $animation-fill     : both;
 $animation-backface : hidden !default;
 
-@mixin feel($feel: $animation-feel) {
+@mixin feel($feel: $animation-feel, $timing-override: 1s * $animation-timescale) {
 
   @include transition(all);
 
@@ -91,7 +91,7 @@ $animation-backface : hidden !default;
   } @else {
 
     @include function($feel);
-    @include duration(1s * $animation-timescale);
+    @include duration($timing-override);
 
   }
 

@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <!--[if IE 8]> <html class="ie8 oldie" lang="en"> <![endif]-->
 <!--[if IE 9]> <html class="ie9 oldie" lang="en"> <![endif]-->
-<!--[if gt IE 9]><!--> <html lang="en"> <!--<![endif]-->
+<!--[if gt IE 9]><!-->
+<html lang="en">
+<!--<![endif]-->
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,6 +20,7 @@
 		<script src="/dist/polyfill.js"></script>
 	<![endif]-->
 </head>
+
 <body>
 
 	<div class="modal-overlay" data-switch-off="body" data-switch-class="modal-active"></div>
@@ -83,9 +87,7 @@
 					</ul>
 				</nav>
 
-				<a href="#" class="header__toggle"
-				   data-toggle="body"
-				   data-toggle-class="slide-out-active"><span class="icon-hamburger"></span></a>
+				<a href="#" class="header__toggle" data-toggle="body" data-toggle-class="slide-out-active"><span class="icon-hamburger"></span></a>
 			</div>
 		</header>
 
@@ -134,22 +136,22 @@
 
 					<div class="ui-pickers">
 						<div class="picker" data-picker>
-	                        <p class="picker__label" data-picker-label>Pick an option...</p>
-	                        <select class="picker__select" name="select_element">
+							<p class="picker__label" data-picker-label>Pick an option...</p>
+							<select class="picker__select" name="select_element">
 								<option value="1">Option 1</option>
 								<option value="2">Option 2</option>
 								<option value="3">Option 3</option>
-	                        </select>
-	                    </div>
+							</select>
+						</div>
 
 						<div class="picker--error" data-picker>
-	                        <p class="picker__label" data-picker-label>Pick an option...</p>
-	                        <select class="picker__select" name="select_element">
+							<p class="picker__label" data-picker-label>Pick an option...</p>
+							<select class="picker__select" name="select_element">
 								<option value="1">Option 1</option>
 								<option value="2">Option 2</option>
 								<option value="3">Option 3</option>
-	                        </select>
-	                    </div>
+							</select>
+						</div>
 					</div>
 
 					<p>
@@ -199,18 +201,19 @@
 
 			<article class="feature" id="Animations" data-animations>
 				<h4 class="feature-title">Animations with @include feel();</h4>
-				<p>First and foremost this is a easing and timing preset mixin</p>
+				<p>First and foremost this is a transition timing and easing defining mixin. It makes your page animations feel good.</p>
 				<p>Instead of writing normal transitions like this:
 					<pre>
 .movie-title {
-	@transition(all 1s ease);
+	@transition(all 1s);
 	opacity: 0;
 	&.is-showing {
 		opacity: 1;
 	}
 }
 					</pre>
-					You give control to the preset manager by including feel();
+					<p> You write them like this to give them feeling. Inside your _settings.scss file is a variable for defining which "feel" is applied. They are 'confident', 'bouncy', 'strong', 'selective', and 'lazy'.
+					</p>
 					<pre>
 .movie-title {
 	@include feel();
@@ -220,17 +223,15 @@
 	}
 }
 					</pre>
-			</p>
-			<p>
-				Inside your _settings.scss file is a variable for defining which "feel" is applied. They are 'confident', 'bouncy', 'strong', 'selective', and 'lazy'.
-			</p>
-			<p>
-				The feel() mixin will animate every property by default. You might want it to only include specific ones, that's possible with the following SASS syntax.
-			</p>
-			<pre>
+				</p>
+
+				<p>
+					*Gotcha: The feel() mixin will animate every property by default. You might want it to only include specific ones, that's possible with the following SASS syntax.
+				</p>
+				<pre>
 .movie-title {
 	@include feel() {
-		@include transition-property(color);
+		@include transition-property(opacity);
 	}
 	opacity: 0;
 	&.is-showing {
@@ -238,62 +239,74 @@
 	}
 }
 			</pre>
-			<p>
-				This is built on top of Robert Penner's <a href="http://upshots.org/actionscript/jsas-understanding-easing">easing formulas</a> converted to cubic-bezier representations and stored in variables. They are $easeInQuad, $easeInCubic, $easeInQuart, $easeInQuint, $easeInSine, $easeInExpo, $easeInCirc, $easeInBack, $easeOutQuad, $easeOutCubic, $easeOutQuart, $easeOutQuint, $easeOutSine, $easeOutExpo, $easeOutCirc, $easeOutBack, $easeInOutQuad, $easeInOutCubic, $easeInOutQuart, $easeInOutQuint, $easeInOutSine, $easeInOutExpo, $easeInOutCirc, and $easeInOutBack.
-			</p>
+				<p>
+					So, you might wonder how you can customize this. This library is built on top of Robert Penner's <a href="http://upshots.org/actionscript/jsas-understanding-easing">easing formulas</a> converted to cubic-bezier variables. Those variables are $easeInQuad, $easeInCubic, $easeInQuart, $easeInQuint, $easeInSine, $easeInExpo, $easeInCirc, $easeInBack, $easeOutQuad, $easeOutCubic, $easeOutQuart, $easeOutQuint, $easeOutSine, $easeOutExpo, $easeOutCirc, $easeOutBack, $easeInOutQuad, $easeInOutCubic, $easeInOutQuart, $easeInOutQuint, $easeInOutSine, $easeInOutExpo, $easeInOutCirc, and $easeInOutBack.
+				</p>
+				The default ones are available as variables too $linear, $ease, $ease-in, $ease-out, and $ease-in-out. So don't worry about typos, or anything like that, this syntax should overwrite your way of doing it
 
-			<p>
-				Yeah, I think that's all of them. No wait, the default ones are available as variables too $linear, $ease, $ease-in, $ease-out, and $ease-in-out. So don't worry about typos, or anything like that, this syntax should overwrite your way of doing it
-			</p>
-
-			<h4>Built in Animations on top of transitions</h4>
-			<p>
-				You can use any of the following built in animations to add flair to content on your page. They follow the instructions set by $animation-feel.
-			<p>
-
-
-				<div class="animation-implentation">
+				</p>
+				<p>
+					That means If you want to be gangster, you can customize your transitions without much intellectual difference.
+				</p>
 				<pre>
-.movie-title {</pre>
-					@include <div class="picker" data-picker>
-	                    <p class="picker__label" data-picker-label>Pick an Animation Mixin</p>
-	                    <select class="picker__select" name="select_element" data-animation-picker>
-							<option value="fadeIn">fadeIn();</option>
-							<option value="fadeInUp">fadeInUp();</option>
-							<option value="fadeInRight">fadeInRight();</option>
-							<option value="fadeInDown">fadeInDown();</option>
-							<option value="fadeInLeft">fadeInLeft();</option>
-							<option value="fadeOut">fadeOut();</option>
-							<option value="fadeOutUp">fadeOutUp();</option>
-							<option value="fadeOutRight">fadeOutRight();</option>
-							<option value="fadeOutDown">fadeOutDown();</option>
-							<option value="fadeOutLeft">fadeOutLeft();</option>
-							<option value="slideInUp">slideInUp();</option>
-							<option value="slideInRight">slideInRight();</option>
-							<option value="slideInDown">slideInDown();</option>
-							<option value="slideInLeft">slideInLeft();</option>
-							<option value="slideOutUp">slideOutUp();</option>
-							<option value="slideOutRight">slideOutRight();</option>
-							<option value="slideOutDown">slideOutDown();</option>
-							<option value="slideOutLeft">slideOutLeft();</option>
-							<option value="zoomIn">zoomIn();</option>
-							<option value="zoomInShrink">zoomInShrink();</option>
-							<option value="zoomOut">zoomOut();</option>
-							<option value="zoomOutGrow">zoomOutGrow();</option>
-							<option value="bounce">bounce();</option>
-							<option value="flash">flash();</option>
-							<option value="pulse">pulse();</option>
-							<option value="shake">shake();</option>
-							<option value="wobble">wobble();</option>
-	                    </select>
-	                </div>
-               	</div>
-               	<pre>
+.movie-title {
+	@transition(all 1s $easeOutExpo);
+	opacity: 0;
+	&.is-showing {
+		opacity: 1;
+	}
+}
+			</pre>
+
+
+				<h4>Built in Animations on top of transitions</h4>
+				<p>
+					You can use any of the following built in animations to add flair to content on your page. They follow the easing and transition set by $animation-feel.
+					<p>
+
+
+						<div class="animation-implentation">
+							<pre>
+.movie-title {</pre> @include
+							<div class="picker" data-picker>
+								<p class="picker__label" data-picker-label>Pick an Animation Mixin</p>
+								<select class="picker__select" name="select_element" data-animation-picker>
+									<option value="fadeIn">fadeIn();</option>
+									<option value="fadeInUp">fadeInUp();</option>
+									<option value="fadeInRight">fadeInRight();</option>
+									<option value="fadeInDown">fadeInDown();</option>
+									<option value="fadeInLeft">fadeInLeft();</option>
+									<option value="fadeOut">fadeOut();</option>
+									<option value="fadeOutUp">fadeOutUp();</option>
+									<option value="fadeOutRight">fadeOutRight();</option>
+									<option value="fadeOutDown">fadeOutDown();</option>
+									<option value="fadeOutLeft">fadeOutLeft();</option>
+									<option value="slideInUp">slideInUp();</option>
+									<option value="slideInRight">slideInRight();</option>
+									<option value="slideInDown">slideInDown();</option>
+									<option value="slideInLeft">slideInLeft();</option>
+									<option value="slideOutUp">slideOutUp();</option>
+									<option value="slideOutRight">slideOutRight();</option>
+									<option value="slideOutDown">slideOutDown();</option>
+									<option value="slideOutLeft">slideOutLeft();</option>
+									<option value="zoomIn">zoomIn();</option>
+									<option value="zoomInShrink">zoomInShrink();</option>
+									<option value="zoomOut">zoomOut();</option>
+									<option value="zoomOutGrow">zoomOutGrow();</option>
+									<option value="bounce">bounce();</option>
+									<option value="flash">flash();</option>
+									<option value="pulse">pulse();</option>
+									<option value="shake">shake();</option>
+									<option value="wobble">wobble();</option>
+								</select>
+							</div>
+						</div>
+						<pre>
 }
                	</pre>
-               	<div class="animation-demo">
-					<div class="animation-demo__square" data-animation-square></div>
-               	</div>
+						<div class="animation-demo">
+							<div class="animation-demo__square" data-animation-square></div>
+						</div>
 
 			</article>
 		</section>
@@ -304,4 +317,5 @@
 	<script src="/dist/js/ui.js"></script>
 
 </body>
+
 </html>
