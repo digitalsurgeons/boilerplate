@@ -200,74 +200,8 @@
 			</article>
 
 			<article class="feature" id="Animations" data-animations>
-				<h4 class="feature-title">Animations with @include feel();</h4>
-				<p>First and foremost this is a transition timing and easing defining mixin. It makes your page animations feel good.</p>
-				<p>Instead of writing normal transitions like this:
-					<pre>
-.movie-title {
-	@transition(all 1s);
-	opacity: 0;
-	&.is-showing {
-		opacity: 1;
-	}
-}
-					</pre>
-					<p> You write them like this to give them feeling. Inside your _settings.scss file is a variable for defining which "feel" is applied. They are 'confident', 'bouncy', 'strong', 'selective', and 'lazy'.
-					</p>
-					<pre>
-.movie-title {
-	@include feel();
-	opacity: 0;
-	&.is-showing {
-		opacity: 1;
-	}
-}
-					</pre>
-				</p>
-
-				<p>
-					*Gotcha: The feel() mixin will animate every property by default. You might want it to only include specific ones, that's possible with the following SASS syntax.
-				</p>
-				<pre>
-.movie-title {
-	@include feel() {
-		@include transition-property(opacity);
-	}
-	opacity: 0;
-	&.is-showing {
-		opacity: 1;
-	}
-}
-			</pre>
-				<p>
-					So, you might wonder how you can customize this. This library is built on top of Robert Penner's <a href="http://upshots.org/actionscript/jsas-understanding-easing">easing formulas</a> converted to cubic-bezier variables. Those variables are $easeInQuad, $easeInCubic, $easeInQuart, $easeInQuint, $easeInSine, $easeInExpo, $easeInCirc, $easeInBack, $easeOutQuad, $easeOutCubic, $easeOutQuart, $easeOutQuint, $easeOutSine, $easeOutExpo, $easeOutCirc, $easeOutBack, $easeInOutQuad, $easeInOutCubic, $easeInOutQuart, $easeInOutQuint, $easeInOutSine, $easeInOutExpo, $easeInOutCirc, and $easeInOutBack.
-				</p>
-				The default ones are available as variables too $linear, $ease, $ease-in, $ease-out, and $ease-in-out. So don't worry about typos, or anything like that, this syntax should overwrite your way of doing it
-
-				</p>
-				<p>
-					That means If you want to be gangster, you can customize your transitions without much intellectual difference.
-				</p>
-				<pre>
-.movie-title {
-	@transition(all 1s $easeOutExpo);
-	opacity: 0;
-	&.is-showing {
-		opacity: 1;
-	}
-}
-			</pre>
-
-
-				<h4>Built in Animations on top of transitions</h4>
-				<p>
-					You can use any of the following built in animations to add flair to content on your page. They follow the easing and transition set by $animation-feel.
-					<p>
-
-
+				<h4 class="feature-title">Built-in Keyframe Animations</h4>
 						<div class="animation-implentation">
-							<pre>
-.movie-title {</pre> @include
 							<div class="picker" data-picker>
 								<p class="picker__label" data-picker-label>Pick an Animation Mixin</p>
 								<select class="picker__select" name="select_element" data-animation-picker>
@@ -302,6 +236,8 @@
 							</div>
 						</div>
 						<pre>
+.movie-title {
+	@include $<span data-animation-type>fadeIn</span>();
 }
                	</pre>
 						<div class="animation-demo">

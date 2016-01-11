@@ -65,6 +65,10 @@
 			//add newly selected class
 			$('[data-animation-square]').addClass(selectedMixin);
 
+			//tell the demo code what method was called
+			$('[data-animation-type]').html($(this).val());
+
 		});
+
 	});
 })();
