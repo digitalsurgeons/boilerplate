@@ -1,15 +1,12 @@
 ## Transitions and Animations.
 ### components/animation/_animation.scss
 ---
-This component will be a lot easier to understand if you are familar with the `transition` property. We suggest a quick [refresher](https://css-tricks.com/almanac/properties/t/transition/) just for good measure. 
-
-This boilerplate already has the Bourbon mixin library installed, so this library leverages it to do some of the heavy lifting. 
-
-The following example should look familar. It is how you typically write a transition.
+This component uses the `transition` property. [More about transitions](https://css-tricks.com/almanac/properties/t/transition/).
 
 
-<pre>//SCSS
+Here is your typical transition.
 
+<pre>
 .movie-title {
 	@include transition(1s);
 	opacity: 0;
@@ -18,20 +15,21 @@ The following example should look familar. It is how you typically write a trans
 	}
 }</pre>
 
-The `.is-showing` class might get added with [Toggles and Switches](https://github.com/dsurgeons/Toggles-Switches), or with jQuery. We'll use this example moving forward.
 
-When building out a whole site, it is difficult to manage the 'feel' of all of the animations. In the example the `transition-easing` property defaults to `ease` which is equal to `ease-in-out`. This happens behind the scenes. It is the cleanest of the built in ease types of which there are 3. They are `ease-in`, `ease-out`, and `ease-in-out`. That's not much to go with. Luckily you can replace this with a `cubic-bezier` method.
 
-<pre>cubic-bezier(0.455, 0.030, 0.515, 0.955);</pre>
+This component enables developers to manage the overall feel of all the animations on the page.
+
+In that example the `transition-easing` property gets set to `ease` automatically (because we didn't set it manually). An `ease` transition type starts off slow, accelerates, and then begins slowing as it finishes the animation. They are only 4 options `linear`, `ease`, `ease-in`, and `ease-out`. For more customization have to define a `cubic-bezier` easing curve.
+
+<pre>@include transition(1s cubic-bezier(0.455, 0.030, 0.515, 0.955));</pre>
 
 The `cubic-bezier` method defines how the animation starts and how the animation ends by specifying control points that affect the change in property over time. Here's a [cubic-bezier builder](cubic-bezier.com/#.455,.03,.515,.955) that can help illustrate how they works. 
 
-Needless to say, its rather difficult to look at a `cubic-bezier` declaration and know what the animation is going to look like.
 
-###Animation types
-Built into this library are Robert Penner's easing formuals turned into `cubic-beziers`. Anywhere you'd use your own `cubic-bezier` declaration you can use one of the following variabes: `$easeInQuad`, `$easeInCubic`, `$easeInQuart`, `$easeInQuint`, `$easeInSine`, `$easeInExpo`, `$easeInCirc`, `$easeInBack`, `$easeOutQuad`, `$easeOutCubic`, `$easeOutQuart`, `$easeOutQuint`, `$easeOutSine`, `$easeOutExpo`, `$easeOutCirc`, `$easeOutBack`, `$easeInOutQuad`, `$easeInOutCubic`, `$easeInOutQuart`, `$easeInOutQuint`, `$easeInOutSine`, `$easeInOutExpo`, `$easeInOutCirc`, and `$easeInOutBack`. We went so far as to even include `cubic-bezier` versions of the built in easing types: `$linear`, `$ease`, `$ease-in`, `$ease-out`, and `$ease-in-out`.
 
-[Here](http://easings.net) is what all of those do.
+###No one should have to memorize `cubic-bezier` curves.
+Robert Penner is a guy who wrote a set of easing formuals a long time ago and I turned them into `cubic-bezier` variables. Anywhere you'd use your own `cubic-bezier` curve you can use one these variables: `$easeInQuad`, `$easeInCubic`, `$easeInQuart`, `$easeInQuint`, `$easeInSine`, `$easeInExpo`, `$easeInCirc`, `$easeInBack`, `$easeOutQuad`, `$easeOutCubic`, `$easeOutQuart`, `$easeOutQuint`, `$easeOutSine`, `$easeOutExpo`, `$easeOutCirc`, `$easeOutBack`, `$easeInOutQuad`, `$easeInOutCubic`, `$easeInOutQuart`, `$easeInOutQuint`, `$easeInOutSine`, `$easeInOutExpo`, `$easeInOutCirc`, and `$easeInOutBack`. [Here are the visual demos](http://easings.net) of the different easing curves.
+
 
 ###Actually using the library
 Even if you use all the shortcuts you've learned about so far chances are you're still destined for frustration when your designers ask you to make the animations "feel" quicker. The answer to "How do you do that?" Isn't fun. It involves replacing all your cubic-beziers and animation durations before **every** test.

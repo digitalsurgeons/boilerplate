@@ -4,10 +4,18 @@
 	60% {@include transform(translateY(-15px));}
 }
 
-@mixin bounce($feel-override:$animation-feel) {
+@mixin bounce($feel:$animation-feel, $duration:null) {
 	@include animation-name(bounce);
+	@if (type-of($feel) == "string") {
+		@include feel($feel);
+		@if (type-of($duration) == "number") {
+			@include duration($duration);
+		}
+	} @else if (type-of($feel) == "number") {
+		@include feel($animation-feel);
+		@include duration($feel);
+	}
 	@include count($animation-count);
-	@include feel($feel-override);
 	@include delay($animation-delay);
 	@include fill-mode($animation-fill);
 	@include visibility($animation-backface);

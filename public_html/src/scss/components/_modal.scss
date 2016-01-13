@@ -12,7 +12,6 @@ $modal-overlay-bg: rgba($black, .7);
 }
 
 .modal {
-	@include feel();
 	@include transform(translate(-50%, -50%));
 	background: $modal-bg;
 	height: 70%;

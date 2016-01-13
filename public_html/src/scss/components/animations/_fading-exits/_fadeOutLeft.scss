@@ -9,10 +9,18 @@
   }
 }
 
-@mixin fadeOutLeft($feel-override:$animation-feel) {
+@mixin fadeOutLeft($feel:$animation-feel, $duration:null) {
   @include animation-name(fadeOutLeft);
+	@if (type-of($feel) == "string") {
+		@include feel($feel);
+		@if (type-of($duration) == "number") {
+			@include duration($duration);
+		}
+	} @else if (type-of($feel) == "number") {
+		@include feel($animation-feel);
+		@include duration($feel);
+	}
 	@include count($animation-count);
-	@include feel($feel-override);
 	@include delay($animation-delay);
 	@include fill-mode($animation-fill);
 	@include visibility($animation-backface);
