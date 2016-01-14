@@ -17,59 +17,6 @@ which was derived by Den Eden's Animate.css. Each are using
 MIT Licenses that allow us to use, reuse, repackage, modify,
 and profit with no issues.
 
-CSS Transitions
-Inside 'animations/_properties.scss' are all the variables
-for Robert Penner's easing formulas: Sine, Quad, Cubic, Quart, Quint,
-Expo, Circ, and Back. They all have ease, easeIn, and easeOut varieties.
-Each changes how animation feels. You can use them in your
-own transitions. Syntax: ease<In/Out><Formula>
-
-.nifty-element {
-  @include transition(opacity .5s $easeOutQuad);
-  opacity: 0;
-}
-.nifty-element:hover {
-  opacity: 1;
-}
-
-CSS3 Animations with @keyframes
-Also inside 'animations/_properties.scss' is the core of what makes this library great.
-An @keyframes generator with an easy to use way of building swanky animations
-like elastic, bounce and zoom.
-
-.nifty-element:hover {
-  @include zoomIn();
-}
-
-Avaiable to you are: fadeIn(), fadeOut(), slideIn(), slideOut(), zoomIn(), zoomOut(),
-bounce(), flash(), pulse(), shake(), and wobble(). Some have modifiers to change the direction
-they move as they come in, or as they go out. /ui.html has more info.
-
-
-Customize Global Feel
-Having animations are great, but what makes a site “feel” premium is a consistent feel of our page’s animations. To do this, modify the ds-boilerplate _settings.scss $animation-feel property. All animation mixins that contain variants matching your $animation-feel will be included instead.
-
-
-Feel options: "confident", "bouncy", "strong", "selective", "lazy"
-
----
-
-Individual animations can over-ride the global $animation-feel variable by passing one of the
-feel options to the mixin as an argument.
-
-.nifty-element:hover {
-  @include slideIn("bouncy");
-}
-
-
-Amplifying the Feeling
-All feel options can have their effect exaggerated or limited by prepending an "urgency modifier".
-Available modifiers are "more-" and "less-".
-
-.nifty-element:hover {
-  @include slideIn("less-bouncy");
-}
-
 */
 
 

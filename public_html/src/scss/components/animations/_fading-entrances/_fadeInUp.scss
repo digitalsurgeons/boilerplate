@@ -1,7 +1,8 @@
 @include keyframes(fadeInUp) {
   0% {
     opacity: 0;
-    @include transform(translateY(20px));}
+    @include transform(translateY(20px));
+	}
   100% {
     opacity: 1;
     @include transform(translateY(0));

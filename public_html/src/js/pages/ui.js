@@ -4,6 +4,7 @@
 
 	// require global libraries
 	require('../../../bower_components/toggles-switches/toggles-switches');
+	require('../../../bower_components/inview/inview-0.1.0');
 
 	// require modules
 	var $ = require('jquery'),
