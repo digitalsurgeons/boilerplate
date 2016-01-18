@@ -12,7 +12,7 @@ $slide-out-canvas-bg: $white;
 
 .slide-out {
 	background: $slide-out-bg;
-	box-shadow: inset 3px 0 6px 0 rgba(0, 0, 0, .3);
+	box-shadow: inset 3px 0 6px 0 $transparency;
 	height: 100%;
 	position: fixed;
 	right: 0;

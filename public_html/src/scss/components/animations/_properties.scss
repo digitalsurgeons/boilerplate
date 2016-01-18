@@ -1,47 +1,47 @@
-$linear         : cubic-bezier(0.250, 0.250, 0.750, 0.750) !default;
-$ease           : cubic-bezier(0.250, 0.100, 0.250, 1.000) !default;
-$ease-in        : cubic-bezier(0.420, 0.000, 1.000, 1.000) !default;
-$ease-out       : cubic-bezier(0.000, 0.000, 0.580, 1.000) !default;
-$ease-in-out    : cubic-bezier(0.420, 0.000, 0.580, 1.000) !default;
+$linear: cubic-bezier(.250, .250, .750, .750) !default;
+$ease: cubic-bezier(.25, .100, .250, 1) !default;
+$ease-in: cubic-bezier(.42, 0, 1, 1) !default;
+$ease-out: cubic-bezier(0, 0, .580, 1) !default;
+$ease-in-out: cubic-bezier(.420, .000, .580, 1) !default;
 
-$easeInQuad     : cubic-bezier(0.550, 0.085, 0.680, 0.530) !default;
-$easeInCubic    : cubic-bezier(0.550, 0.055, 0.675, 0.190) !default;
-$easeInQuart    : cubic-bezier(0.895, 0.030, 0.685, 0.220) !default;
-$easeInQuint    : cubic-bezier(0.755, 0.050, 0.855, 0.060) !default;
-$easeInSine     : cubic-bezier(0.470, 0.000, 0.745, 0.715) !default;
-$easeInExpo     : cubic-bezier(0.950, 0.050, 0.795, 0.035) !default;
-$easeInCirc     : cubic-bezier(0.600, 0.040, 0.980, 0.335) !default;
-$easeInBack     : cubic-bezier(0.600, -0.280, 0.735, 0.045) !default;
+$ease-in-quad: cubic-bezier(.550, .085, .680, .530) !default;
+$ease-in-cubic: cubic-bezier(.550, .055, .675, .190) !default;
+$ease-in-quart: cubic-bezier(.895, .030, .685, .220) !default;
+$ease-in-quint: cubic-bezier(.755, .050, .855, .060) !default;
+$ease-in-sine: cubic-bezier(.470, .000, .745, .715) !default;
+$ease-in-expo: cubic-bezier(.950, .050, .795, .035) !default;
+$ease-in-circ: cubic-bezier(.600, .040, .980, .335) !default;
+$ease-in-back: cubic-bezier(.600, -.280, .735, .045) !default;
 
-$easeOutQuad    :  cubic-bezier(0.250, 0.460, 0.450, 0.940) !default;
-$easeOutCubic   :  cubic-bezier(0.215, 0.610, 0.355, 1.000) !default;
-$easeOutQuart   :  cubic-bezier(0.165, 0.840, 0.440, 1.000) !default;
-$easeOutQuint   :  cubic-bezier(0.230, 1.000, 0.320, 1.000) !default;
-$easeOutSine    :  cubic-bezier(0.390, 0.575, 0.565, 1.000) !default;
-$easeOutExpo    :  cubic-bezier(0.190, 1.000, 0.220, 1.000) !default;
-$easeOutCirc    :  cubic-bezier(0.075, 0.820, 0.165, 1.000) !default;
-$easeOutBack    :  cubic-bezier(0.175, 0.885, 0.320, 1.275) !default;
+$ease-out-quad: cubic-bezier(.250, .460, .450, .940) !default;
+$ease-out-cubic: cubic-bezier(.215, .610, .355, 1) !default;
+$ease-out-quart: cubic-bezier(.165, .840, .440, 1) !default;
+$ease-out-quint: cubic-bezier(.230, 1, .320, 1) !default;
+$ease-out-sine: cubic-bezier(.390, .575, .565, 1) !default;
+$ease-out-expo: cubic-bezier(.190, 1, .220, 1) !default;
+$ease-out-circ: cubic-bezier(.075, .820, .165, 1) !default;
+$ease-out-back: cubic-bezier(.175, .885, .320, 1.275) !default;
 
-$easeInOutQuad  :  cubic-bezier(0.455, 0.030, 0.515, 0.955) !default;
-$easeInOutCubic :  cubic-bezier(0.645, 0.045, 0.355, 1.000) !default;
-$easeInOutQuart :  cubic-bezier(0.770, 0.000, 0.175, 1.000) !default;
-$easeInOutQuint :  cubic-bezier(0.860, 0.000, 0.070, 1.000) !default;
-$easeInOutSine  :  cubic-bezier(0.445, 0.050, 0.550, 0.950) !default;
-$easeInOutExpo  :  cubic-bezier(1.000, 0.000, 0.000, 1.000) !default;
-$easeInOutCirc  :  cubic-bezier(0.785, 0.135, 0.150, 0.860) !default;
-$easeInOutBack  :  cubic-bezier(0.680, -0.550, 0.265, 1.550) !default;
+$ease-in-out-quad: cubic-bezier(.455, .030, .515, .955) !default;
+$ease-in-out-cubic: cubic-bezier(.645, .045, .355, 1) !default;
+$ease-in-out-quart: cubic-bezier(.770, 0, .175, 1) !default;
+$ease-in-out-quint: cubic-bezier(.860, 0, .070, 1) !default;
+$ease-in-out-sine: cubic-bezier(.445, .050, .550, .950) !default;
+$ease-in-out-expo: cubic-bezier(1, 0, 0, 1) !default;
+$ease-in-out-circ: cubic-bezier(.785, .135, .150, .860) !default;
+$ease-in-out-back: cubic-bezier(.680, -.550, .265, 1.550) !default;
 
-$confident      :  cubic-bezier(0.735, 0.005, 0.645, 1) !default;
-$bouncy         :  cubic-bezier(0.315, 0.215, 0.135, 1.235) !default;
-$strong         :  cubic-bezier(0.665, 0.005, 0.275, 1) !default;
-$selective      :  cubic-bezier(0.275, 0.985, 0.275, 1) !default;
+$confident: cubic-bezier(.735, .005, .645, 1) !default;
+$bouncy: cubic-bezier(.315, .215, .135, 1.235) !default;
+$strong: cubic-bezier(.665, .005, .275, 1) !default;
+$selective: cubic-bezier(.275, .985, .275, 1) !default;
 
-$animation-count    : 1 !default;
-$animation-duration : 1s * $animation-timescale;
-$animation-delay    : 0s !default;
-$animation-easing   : $easeOutQuad !default;
-$animation-fill     : both;
-$animation-backface : hidden !default;
+$animation-count: 1 !default;
+$animation-duration: 1s * $animation-timescale;
+$animation-delay: 0s !default;
+$animation-easing: $ease-out-quad !default;
+$animation-fill: both;
+$animation-backface: hidden !default;
 
 @mixin feel($feel: $animation-feel, $timing-override: null) {
 
@@ -72,7 +72,7 @@ $animation-backface : hidden !default;
 
 		} @else if $feel == 'lazy' {
 
-			@include function($easeInOutQuad);
+			@include function($ease-in-out-quad);
 			@include duration(2000ms * $animation-timescale);
 
 		} @else {
@@ -96,92 +96,52 @@ $animation-backface : hidden !default;
 }
 
 @mixin count($count: $animation-count) {
-  -webkit-animation-iteration-count: $count;
-	 -moz-animation-iteration-count: $count;
-	  -ms-animation-iteration-count: $count;
-	   -o-animation-iteration-count: $count;
-		  animation-iteration-count: $count;
+
+	@include animation-iteration-count($count);
+
 }
 
 @mixin duration($duration: $animation-duration) {
-  -webkit-animation-duration: $duration;
-	 -moz-animation-duration: $duration;
-	  -ms-animation-duration: $duration;
-	   -o-animation-duration: $duration;
-		  animation-duration: $duration;
 
-  -webkit-transition-duration: $duration;
-	 -moz-transition-duration: $duration;
-	  -ms-transition-duration: $duration;
-	   -o-transition-duration: $duration;
-		  transition-duration: $duration;
+	@include animation-duration($duration);
+	@include transition-duration($duration);
+
 }
 
 @mixin delay($delay: $animation-delay) {
-  -webkit-animation-delay: $delay;
-	 -moz-animation-delay: $delay;
-	  -ms-animation-delay: $delay;
-	   -o-animation-delay: $delay;
-		  animation-delay: $delay;
+
+	@include animation-delay($delay);
+
 }
 
 @mixin function($function: $animation-easing) {
-  -webkit-animation-timing-function: $function;
-	 -moz-animation-timing-function: $function;
-	  -ms-animation-timing-function: $function;
-	   -o-animation-timing-function: $function;
-		  animation-timing-function: $function;
 
-  -webkit-transition-timing-function: $function;
-	 -moz-transition-timing-function: $function;
-	  -ms-transition-timing-function: $function;
-	   -o-transition-timing-function: $function;
-		  transition-timing-function: $function;
+	@include animation-timing-function($function);
+	@include transition-timing-function($function);
+
 }
 
-@mixin fill-mode($fill: $animation-fill) {
-  -webkit-animation-fill-mode: $fill;
-	 -moz-animation-fill-mode: $fill;
-	  -ms-animation-fill-mode: $fill;
-	   -o-animation-fill-mode: $fill;
-		  animation-fill-mode: $fill;
-}
 
 @mixin visibility($visibility: $animation-backface) {
-  -webkit-backface-visibility: $visibility;
-	 -moz-backface-visibility: $visibility;
-	  -ms-backface-visibility: $visibility;
-	   -o-backface-visibility: $visibility;
-		  backface-visibility: $visibility;
+
+	@include backface-visibility($visibility);
+
 }
 
-@mixin transform($property) {
-  -webkit-transform: $property;
-	 -moz-transform: $property;
-	  -ms-transform: $property;
-	   -o-transform: $property;
-		  transform: $property;
+// @mixin transform-origin($transform-origin: center center) {
+
+// 	@include transform-origin($transform-origin);
+
+// }
+
+// @mixin transform-style($transform-style: flat) {
+// 	@inlcude transform-style($transform-style);
+
+// }
+
+@mixin fill-mode($fill: $animation-fill) {
+
+	@inlcuce animation-fill-mode($fill);
+
 }
 
-@mixin transform-origin($transform-origin: center center) {
-  -webkit-transform-origin: $transform-origin;
-	 -moz-transform-origin: $transform-origin;
-	  -ms-transform-origin: $transform-origin;
-	   -o-transform-origin: $transform-origin;
-		  transform-origin: $transform-origin;
-}
-
-@mixin transform-style($transform-style: flat) {
-  -webkit-transform-style: $transform-style;
-	 -moz-transform-style: $transform-style;
-	   -o-transform-style: $transform-style;
-		  transform-style: $transform-style;
-}
-
-@mixin animation-name($animation-name) {
-  -webkit-animation-name: $animation-name;
-	 -moz-animation-name: $animation-name;
-	  -ms-animation-name: $animation-name;
-	   -o-animation-name: $animation-name;
-		  animation-name: $animation-name;
-}
