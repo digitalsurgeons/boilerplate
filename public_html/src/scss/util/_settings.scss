@@ -33,5 +33,7 @@ $gray: #ccc;
 $base-background-color: $white;
 $base-font-color: $black;
 
-// Animation
-$transition: .3s;
+// Transitions and Animations
+// available feel types: 'confident', 'bouncy', 'strong', 'selective', and 'lazy'
+$animation-feel: 'lazy';
+$animation-timescale: 1;
