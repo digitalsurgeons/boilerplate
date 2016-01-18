@@ -18,7 +18,7 @@
     "gulp-notify": "~1.4.1",
     "gulp-prompt": "~0.1.2",
     "gulp-ruby-sass": "~1.0.1",
-    "gulp-scss-lint": "~0.1.11",
+    "gulp-scss-lint": "~0.3.9",
     "gulp-sourcemaps": "~1.5.1",
     "gulp-svg-sprite": "~1.2.16",
     "gulp-svg2ttf": "~1.0.3",
