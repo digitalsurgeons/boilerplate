@@ -39,11 +39,11 @@ Not fun.
 
 
 ###No one should have to memorize `cubic-bezier` curves.
-To make it easier to use the various easing formulas the animation community has had for years we've transposed Robert Penner's easing formuals as variables. Anywhere you'd use a `cubic-bezier` curve you can use one these variables instead: `$easeInQuad`, `$easeInCubic`, `$easeInQuart`, `$easeInQuint`, `$easeInSine`, `$easeInExpo`, `$easeInCirc`, `$easeInBack`, `$easeOutQuad`, `$easeOutCubic`, `$easeOutQuart`, `$easeOutQuint`, `$easeOutSine`, `$easeOutExpo`, `$easeOutCirc`, `$easeOutBack`, `$easeInOutQuad`, `$easeInOutCubic`, `$easeInOutQuart`, `$easeInOutQuint`, `$easeInOutSine`, `$easeInOutExpo`, `$easeInOutCirc`, and `$easeInOutBack`. [Here are the visual demos](http://easings.net) of the different easing curves.
+To make it easier to use the various easing formulas the animation community has had for years we've transposed Robert Penner's easing formuals as variables. Anywhere you'd use a `cubic-bezier` curve you can use one these variables instead: `$ease-in-quad`, `$ease-in-cubic`, `$ease-in-quart`, `$ease-in-quint`, `$ease-in-sine`, `$ease-in-expo`, `$ease-in-circ`, `$ease-in-back`, `$ease-out-quad`, `$ease-out-cubic`, `$ease-out-quart`, `$ease-out-quint`, `$ease-out-sine`, `$ease-out-expo`, `$ease-out-circ`, `$ease-out-back`, `$ease-in-out-quad`, `$ease-in-out-cubic`, `$ease-in-out-quart`, `$ease-in-out-quint`, `$ease-in-out-sine`, `$ease-in-out-expo`, `$ease-in-out-circ`, and `$ease-in-out-back`. [Here are the visual demos](http://easings.net) of the different easing curves.
 
 <pre>
 .movie-title {
-	@include feel($easeOutQuad);
+	@include feel($ease-out-quad);
 	opacity: 0;
 	&.is-showing {
 		opacity: 1;
@@ -52,9 +52,7 @@ To make it easier to use the various easing formulas the animation community has
 
 
 ###Actually using the library
-Even if you use the shortcuts covered so far you will probably get frustrated if the client ask you to make all the animations across their site "feel" less harsh. Until now it has involved replacing all your cubic-beziers and durations.
-
-Not anymore. Replace `@include transition();` with `@include feel();`
+Lets go back for a minute and think more broadly. Use the default, and then change their feeling all via settings.
 
 <pre>//SCSS
 
@@ -66,7 +64,7 @@ Not anymore. Replace `@include transition();` with `@include feel();`
 	}
 }</pre>
 
-Global default settings are inside of `public_html/src/scss/utils/_settings.scss`.
+`public_html/src/scss/utils/_settings.scss`.
 <pre>
 // Transitions and Animations
 // available feel types: 'confident', 'bouncy', 'strong', 'selective', and 'lazy'
@@ -74,8 +72,6 @@ $animation-feel: 'lazy';
 $animation-timescale: 1;
 </pre>
 
-
-This powers every element that uses the `feel()` mixin.
 
 `'confident'` - An ease in and out with a narrow curve that replicates a confident head nod. 
 
@@ -87,8 +83,8 @@ This powers every element that uses the `feel()` mixin.
 
 `'lazy'` - A feeling with a long duration and curves that are as soft as you can make them.
 
-###Customization
-By default the `feel();` mixin will animate every property of the element on which it is used. If you want to specify them, use the following syntax.
+###Specifying Customizations
+By default the `feel();` mixin will animate every property. If you want to specify them, use the following syntax.
 <pre>// SCSS
 
 .movie-title {
@@ -139,9 +135,11 @@ You can use any of the following built in animations to add effects to the conte
 .movie-title {
 	opacity: 0;
 	&.is-showing {
-		@include fadeIn();
+		@include fade-in();
 	}
 }</pre>
 
-The built in options are `fadeIn()`, `fadeInUp()`, `fadeInRight()`, `fadeInDown()`, `fadeInLeft()`, `fadeOut()`, `fadeOutUp()`, `fadeOutRight()`, `fadeOutDown()`, `fadeOutLeft()`, `slideInUp()`, `slideInRight()`, `slideInDown()`, `slideInLeft()`, `slideOutUp()`, `slideOutRight()`, `slideOutDown()`, `slideOutLeft()`, `zoomIn()`, `zoomInShrink()`, `zoomOut()`, `zoomOutGrow()`, `bounce()`, `flash()`, `pulse()`, `shake()`, and `wobble()`. [Examples of each of these](/ui.html) are illustrated inside of [ui.html](/ui.html).
+The built in options are `fade-in()`, `fade-in-up()`, `fade-in-right()`, `fade-in-down()`, `fade-in-left()`, `fade-out()`, `fade-out-up()`, `fade-out-right()`, `fade-out-down()`, `fade-out-left()`, `slide-in-up()`, `slide-in-right()`, `slide-in-down()`, `slide-in-left()`, `slide-out-up()`, `slide-out-right()`, `slide-out-down()`, `slide-out-left()`, `zoom-in()`, `zoom-in-shrink()`, `zoom-out()`, `zoom-out-grow()`, `bounce()`, `flash()`, `pulse()`, `shake()`, and `wobble()`. [Examples of each of these](/ui.html) are illustrated inside of [ui.html](/ui.html).
+
+Built by Digital Surgeons
 
