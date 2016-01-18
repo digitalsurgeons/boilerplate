@@ -15,7 +15,7 @@ Your typical transition:
 	}
 }</pre>
 
-Change this to:
+To use this library change this to:
 <pre>//SCSS
 
 .movie-title {
@@ -26,18 +26,20 @@ Change this to:
 	}
 }</pre>
 
-This component enables developers to manage the overall feel of all the animations on the page.
+At this point nothing magical has happened. But think of *transitions* as adding *feeling*. This mixin lets you and your team manage the overall feel of the animations on the page.
 
-As a developer you have 4 options for easing curves `linear`, `ease`, `ease-in`, and `ease-out`. In order for you to customize it have to define a `cubic-bezier` easing curve.
+###Why Not Transition?
+
+As a CSS developer you have 4 options for how the animation looks: `linear`, `ease`, `ease-in`, and `ease-out`. In order for you to customize it have to define a `cubic-bezier` easing curve. That looks like this.
 
 <pre>@include transition(1s cubic-bezier(0.455, 0.030, 0.515, 0.955));</pre>
 
-But how are you supposed to know what that animaiton curve looks like.
+Not fun.
 
 
 
 ###No one should have to memorize `cubic-bezier` curves.
-Robert Penner wrote a set of easing formuals long ago and this library uses them as variables. Anywhere you'd use your own `cubic-bezier` curve you can use one these variables instead: `$easeInQuad`, `$easeInCubic`, `$easeInQuart`, `$easeInQuint`, `$easeInSine`, `$easeInExpo`, `$easeInCirc`, `$easeInBack`, `$easeOutQuad`, `$easeOutCubic`, `$easeOutQuart`, `$easeOutQuint`, `$easeOutSine`, `$easeOutExpo`, `$easeOutCirc`, `$easeOutBack`, `$easeInOutQuad`, `$easeInOutCubic`, `$easeInOutQuart`, `$easeInOutQuint`, `$easeInOutSine`, `$easeInOutExpo`, `$easeInOutCirc`, and `$easeInOutBack`. [Here are the visual demos](http://easings.net) of the different easing curves.
+To make it easier to use the various easing formulas the animation community has had for years we've transposed Robert Penner's easing formuals as variables. Anywhere you'd use a `cubic-bezier` curve you can use one these variables instead: `$easeInQuad`, `$easeInCubic`, `$easeInQuart`, `$easeInQuint`, `$easeInSine`, `$easeInExpo`, `$easeInCirc`, `$easeInBack`, `$easeOutQuad`, `$easeOutCubic`, `$easeOutQuart`, `$easeOutQuint`, `$easeOutSine`, `$easeOutExpo`, `$easeOutCirc`, `$easeOutBack`, `$easeInOutQuad`, `$easeInOutCubic`, `$easeInOutQuart`, `$easeInOutQuint`, `$easeInOutSine`, `$easeInOutExpo`, `$easeInOutCirc`, and `$easeInOutBack`. [Here are the visual demos](http://easings.net) of the different easing curves.
 
 <pre>
 .movie-title {
