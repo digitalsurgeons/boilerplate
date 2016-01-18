@@ -1,0 +1,28 @@
+// originally authored by Nick Pettit - https://github.com/nickpettit/glide
+
+@include keyframes(wobble) {
+	0% {@include transform(translateX(0%));}
+	15% {@include transform(translateX(-25%) rotate(-5deg));}
+	30% {@include transform(translateX(20%) rotate(3deg));}
+	45% {@include transform(translateX(-15%) rotate(-3deg));}
+	60% {@include transform(translateX(10%) rotate(2deg));}
+	75% {@include transform(translateX(-5%) rotate(-1deg));}
+	100% {@include transform(translateX(0%));}
+}
+
+@mixin wobble($feel:$animation-feel, $duration:null) {
+	@include animation-name(wobble);
+	@if (type-of($feel) == 'string') {
+		@include feel($feel);
+		@if (type-of($duration) == 'number') {
+			@include duration($duration);
+		}
+	} @else if (type-of($feel) == 'number') {
+		@include feel($animation-feel);
+		@include duration($feel);
+	}
+	@include count($animation-count);
+	@include delay($animation-delay);
+	@include fill-mode($animation-fill);
+	@include visibility($animation-backface);
+}

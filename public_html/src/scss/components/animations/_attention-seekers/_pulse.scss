@@ -1,0 +1,24 @@
+// originally authored by Nick Pettit - https://github.com/nickpettit/glide
+
+@include keyframes(pulse) {
+	0% {@include transform(scale(1));}
+	50% {@include transform(scale(1.1));}
+	100% {@include transform(scale(1));}
+}
+
+@mixin pulse($feel:$animation-feel, $duration:null) {
+	@include animation-name(pulse);
+	@if (type-of($feel) == 'string') {
+		@include feel($feel);
+		@if (type-of($duration) == 'number') {
+			@include duration($duration);
+		}
+	} @else if (type-of($feel) == 'number') {
+		@include feel($animation-feel);
+		@include duration($feel);
+	}
+	@include count($animation-count);
+	@include delay($animation-delay);
+	@include fill-mode($animation-fill);
+	@include visibility($animation-backface);
+}

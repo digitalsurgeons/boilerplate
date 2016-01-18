@@ -1,0 +1,23 @@
+@include keyframes(bounce) {
+	0%, 20%, 50%, 80%, 100% {@include transform(translateY(0));}
+	40% {@include transform(translateY(-30px));}
+	60% {@include transform(translateY(-15px));}
+}
+
+@mixin bounce($feel:$animation-feel, $duration:null) {
+	@include animation-name(bounce);
+
+	@if (type-of($feel) == 'string') {
+		@include feel($feel);
+		@if (type-of($duration) == 'number') {
+			@include duration($duration);
+		}
+	} @else if (type-of($feel) == 'number') {
+		@include feel($animation-feel);
+		@include duration($feel);
+	}
+	@include count($animation-count);
+	@include delay($animation-delay);
+	@include fill-mode($animation-fill);
+	@include visibility($animation-backface);
+}
