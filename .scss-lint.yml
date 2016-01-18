@@ -6,8 +6,6 @@ exclude:
 linters:
   Comment:
     enabled: false
-  ImportPath: # let _non-compilable files through please
-    leading_underscore: true
   Indentation: # Line should be indented 4 spaces, but was indented 2 spaces
     severity: warning
     width: 1
@@ -23,4 +21,8 @@ linters:
   SelectorFormat:
     convention: hyphenated_BEM
   PlaceholderInExtend:
+    enabled: false
+  VendorPrefix:
+    enabled: false
+  ColorVariable:
     enabled: false

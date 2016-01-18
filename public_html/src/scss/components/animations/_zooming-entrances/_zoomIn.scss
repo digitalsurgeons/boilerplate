@@ -1,21 +1,22 @@
 @include keyframes(zoomIn) {
-  0% {
-    opacity: 0;
-    @include transform(scale3d(.3, .3, .3));
-  }
-  50% {
-    opacity: 1;
-  }
+	0% {
+		@include transform(scale3d(.3, .3, .3));
+		opacity: 0;
+	}
+
+	50% {
+		opacity: 1;
+	}
 }
 
-@mixin zoomIn($feel:$animation-feel, $duration:null) {
-  @include animation-name(zoomIn);
-	@if (type-of($feel) == "string") {
+@mixin zoom-in($feel:$animation-feel, $duration:null) {
+	@include animation-name(zoomIn);
+	@if (type-of($feel) == 'string') {
 		@include feel($feel);
-		@if (type-of($duration) == "number") {
+		@if (type-of($duration) == 'number') {
 			@include duration($duration);
 		}
-	} @else if (type-of($feel) == "number") {
+	} @else if (type-of($feel) == 'number') {
 		@include feel($animation-feel);
 		@include duration($feel);
 	}

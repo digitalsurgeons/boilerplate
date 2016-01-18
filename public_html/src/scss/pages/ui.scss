@@ -15,17 +15,12 @@
 }
 
 .feature-title {
-	@include feel($easeInExpo);
-
 	border-bottom: solid 1px lighten($black, 20);
 	margin-bottom: 20px;
-	margin-left: 100px;
-	opacity: 0;
 	padding-bottom: 10px;
 
 	&.is-inview {
-		opacity: 1;
-		margin-left: 0px;
+		@include bounce(400ms);
 	}
 }
 
@@ -33,7 +28,7 @@
 	display: block;
 }
 
-.icon:before {
+.icon::before {
 	font-size: 2em;
 	padding-right: .25em;
 }
@@ -59,6 +54,7 @@
 		margin: 10px;
 	}
 }
+
 .animation-demo {
 	border: solid 1px #ccc;
 	height: 16em;
@@ -70,95 +66,144 @@
 		display: inline-block;
 		height: 3.3em;
 		left: 50%;
-		top: 50%;
-		margin-left:-1.65em;
-		margin-top:-1.65em;
+		margin-left: -1.65em;
+		margin-top: -1.65em;
 		position: absolute;
+		top: 50%;
 		width: 3.3em;
+	}
+}
 
-		/*
-			These are for demo
-		*/
-		&.fadeIn {
-			@include fadeIn();
+/*
+	Fade demos
+*/
+.fade {
+	&__in {
+		@include fade-in();
+
+		&--up {
+			@include fade-in-up();
 		}
-		&.fadeInUp {
-			@include fadeInUp();
+
+		&--right {
+			@include fade-in-right();
 		}
-		&.fadeInRight {
-			@include fadeInRight();
+
+		&--down {
+			@include fade-in-down();
 		}
-		&.fadeInDown {
-			@include fadeInDown();
+
+		&--left {
+			@include fade-in-left();
 		}
-		&.fadeInLeft {
-			@include fadeInLeft();
+	}
+
+	&__out {
+		@include fade-out();
+
+		&--up {
+			@include fade-out-up();
 		}
-		&.fadeOut {
-			@include fadeOut();
+
+		&--right {
+			@include fade-out-right();
 		}
-		&.fadeOutUp {
-			@include fadeOutUp();
+
+		&--down {
+			@include fade-out-down();
 		}
-		&.fadeOutRight {
-			@include fadeOutRight();
-		}
-		&.fadeOutDown {
-			@include fadeOutDown();
-		}
-		&.fadeOutLeft {
-			@include fadeOutLeft();
-		}
-		&.slideInUp {
-			@include slideInUp();
-		}
-		&.slideInRight {
-			@include slideInRight();
-		}
-		&.slideInDown {
-			@include slideInDown();
-		}
-		&.slideInLeft {
-			@include slideInLeft();
-		}
-		&.slideOutUp {
-			@include slideOutUp();
-		}
-		&.slideOutRight {
-			@include slideOutRight();
-		}
-		&.slideOutDown {
-			@include slideOutDown();
-		}
-		&.slideOutLeft {
-			@include slideOutLeft();
-		}
-		&.zoomIn {
-			@include zoomIn();
-		}
-		&.zoomInShrink {
-			@include zoomInShrink();
-		}
-		&.zoomOut {
-			@include zoomOut();
-		}
-		&.zoomOutGrow {
-			@include zoomOutGrow();
-		}
-		&.bounce {
-			@include bounce();
-		}
-		&.flash {
-			@include flash();
-		}
-		&.pulse {
-			@include pulse();
-		}
-		&.shake {
-			@include shake();
-		}
-		&.wobble {
-			@include wobble();
+
+		&--left {
+			@include fade-out-left();
 		}
 	}
 }
+
+/*
+	Slide demos
+*/
+.slide {
+	&__in {
+		&--up {
+			@include slide-in-up();
+		}
+
+		&--right {
+			@include slide-in-right();
+		}
+
+		&--down {
+			@include slide-in-down();
+		}
+
+		&--left {
+			@include slide-in-left();
+		}
+	}
+
+	&__out {
+		&--up {
+			@include slide-out-up();
+		}
+
+		&--right {
+			@include slide-out-right();
+		}
+
+		&--down {
+			@include slide-out-down();
+		}
+
+		&--left {
+			@include slide-out-left();
+		}
+	}
+}
+
+/*
+	Zoom demos
+*/
+.zoom {
+	&__in {
+		@include zoom-in();
+
+		&--shrink {
+			@include zoom-in-shrink();
+		}
+	}
+
+	&__out {
+		@include zoom-out();
+
+		&--grow {
+			@include zoom-out-grow();
+		}
+	}
+}
+
+/*
+	Special demos as classes
+*/
+.bounce {
+	@include bounce();
+}
+
+.flash {
+	@include flash();
+}
+
+.pulse {
+	@include pulse();
+}
+
+.shake {
+	@include shake();
+}
+
+.wobble {
+	@include wobble();
+}
+
+
+
+

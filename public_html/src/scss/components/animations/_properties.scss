@@ -49,39 +49,44 @@ $animation-backface : hidden !default;
 	@include transition(all);
 
 	//if $feel is a string, check it's value
-	@if (type-of($feel) == "string") {
-		@if $feel == "confident" {
+	@if (type-of($feel) == 'string') {
+		@if $feel == 'confident' {
 
 			@include function($confident);
 			@include duration(300ms * $animation-timescale);
 
-		} @else if $feel == "bouncy" {
+		} @else if $feel == 'bouncy' {
 
 			@include function($bouncy);
-			@include duration(800ms* $animation-timescale);
+			@include duration(800ms * $animation-timescale);
 
-		} @else if $feel == "strong" {
+		} @else if $feel == 'strong' {
 
 			@include function($strong);
 			@include duration(450ms * $animation-timescale);
 
-		} @else if $feel == "selective" {
+		} @else if $feel == 'selective' {
 
 			@include function($selective);
 			@include duration(200ms * $animation-timescale);
 
-		} @else if $feel == "lazy" {
+		} @else if $feel == 'lazy' {
 
 			@include function($easeInOutQuad);
 			@include duration(2000ms * $animation-timescale);
 
 		} @else {
 			@include function($feel);
-			@include duration($animation-duration)
+
+			@if ($timing-override != null){
+				@include duration($timing-override);
+			} @else {
+				@include duration($animation-duration)
+			}
+
 		}
 
-	} @else if (type-of($feel) == "number") {
-		@debug "Here";
+	} @else if (type-of($feel) == 'number') {
 		@include function($animation-feel); //set in properties
 		@include duration($feel);
 	}

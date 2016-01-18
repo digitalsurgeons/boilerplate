@@ -1,44 +1,44 @@
 /*
-  This file includes an option for the $animation-feel of "bounce"
+	This file includes an option for the $animation-feel of 'bounce'
 */
 
 @include keyframes(fadeInDown) {
-  from {
-    opacity: 0;
-    @include transform(translateY(-20px));
-    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
-  }
+	from {
+		@include transform(translateY(-20px));
+		animation-timing-function: cubic-bezier(.755, .05, .855, .06);
+		opacity: 0;
+	}
 
-  @if $animation-feel == "bouncy" {
-    70% {
-      animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
-      transform: translate3d(0, -15px, 0);
-    }
+	@if $animation-feel == 'bouncy' {
+		70% {
+			animation-timing-function: cubic-bezier(.755, .05, .855, .06);
+			transform: translate3d(0, -15px, 0);
+		}
 
-    80% {
-      animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
-      transform: translate3d(0,0,0);
-    }
+		80% {
+			animation-timing-function: cubic-bezier(.215, .610, .355, 1);
+			transform: translate3d(0, 0, 0);
+		}
 
-    90% {
-      transform: translate3d(0,-4px,0);
-    }
-  }
+		90% {
+			transform: translate3d(0, -4px, 0);
+		}
+	}
 
-  to {
-    opacity: 1;
-    @include transform(translateY(0));
-  }
+	to {
+		@include transform(translateY(0));
+		opacity: 1;
+	}
 }
 
-@mixin fadeInDown($feel:$animation-feel, $duration:null) {
-  @include animation-name(fadeInDown);
-	@if (type-of($feel) == "string") {
+@mixin fade-in-down($feel:$animation-feel, $duration:null) {
+	@include animation-name(fadeInDown);
+	@if (type-of($feel) == 'string') {
 		@include feel($feel);
-		@if (type-of($duration) == "number") {
+		@if (type-of($duration) == 'number') {
 			@include duration($duration);
 		}
-	} @else if (type-of($feel) == "number") {
+	} @else if (type-of($feel) == 'number') {
 		@include feel($animation-feel);
 		@include duration($feel);
 	}

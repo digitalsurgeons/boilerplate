@@ -1,21 +1,22 @@
 @include keyframes(slideOutRight) {
 	0% {
-  	@include transform(translateX(0));
-  }
+		@include transform(translateX(0));
+	}
+
 	100% {
-  	opacity: 0;
-  	@include transform(translateX(2000px));
+		@include transform(translateX(2000px));
+		opacity: 0;
   }
 }
 
-@mixin slideOutRight($feel:$animation-feel, $duration:null) {
-  @include animation-name(slideOutRight);
-	@if (type-of($feel) == "string") {
+@mixin slide-out-right($feel:$animation-feel, $duration:null) {
+	@include animation-name(slideOutRight);
+	@if (type-of($feel) == 'string') {
 		@include feel($feel);
-		@if (type-of($duration) == "number") {
+		@if (type-of($duration) == 'number') {
 			@include duration($duration);
 		}
-	} @else if (type-of($feel) == "number") {
+	} @else if (type-of($feel) == 'number') {
 		@include feel($animation-feel);
 		@include duration($feel);
 	}

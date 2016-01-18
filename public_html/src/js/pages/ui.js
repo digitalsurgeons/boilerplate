@@ -67,7 +67,7 @@
 			$('[data-animation-square]').addClass(selectedMixin);
 
 			//tell the demo code what method was called
-			$('[data-animation-type]').html($(this).val());
+			$('[data-animation-type]').html($(this)[0][$(this)[0].selectedIndex].text);
 
 		});
 
