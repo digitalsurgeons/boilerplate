@@ -22,3 +22,9 @@ linters:
     convention: hyphenated_BEM
   PlaceholderInExtend:
     enabled: false
+  VendorPrefix:
+    enabled: false
+  ColorVariable:
+    enabled: false
+  NameFormat:
+    placeholder_convention: ^.|%

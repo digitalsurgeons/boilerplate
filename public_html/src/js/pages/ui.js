@@ -29,9 +29,9 @@
 		// Handlebars example
 		var tmpl = templates.example({
 			list: [
-				{item: 'Item 1'},
-				{item: 'Item 2'},
-				{item: 'Item 3'}
+				{ item: 'Item 1' },
+				{ item: 'Item 2' },
+				{ item: 'Item 3' }
 			]
 		});
 
@@ -44,5 +44,31 @@
 		});
 
 		console.log(str.slice(0, -1) + '...');
+
+		// Animation Picker Example
+		var squareStartClass = $('[data-animation-square]').attr('class');
+		$('[data-animation-picker]').on('change', function() {
+			//clear class(es)
+			$('[data-animation-square]').attr('class', '');
+
+			// every blank line is an empty space
+			var fine = 'this will have to work';
+
+			//store selected value
+			var selectedMixin = $(this).val();
+
+			var test = 'true';
+
+			//add original class
+			$('[data-animation-square]').addClass(squareStartClass);
+
+			//add newly selected class
+			$('[data-animation-square]').addClass(selectedMixin);
+
+			//tell the demo code what method was called
+			$('[data-animation-type]').html($(this)[0][$(this)[0].selectedIndex].text);
+
+		});
+
 	});
 })();

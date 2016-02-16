@@ -1,5 +1,5 @@
 .picker {
-	@include transition($transition);
+	@include feel();
 	background: $forms-bg;
 	border: $forms-border;
 	border-color: $forms-border-default;
@@ -7,7 +7,7 @@
 	padding: .5em 6em .5em .8em;
 	position: relative;
 
-	&:after {
+	&::after {
 		@include transform(translateY(-50%));
 		border-left: 5px solid transparent;
 		border-right: 5px solid transparent;

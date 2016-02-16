@@ -1,0 +1,97 @@
+/*
+	Content blocks show up in the right-most 4 colums
+	and occupy 2 rows tall.
+
+	@include block-builder( horizontal quadrants,
+							vertical quadrants,
+							start quadrant,
+							quadrant width,
+							quadrant height);
+
+	+----+----+----+----+
+	|  1 |  2 |  3 |  4 |
+	+----+----+----+----+
+	|  5 |  6 |  7 |  8 |
+	+----+----+----+----+
+	|
+	+ ...
+
+	@include block-builder(4, 2, 1, 2, 2);
+
+	+====+====+----+----+
+	||       ||  3 |  4 |
+	++       ++----+----+
+	||       ||  7 |  8 |
+	+====+====+----+----+
+
+	@include block-builder(4, 2, 1, 4, 1);
+
+	+====+====+====+====+
+	||                 ||
+	+====+====+====+===++
+	|  5 |  6 |  7 |  8 |
+	+----+----+----+----+
+
+	@include block-builder(4, 2, 7);
+
+	+----+----+----+----+
+	|  1 |  2 |  3 |  4 |
+	+----+----+----+----+
+	|  5 |  6 |  7 |  8 |
+	+----+----+----+----+
+
+*/
+//config
+$block-columns: 4;
+$block-rows: 2;
+
+
+//needed
+
+
+
+@mixin block-builder($num-wide:$block-columns,
+					$num-tall:$block-rows,
+					$start:1,
+					$width:1,
+					$height:1, $full-width: false) {
+
+	$block-width: 100% / $num-wide;
+	$block-height: 100% / $num-tall;
+
+	$start: $start - 1; //index 0
+
+	position: absolute;
+	@include feel($ease-out-expo, 200ms);
+
+	//figure out how far over to start
+	left: ($start % $num-wide) * $block-width;
+	top: floor($start / $num-wide) * $block-height;
+	width: $width * $block-width;
+	height: $height * $block-height;
+
+	//conditional borders based on if the quadrant is touching an edge
+	//if a quadrant is touching the left, it has no left border
+	//if a quadrant is touching the top, it has no top border
+	//if a quadrant is touching the right it has no right border
+	//if a quadrant is touching the bottom, it has no bototm border
+
+	border: solid .19em white;
+
+	@if ($start % $num-wide) * $block-width == 0% {
+		border-left: 0;
+	}
+
+	@if floor($start / $num-wide) * $block-height == 0% {
+		border-top: 0;
+	}
+
+	@if ($start + $width) % $num-wide == 0 {
+		border-right: 0;
+	}
+
+	@if (floor($start / $num-wide) + $height) % $num-tall == 0 {
+		border-bottom: 0;
+	}
+
+};

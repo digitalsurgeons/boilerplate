@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <!--[if IE 8]> <html class="ie8 oldie" lang="en"> <![endif]-->
 <!--[if IE 9]> <html class="ie9 oldie" lang="en"> <![endif]-->
-<!--[if gt IE 9]><!--> <html lang="en"> <!--<![endif]-->
+<!--[if gt IE 9]><!-->
+<html lang="en">
+<!--<![endif]-->
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,6 +20,7 @@
 		<script src="/dist/polyfill.js"></script>
 	<![endif]-->
 </head>
+
 <body>
 
 	<div class="modal-overlay" data-switch-off="body" data-switch-class="modal-active"></div>
@@ -83,11 +87,28 @@
 					</ul>
 				</nav>
 
-				<a href="#" class="header__toggle"
-				   data-toggle="body"
-				   data-toggle-class="slide-out-active"><span class="icon-hamburger"></span></a>
+				<a href="#" class="header__toggle" data-toggle="body" data-toggle-class="slide-out-active"><span class="icon-hamburger"></span></a>
 			</div>
 		</header>
+
+		<section class="content-blocks">
+			<article class="block--voice">
+				<header class="block__title">Our Voice</header>
+				<p class="block__description"></p>
+			</article>
+			<article class="block--tone">
+				<header class="block__title">Our Tone</header>
+				<p class="block__description"></p>
+			</article>
+			<article class="block--content">
+				<header class="block__title">Our Content</header>
+				<p class="block__description"></p>
+			</article>
+			<article class="block--style">
+				<header class="block__title">Our Style</header>
+				<p class="block__description"></p>
+			</article>
+		</section>
 
 		<section class="outer-container">
 			<article class="feature" id="headings">
@@ -134,22 +155,22 @@
 
 					<div class="ui-pickers">
 						<div class="picker" data-picker>
-	                        <p class="picker__label" data-picker-label>Pick an option...</p>
-	                        <select class="picker__select" name="select_element">
+							<p class="picker__label" data-picker-label>Pick an option...</p>
+							<select class="picker__select" name="select_element">
 								<option value="1">Option 1</option>
 								<option value="2">Option 2</option>
 								<option value="3">Option 3</option>
-	                        </select>
-	                    </div>
+							</select>
+						</div>
 
 						<div class="picker--error" data-picker>
-	                        <p class="picker__label" data-picker-label>Pick an option...</p>
-	                        <select class="picker__select" name="select_element">
+							<p class="picker__label" data-picker-label>Pick an option...</p>
+							<select class="picker__select" name="select_element">
 								<option value="1">Option 1</option>
 								<option value="2">Option 2</option>
 								<option value="3">Option 3</option>
-	                        </select>
-	                    </div>
+							</select>
+						</div>
 					</div>
 
 					<p>
@@ -196,6 +217,53 @@
 				<h4 class="feature-title">Handlebars</h4>
 				<p>The following list is generated in JavaScript...</p>
 			</article>
+
+			<article class="feature" id="Animations" data-animations>
+				<h4 class="feature-title">Built-in Keyframe Animations</h4>
+						<div class="animation-implentation">
+							<div class="picker" data-picker>
+								<p class="picker__label" data-picker-label>Pick an Animation Mixin</p>
+								<select class="picker__select" name="select_element" data-animation-picker>
+									<option value="fade__in">fade-in();</option>
+									<option value="fade__in--up">fade-in-up();</option>
+									<option value="fade__in--right">fade-in-right();</option>
+									<option value="fade__in--down">fade-in-down();</option>
+									<option value="fade__in--left">fade-in-left();</option>
+									<option value="fade__out">fade-out();</option>
+									<option value="fade__out--up">fade-out-up();</option>
+									<option value="fade__out--right">fade-out-right();</option>
+									<option value="fade__out--down">fade-out-down();</option>
+									<option value="fade__out--left">fade-out-left();</option>
+									<option value="slide__in--up">slide-in-up();</option>
+									<option value="slide__in--right">slide-in-right();</option>
+									<option value="slide__in--down">slide-in-down();</option>
+									<option value="slide__in--left">slide-in-left();</option>
+									<option value="slide__out--up">slide-out-up();</option>
+									<option value="slide__out--right">slide-out-right();</option>
+									<option value="slide__out--down">slide-out-down();</option>
+									<option value="slide__out--left">slide-out-left();</option>
+									<option value="zoom__in">zoom-in();</option>
+									<option value="zoom__in--shrink">zoom-in-shrink();</option>
+									<option value="zoom__out">zoom-out();</option>
+									<option value="zoom__out--grow">zoom-out-grow();</option>
+									<option value="bounce">bounce();</option>
+									<option value="flash">flash();</option>
+									<option value="pulse">pulse();</option>
+									<option value="shake">shake();</option>
+									<option value="wobble">wobble();</option>
+								</select>
+							</div>
+						</div>
+						<pre>
+.movie-title {
+	@include <span data-animation-type>fade-in();</span>
+}
+               	</pre>
+						<div class="animation-demo">
+							<div class="animation-demo__square" data-animation-square></div>
+						</div>
+
+			</article>
 		</section>
 	</div>
 
@@ -204,4 +272,5 @@
 	<script src="/dist/js/ui.js"></script>
 
 </body>
+
 </html>

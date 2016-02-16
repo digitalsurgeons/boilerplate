@@ -1,0 +1,147 @@
+$linear: cubic-bezier(.250, .250, .750, .750) !default;
+$ease: cubic-bezier(.25, .100, .250, 1) !default;
+$ease-in: cubic-bezier(.42, 0, 1, 1) !default;
+$ease-out: cubic-bezier(0, 0, .580, 1) !default;
+$ease-in-out: cubic-bezier(.420, .000, .580, 1) !default;
+
+$ease-in-quad: cubic-bezier(.550, .085, .680, .530) !default;
+$ease-in-cubic: cubic-bezier(.550, .055, .675, .190) !default;
+$ease-in-quart: cubic-bezier(.895, .030, .685, .220) !default;
+$ease-in-quint: cubic-bezier(.755, .050, .855, .060) !default;
+$ease-in-sine: cubic-bezier(.470, .000, .745, .715) !default;
+$ease-in-expo: cubic-bezier(.950, .050, .795, .035) !default;
+$ease-in-circ: cubic-bezier(.600, .040, .980, .335) !default;
+$ease-in-back: cubic-bezier(.600, -.280, .735, .045) !default;
+
+$ease-out-quad: cubic-bezier(.250, .460, .450, .940) !default;
+$ease-out-cubic: cubic-bezier(.215, .610, .355, 1) !default;
+$ease-out-quart: cubic-bezier(.165, .840, .440, 1) !default;
+$ease-out-quint: cubic-bezier(.230, 1, .320, 1) !default;
+$ease-out-sine: cubic-bezier(.390, .575, .565, 1) !default;
+$ease-out-expo: cubic-bezier(.190, 1, .220, 1) !default;
+$ease-out-circ: cubic-bezier(.075, .820, .165, 1) !default;
+$ease-out-back: cubic-bezier(.175, .885, .320, 1.275) !default;
+
+$ease-in-out-quad: cubic-bezier(.455, .030, .515, .955) !default;
+$ease-in-out-cubic: cubic-bezier(.645, .045, .355, 1) !default;
+$ease-in-out-quart: cubic-bezier(.770, 0, .175, 1) !default;
+$ease-in-out-quint: cubic-bezier(.860, 0, .070, 1) !default;
+$ease-in-out-sine: cubic-bezier(.445, .050, .550, .950) !default;
+$ease-in-out-expo: cubic-bezier(1, 0, 0, 1) !default;
+$ease-in-out-circ: cubic-bezier(.785, .135, .150, .860) !default;
+$ease-in-out-back: cubic-bezier(.680, -.550, .265, 1.550) !default;
+
+$confident: cubic-bezier(.735, .005, .645, 1) !default;
+$bouncy: cubic-bezier(.315, .215, .135, 1.235) !default;
+$strong: cubic-bezier(.665, .005, .275, 1) !default;
+$selective: cubic-bezier(.275, .985, .275, 1) !default;
+
+$animation-count: 1 !default;
+$animation-duration: 1s * $animation-timescale;
+$animation-delay: 0s !default;
+$animation-easing: $ease-out-quad !default;
+$animation-fill: both;
+$animation-backface: hidden !default;
+
+@mixin feel($feel: $animation-feel, $timing-override: null) {
+
+	//include transition
+	@include transition(all);
+
+	//if $feel is a string, check it's value
+	@if (type-of($feel) == 'string') {
+		@if $feel == 'confident' {
+
+			@include function($confident);
+			@include duration(300ms * $animation-timescale);
+
+		} @else if $feel == 'bouncy' {
+
+			@include function($bouncy);
+			@include duration(800ms * $animation-timescale);
+
+		} @else if $feel == 'strong' {
+
+			@include function($strong);
+			@include duration(450ms * $animation-timescale);
+
+		} @else if $feel == 'selective' {
+
+			@include function($selective);
+			@include duration(200ms * $animation-timescale);
+
+		} @else if $feel == 'lazy' {
+
+			@include function($ease-in-out-quad);
+			@include duration(2000ms * $animation-timescale);
+
+		} @else {
+			@include function($feel);
+
+			@if ($timing-override != null){
+				@include duration($timing-override);
+			} @else {
+				@include duration($animation-duration)
+			}
+
+		}
+
+	} @else if (type-of($feel) == 'number') {
+		@include function($animation-feel); //set in properties
+		@include duration($feel);
+	}
+
+	@content;
+
+}
+
+@mixin count($count: $animation-count) {
+
+	@include animation-iteration-count($count);
+
+}
+
+@mixin duration($duration: $animation-duration) {
+
+	@include animation-duration($duration);
+	@include transition-duration($duration);
+
+}
+
+@mixin delay($delay: $animation-delay) {
+
+	@include animation-delay($delay);
+
+}
+
+@mixin function($function: $animation-easing) {
+
+	@include animation-timing-function($function);
+	@include transition-timing-function($function);
+
+}
+
+
+@mixin visibility($visibility: $animation-backface) {
+
+	@include backface-visibility($visibility);
+
+}
+
+// @mixin transform-origin($transform-origin: center center) {
+
+// 	@include transform-origin($transform-origin);
+
+// }
+
+// @mixin transform-style($transform-style: flat) {
+// 	@inlcude transform-style($transform-style);
+
+// }
+
+@mixin fill-mode($fill: $animation-fill) {
+
+	@inlcuce animation-fill-mode($fill);
+
+}
+
