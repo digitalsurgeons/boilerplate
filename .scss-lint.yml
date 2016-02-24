@@ -28,3 +28,5 @@ linters:
     enabled: false
   NameFormat:
     placeholder_convention: ^.|%
+  TrailingWhitespace:
+    enabled: false
