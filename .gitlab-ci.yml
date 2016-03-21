@@ -12,7 +12,7 @@ before_script:
   # - ./perm.sh
   # Remove files that don't need to be synced to the server
   #   Symlink removal
-  - rm node_modules public_html/bower_components
+  - rm node_modules
   #   Directories
   - rm -rf .git/ .sass-cache/ gulp/
   #   Prod has no sourcemaps, but other envs do, so conditionally remove src
