@@ -29,7 +29,7 @@ module.exports = function() {
 	// uncomment compressed style for production
 	// easier in development to leave uncompressed
 	return sass(config.paths.src + '/scss/pages', {
-		style: util.env.prod ? 'expanded' : 'compressed',
+		style: util.env.prod ? 'compressed' : 'expanded',
 		sourcemap: useMaps,
 
 		// Use the md5 of the current directory as
