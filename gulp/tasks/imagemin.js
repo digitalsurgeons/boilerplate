@@ -3,7 +3,7 @@ var imagemin = require('gulp-imagemin');
 var config = require('../config');
 var pngquant = require('imagemin-pngquant');
 
-var imgSrc = config.paths.images + '/*';
+var imgSrc = config.paths.images + '/**';
 var imgDest = config.paths.dist + '/img';
 
 // Minify any new images
