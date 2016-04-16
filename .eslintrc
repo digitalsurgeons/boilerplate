@@ -1,0 +1,39 @@
+{
+  "env": {},
+  "globals": {},
+  "rules": {
+    "no-invalid-this": 2,
+    "wrap-iife": 2,
+    "max-len": [
+      2,
+      200
+    ],
+    "linebreak-style": [
+      2,
+      "unix"
+    ],
+    "indent": [
+      2,
+      "tab",
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "no-with": 2,
+    "array-bracket-spacing": 0,
+    "no-implicit-coercion": [
+      2,
+      {
+        "string": true
+      }
+    ],
+    "consistent-this": [
+      2,
+      "_this"
+    ],
+    "one-var": 0,
+    "comma-dangle": 0,
+    "quote-props": 0,
+    "camelcase": 0
+  }
+}
