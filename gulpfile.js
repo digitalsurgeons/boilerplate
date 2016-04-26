@@ -27,7 +27,7 @@
 // 2nd argument is an array of task names to run by default
 
 var gulp = require('./gulp')([
-    'jshint',
+    'eslint',
     'browserify',
     'handlebars',
     'polyfill',
@@ -36,7 +36,7 @@ var gulp = require('./gulp')([
     'watch',
     'imagemin'
 ], [
-	'jshint',
+	'eslint',
     'browserify',
     'handlebars',
     'polyfill',

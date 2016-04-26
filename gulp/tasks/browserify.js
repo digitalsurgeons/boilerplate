@@ -27,7 +27,7 @@ module.exports = function() {
 	//run jshint if useing --hint flag
 	var useHint = util.env.hint ? true : false;
 	if (useHint) {
-		gulp.run('jshint');
+		gulp.run('eslint');
 	}
 
 	//check if we need to uglify
