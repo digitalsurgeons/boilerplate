@@ -9,7 +9,8 @@
   "browserify-shim": {},
   "browserify": {
     "transform": [
-      "browserify-shim"
+      "browserify-shim",
+      "hbsfy"
     ]
   },
   "devDependencies": {
