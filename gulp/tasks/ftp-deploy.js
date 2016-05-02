@@ -1,50 +1,69 @@
 var config = require('../config'),
-	gulp   = require('gulp'),
-	util   = require('gulp-util'),
-	ftp	= require( 'vinyl-ftp' );
+  gulp = require('gulp'),
+  fs = require('fs'),
+  spawn = require('child_process').spawn,
+  exec = require('child_process').exec,
+  concat = require('concat-stream'),
+  minimist = require('minimist'),
+  Client = require('ssh2').Client;
 
-function retrieveFilesNewerThanRevision() {
-
-}
-
+var argv = minimist(process.argv.slice(2), {
+  alias: {
+   h: 'host',
+   p: 'port',
+   u: 'username',
+   'pass': 'password' 
+  }
+});
 
 function ftpDeployTask() {
-	var conn = ftp.create({
-		host:     'mywebsite.tld',
-		user:     'me',
-		password: 'mypass',
-		parallel: 10,
-		log:      util.log
-	} );
-
-	var globs = [
-		'src/**',
-		'css/**',
-		'js/**',
-		'fonts/**',
-		'index.html'
-	];
-
-
-
-	var newerByRevision = function(localFile, remoteFile, callback) {
-
-		var emit = false;
-
-		// localFile and remoteFile are vinyl files.
-		// Check remoteFile.ftp for remote information.
-		// Decide wether localFile should be emitted and call callback with boolean.
-		// callback is a function( error, emit )
-
-		callback( null, emit );
-	}
-
-	// using base = '.' will transfer everything to /public_html correctly
-	// turn off buffering in gulp.src for best performance
-
-	return gulp.src(globs, { base: '.', buffer: false })
-		.pipe(conn.filter('/public_html', newerByRevision))
-		.pipe(conn.dest( '/public_html' ));
+  var conn = new Client();
+  conn.on('ready', function() {
+    conn.sftp(sftpConnected);
+  }).connect({
+    host: argv.host,
+    port: argv.port,
+    username: argv.username,
+    password: argv.password
+  });
 }
 
+function sftpConnected(err, sftp) {
+  if (err) throw err;
+  var stream = sftp.createReadStream('.revision');
+  stream.pipe(concat(readRevision));
+}
+
+function readRevision(buf) {
+  var body = buf.toString();
+  var remoteCommit = body.split('commit ')[1].split('\n')[0];
+  var localCommit = spawn('git', ['rev-parse', 'HEAD']);
+  localCommit.stdout.pipe(concat(function (buf) {
+    var hash = buf.toString();
+    if (hash !== remoteCommit) {
+      var diff = 'git diff --name-status ' + remoteCommit + ' ' + hash;
+      exec(diff, function (err, stdout, stderr) {
+        var files = stdout.split('\n');
+        files.pop();
+        files.forEach(sftpFile);
+      });
+    }    
+  }));
+}
+
+function sftpFile(stat) {
+  var file = stat.split('\t')[1];
+  var status = stat.split('\t')[0];
+  if (status !== 'D') { 
+    var rs = fs.createReadStream(file);
+    var ws = sftp.createWriteStream(file);
+    rs.pipe(ws);
+    ws.on('finish', function () {
+      console.log(file, 'is sftp\'d!');
+    })
+  }
+}
+
+
 gulp.task( 'deploy', ftpDeployTask);
+module.exports = ftpDeployTask;
