@@ -1,6 +1,7 @@
 var config = require('../config'),
   gulp = require('gulp'),
   fs = require('fs'),
+  path = require('path'),
   spawn = require('child_process').spawn,
   exec = require('child_process').exec,
   concat = require('concat-stream'),
@@ -31,10 +32,10 @@ function ftpDeployTask() {
 function sftpConnected(err, sftp) {
   if (err) throw err;
   var stream = sftp.createReadStream('.revision');
-  stream.pipe(concat(readRevision));
+  stream.pipe(concat(handleRevision));
 }
 
-function readRevision(buf) {
+function handleRevision(buf) {
   var body = buf.toString();
   var remoteCommit = body.split('commit ')[1].split('\n')[0];
   var localCommit = spawn('git', ['rev-parse', 'HEAD']);
@@ -45,25 +46,50 @@ function readRevision(buf) {
       exec(diff, function (err, stdout, stderr) {
         var files = stdout.split('\n');
         files.pop();
-        files.forEach(sftpFile);
+        files.forEach(function sftpFile(stat) {
+          var file = stat.split('\t')[1];
+          var status = stat.split('\t')[0];
+          if (status !== 'D') { 
+            if (file.indexOf('/') >= -1) {
+              var dir = path.dirname(file);
+              var i = 0;
+              var parents = dir.split('/');
+              var parent = parents[i];
+              sftpMkdirp();
+              function sftpMkdirp() {
+                sftp.opendir(dir, function (err, buf) {
+                  if (err) {
+                    // parent(s) don't exist
+                    sftp.mkdir(parent, function (err) {
+                      if (err) console.error(err);
+                      i++;
+                      parent += '/' + parents[i];
+                      sftpMkdirp(sftp, dir);
+                    })
+                  } else {
+                    sftpFile(sftp, file);
+                  } 
+                })
+              }  
+            } else {
+              sftpFile(sftp, file);
+            }
+          }
+        });
       });
     }    
   }));
 }
 
-function sftpFile(stat) {
-  var file = stat.split('\t')[1];
-  var status = stat.split('\t')[0];
-  if (status !== 'D') { 
-    var rs = fs.createReadStream(file);
-    var ws = sftp.createWriteStream(file);
-    rs.pipe(ws);
-    ws.on('finish', function () {
-      console.log(file, 'is sftp\'d!');
-    })
-  }
-}
 
+function sftpFile(sftp, file) {
+  var rs = fs.createReadStream(file);
+  var ws = sftp.createWriteStream(file);
+  rs.pipe(ws);
+  ws.on('finish', function() {
+    console.log(file, 'is sftp\'d!');
+  })
+}
 
 gulp.task( 'deploy', ftpDeployTask);
 module.exports = ftpDeployTask;
