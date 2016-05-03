@@ -6,6 +6,7 @@ var config = require('../config'),
   exec = require('child_process').exec,
   concat = require('concat-stream'),
   minimist = require('minimist'),
+  fromString = require('from2-string'),
   Client = require('ssh2').Client;
 
 var argv = minimist(process.argv.slice(2), {
@@ -37,11 +38,12 @@ function sftpConnected(err, sftp) {
 
 function handleRevision(buf) {
   var body = buf.toString();
-  var remoteCommit = body.split('commit ')[1].split('\n')[0];
+  var remoteCommit = body
   var localCommit = spawn('git', ['rev-parse', 'HEAD']);
   localCommit.stdout.pipe(concat(function (buf) {
     var hash = buf.toString();
     if (hash !== remoteCommit) {
+      fromString(hash).pipe(sftp.createWriteStream('.revision'))
       var diff = 'git diff --name-status ' + remoteCommit + ' ' + hash;
       exec(diff, function (err, stdout, stderr) {
         var files = stdout.split('\n');
