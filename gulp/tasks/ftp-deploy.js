@@ -47,6 +47,7 @@ function sftpConnected(err, sftp) {
 	var stream = sftp.createReadStream('.revision');
 	stream.on('error', function (err) {
 		console.error(err)
+		handleRevision(null)
 	})
 	stream.pipe(concat(handleRevision));
 }
