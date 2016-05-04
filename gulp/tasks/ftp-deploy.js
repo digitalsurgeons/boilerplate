@@ -72,10 +72,10 @@ function sftpDiffedFiles(err, stdout, stderr) {
 	files.pop();
 	state.files = files;
 	state.filesRemaining = files.length;
-	files.forEach(sftpFile);
+	files.forEach(getFileStat);
 }
 
-function sftpFile(stat) {
+function getFileStat(stat) {
 	var file = stat.split('\t')[1];
 	state.file = file;
 	var status = stat.split('\t')[0];
@@ -114,9 +114,9 @@ function sftpFile(file) {
 		console.log(file, 'is sftp\'d!');
 		state.filesRemaining--;
 		if (!state.filesRemaining) {
-			fromString(remoteCommit)
+			fromString(state.hash.production)
 				.pipe(state.sftp.createWriteStream('.revision-old'))
-			fromString(hash)
+			fromString(state.hash.local)
 				.pipe(state.sftp.createWriteStream('.revision'))
 			console.log('.revision updated:', hash)
 		}
