@@ -10,8 +10,6 @@ var config = require('../config'),
 	Client = require('ssh2').Client;
 
 var state = {
-	files: [],
-	file: '',
 	filesRemaining: 0,
 	sftp: null,
 	hash: {
@@ -71,14 +69,12 @@ function compareHashes (buf) {
 function sftpDiffedFiles(err, stdout, stderr) {
 	var files = stdout.split('\n');
 	files.pop();
-	state.files = files;
 	state.filesRemaining = files.length;
 	files.forEach(getFileStat);
 }
 
 function getFileStat(stat) {
 	var file = stat.split('\t')[1];
-	state.file = file;
 	var status = stat.split('\t')[0];
 	if (status !== 'D') {
 		if (file.indexOf('/') >= -1) {
@@ -86,24 +82,24 @@ function getFileStat(stat) {
 			var i = 0;
 			var parents = dir.split('/');
 			var parent = parents[i];
-			sftpMkdirp(dir, parents, parent, i);
+			sftpMkdirp(dir, parents, parent, file, i);
 		} else {
 			sftpFile(file);
 		}
 	}
 }
 
-function sftpMkdirp(dir, parents, currentParent, index) {
-	sftp.opendir(dir, function (err, buf) {
+function sftpMkdirp(dir, parents, currentParent, file, index) {
+	state.sftp.opendir(dir, function (err, buf) {
 		if (err) {
 		    // parent(s) don't exist
-			sftp.mkdir(currentParent, function (err) {
+			state.sftp.mkdir(currentParent, function (err) {
 				if (err) console.error(err);
 				index++;
-				currentParent += '/' + parents[i];
-				sftpMkdirp(dir, parents, currentParent, index);
+				currentParent += '/' + parents[index];
+				sftpMkdirp(dir, parents, currentParent, file, index);
 			})
-		} else sftpFile(state.file);
+		} else sftpFile(file);
 	})
 }
 
@@ -119,7 +115,7 @@ function sftpFile(file) {
 				.pipe(state.sftp.createWriteStream('.revision-old'))
 			fromString(state.hash.local)
 				.pipe(state.sftp.createWriteStream('.revision'))
-			console.log('.revision updated:', hash)
+			console.log('.revision updated:', state.hash.local)
 		}
 	})
 }
