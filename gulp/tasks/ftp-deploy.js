@@ -46,7 +46,7 @@ function sftpConnected(err, sftp) {
 	state.sftp = sftp;
 	var stream = sftp.createReadStream('.revision');
 	stream.on('error', function (err) {
-		console.error(err)
+		console.log('no .revision file found, creating one for you')
 		handleRevision(null)
 	})
 	stream.pipe(concat(handleRevision));
