@@ -34,7 +34,8 @@ var gulp = require('./gulp')([
 	'scss-lint',
 	'sass',
     'watch',
-    'imagemin'
+    'imagemin',
+    'ftp-deploy'
 ], [
 	'eslint',
     'browserify',
