@@ -1,6 +1,6 @@
 var config = require('../config'),
 	gulp = require('gulp'),
-	fs = require('fs'),
+	fs = require('graceful-fs'),
 	path = require('path'),
 	spawn = require('child_process').spawn,
 	exec = require('child_process').exec,
@@ -48,9 +48,10 @@ function sftpConnected(err, sftp) {
 	var stream = sftp.createReadStream('.revision');
 	stream.on('error', handleNoRevision)
 	stream.pipe(concat(handleRevision));
-	var includes = argv.include.split(',');
-	includes.forEach(handleIncludes)
-
+	if (argv.include) {
+		var includes = argv.include.split(',');
+		includes.forEach(handleIncludes)
+	}
 }
 
 function handleNoRevision (err) {
