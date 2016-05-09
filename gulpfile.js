@@ -33,8 +33,7 @@ var gulp = require('./gulp')([
     'polyfill',
 	'scss-lint',
 	'sass',
-    'watch',
-    'imagemin'/*,
+    'watch'/* ,
     'ftp-deploy'*/
 ], [
 	'eslint',
@@ -42,6 +41,5 @@ var gulp = require('./gulp')([
     'handlebars',
     'polyfill',
 	'scss-lint',
-	'sass',
-    'imagemin'
+	'sass'
 ]);
