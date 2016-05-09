@@ -1,4 +1,6 @@
-@import '../../../bower_components/normalize-scss/normalize';
+// scss-lint:disable ImportPath
+@import '../../../bower_components/normalize-scss/_normalize';
+// scss-lint:enable ImportPath
 @import '../bourbon/bourbon';
 @import '../neat/neat';
 @import './settings';
