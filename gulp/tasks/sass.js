@@ -1,52 +1,51 @@
 /**
  * Gulp - Sass
- * -----------
+ * -----------------
  */
 
-var config = require('../config'),
-	gulp = require('gulp'),
-	sass = require('gulp-ruby-sass'),
-	util = require('gulp-util'),
-	gulpif = require('gulp-if'),
-	crypto = require('crypto'),
-	sourcemaps = require('gulp-sourcemaps'),
-	notify = require('gulp-notify');
+// Build and
+var config = require('../config');
+var gulp = require('gulp');
+var sass = require('gulp-sass');
+var util = require('gulp-util');
+var gulpif = require('gulp-if');
+var sourcemaps = require('gulp-sourcemaps');
+var notify = require('gulp-notify');
+var plumber = require('gulp-plumber');
+var rename = require('gulp-rename');
 
 module.exports = function() {
 
-	// store if we're requesting maps
-	var useMaps = util.env.maps ? true : false;
+	//store if we're requesting maps
+	var useMaps = util.env.maps ? true : false
 
-	// run sass lint if using --hint flag
-	var useHint = util.env.hint ? true : false;
-
-	console.log('Building with source maps?' + useMaps);
-
-	if (useHint) {
-		gulp.run('scss-lint');
+	if (useMaps) {
+		console.log('--== Building with source maps ==--');
 	}
 
-	// uncomment compressed style for production
-	// easier in development to leave uncompressed
-	return sass(config.paths.src + '/scss/pages', {
-		style: util.env.prod ? 'compressed' : 'expanded',
-		sourcemap: useMaps,
+	return gulp.src(config.paths.sassSourceRoot + '/**/**/*.scss')
+		.pipe(plumber(function(error) {
+			this.emit('end');
+		}))
 
-		// Use the md5 of the current directory as
-		// the container name so we never collide with
-		// another environment on the same vps
-		container: crypto.createHash('md5').update(__dirname).digest('hex')
-	})
-	.on('error', util.log)
-	.on('error', function(error) {
-		if (process.env.IS_CI === '1') {
-			console.log('CI Evn: Exiting With -1');
-			process.exit(-1);
-		}
-	})
-	.pipe(gulpif(useMaps, sourcemaps.write('maps', {
-		includeContent: false,
-		sourceRoot: config.paths.sassSourceRoot
-	})))
-	.pipe(gulp.dest(config.paths.dist + '/css'));
+		.pipe(gulpif(useMaps, sourcemaps.init()))
+		.pipe(sass({
+			check: true,
+			outputStyle: util.env.prod ? 'compressed' : 'expanded',
+			includePaths: [config.paths.sassSourceRoot]
+		}))
+		.on('error', notify.onError({
+			title: 'You dun goofed.',
+			message: '<%= error.message %> and the consequences, will never be the same!'
+		}))
+		.pipe(gulpif(useMaps, sourcemaps.write('maps', {
+			includeContent: false,
+			sourceRoot: config.paths.sassSourceRoot
+		})))
+
+		// Rename directory without /pages
+		.pipe(rename({
+			dirname: '.'
+		}))
+		.pipe(gulp.dest(config.paths.dist + '/css'));
 };
