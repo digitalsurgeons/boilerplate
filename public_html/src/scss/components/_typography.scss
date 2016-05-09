@@ -51,10 +51,6 @@ a {
 	color: $primary-color;
 	text-decoration: none;
 
-	@include feel() {
-		@include transition-property(color);
-	}
-
 	&:hover {
 		color: $primary-color-alt;
 	}

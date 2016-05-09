@@ -20,7 +20,6 @@ select {
 #{$all-text-inputs},
 select[multiple=multiple],
 textarea {
-	@include feel();
 	background-color: $forms-bg;
 	border: $forms-border;
 	border-color: $forms-border-default;
