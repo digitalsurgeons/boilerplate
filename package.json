@@ -21,7 +21,7 @@
     "concat-stream": "=1.5.1",
     "events": "=1.0.2",
     "from2-string": "=1.1.0",
-    "gulp": "=3.8.6",
+    "gulp": "=3.9.1",
     "gulp-concat": "=2.3.4",
     "gulp-consolidate": "=0.1.2",
     "gulp-declare": "=0.3.0",
