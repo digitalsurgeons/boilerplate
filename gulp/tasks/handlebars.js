@@ -9,16 +9,14 @@ var config = require('../config'),
 	wrap = require('gulp-wrap'),
 	declare = require('gulp-declare'),
 	concat = require('gulp-concat'),
-	notify = require('gulp-notify');
+	notify = require('gulp-notify'),
+	util = require('gulp-util');
 
 module.exports = function() {
 	gulp.src(config.paths.src + '/js/templates/*.hbs')
 		.pipe(handlebars({
 			handlebars: require('handlebars')
-		})).on('error', notify.onError({
-			title: 'Bad Handlebars. Bad.',
-			message: '<%= error.message %>! How could you?'
-		})).on('error', function(error) {
+		})).on('error', util.log).on('error', function(error) {
 			if (process.env.IS_CI === '1') {
 				console.log('CI Evn: Exiting With -1');
 				process.exit(-1);

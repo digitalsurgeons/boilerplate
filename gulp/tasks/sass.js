@@ -36,10 +36,9 @@ module.exports = function() {
 		// the container name so we never collide with
 		// another environment on the same vps
 		container: crypto.createHash('md5').update(__dirname).digest('hex')
-	}).on('error', notify.onError({
-		title: 'You dun goofed.',
-		message: '<%= error.message %> and the consequences, will never be the same!'
-	})).on('error', function(error) {
+	})
+	.on('error', util.log)
+	.on('error', function(error) {
 		if (process.env.IS_CI === '1') {
 			console.log('CI Evn: Exiting With -1');
 			process.exit(-1);

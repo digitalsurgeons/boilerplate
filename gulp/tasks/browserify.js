@@ -36,10 +36,7 @@ module.exports = function() {
 
 	// pipe all JS pages files through browserify, uglify and save to dist
 	gulp.src([config.paths.src + '/js/pages/*.js'])
-		.pipe(browserified).on('error', notify.onError({
-			title: 'They pay you to do this?',
-			message: '<%= error.message %> ?! Is this some kind of joke?'
-		}))
+		.pipe(browserified).on('error', util.log)
 		.on('error', function(error) {
 			if (process.env.IS_CI === '1') {
 				console.log('CI Evn: Exiting With -1');
