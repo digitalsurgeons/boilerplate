@@ -76,7 +76,7 @@ $block-rows: 2;
 	//if a quadrant is touching the right it has no right border
 	//if a quadrant is touching the bottom, it has no bototm border
 
-	border: solid .19em white;
+	border: solid .19em #fff;
 
 	@if ($start % $num-wide) * $block-width == 0% {
 		border-left: 0;
