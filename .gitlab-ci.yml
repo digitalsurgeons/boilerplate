@@ -6,6 +6,11 @@ before_script:
   # Install dependencies
   - npm install
   - bower install --allow-root
+  # Uncomment out the following 4 lines for Composer-based projects
+  # - touch composer.lock
+  # - rm composer.lock
+  # - composer install --prefer-source --no-interaction
+  # - composer dumpautoload
   # Build steps
   - if [ "$CI_BUILD_REF_NAME" == "production" ] || [ "$CI_BUILD_REF_NAME" == "master" ] ; then gulp --prod --hint; else gulp --maps --hint; fi
   # Set permissions to something the web server can use
