@@ -24,12 +24,6 @@ module.exports = function() {
 		return b.bundle();
 	});
 
-	//run jshint if useing --hint flag
-	var useHint = util.env.hint ? true : false;
-	if (useHint) {
-		gulp.run('eslint');
-	}
-
 	//check if we need to uglify
 	//run uglify if useing --prod flag
 	var doUglify = util.env.prod ? true : false;
