@@ -48,6 +48,13 @@ Run Gulp Watch to start up a Browser-Sync session. (optional --maps and --hint)
 
 	$ gulp watch
 
+Other available commands:
+	
+	$ gulp sass
+	$ gulp sass --maps
+	$ gulp handlebars
+	$ gulp browserify
+
 # Server configs
 
 Refer to [h5bp/server-configs-apache](https://github.com/h5bp/server-configs-apache) or [h5bp/server-configs-nginx](https://github.com/h5bp/server-configs-nginx) when constructing the server configuration for your project.
