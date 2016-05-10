@@ -1,0 +1,33 @@
+files:
+  ignore:
+    - 'public_html/src/scss/base/**'
+    - 'public_html/src/scss/bourbon/**'
+    - 'public_html/src/scss/neat/**'
+  include: '**/*.s+(a|c)ss'
+options:
+  formatter: stylish
+  merge-default-rules: false
+rules:
+  class-name-format:
+    - 1
+    - convention: hyphenatedbem
+  function-name-format: 1
+  id-name-format:
+    - 1
+    - convention: hyphenatedbem
+  indentation:
+    - 1
+    - size: 1
+  mixin-name-format: 1
+  no-color-literals: 0
+  no-css-comments: 0
+  no-mergeable-selectors: 0
+  no-vendor-prefixes: 0
+  placeholder-in-extend: 0
+  placeholder-name-format:
+    - 1
+    - convention: '^.|%'
+  quotes: 1
+  property-sort-order:
+    order: 'alphabetical'
+  variable-name-format: 1
