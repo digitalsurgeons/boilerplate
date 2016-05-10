@@ -15,7 +15,7 @@
     ]
   },
   "devDependencies": {
-    "browser-sync": "=2.4.0",
+    "browser-sync": "=2.12.5",
     "browserify": "=8.1.1",
     "browserify-shim": "=3.8.2",
     "concat-stream": "=1.5.1",
