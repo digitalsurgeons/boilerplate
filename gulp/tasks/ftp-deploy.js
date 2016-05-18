@@ -104,6 +104,7 @@ function collectFiles() {
 			state.localRoot || '.',
 			'-not', '-iwholename', '*.git*',
 			'-not', '-iwholename', '*node_modules*',
+			'!', '-type', 'd',
 			'-printf', '%P\n']).toString().split('\n');
 		state.files = state.files.concat(public_html_files);
 	}
