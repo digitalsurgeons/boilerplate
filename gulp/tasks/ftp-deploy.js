@@ -3,11 +3,9 @@ var config = require('../config'),
 	fs = require('graceful-fs'),
 	path = require('path'),
 	spawn = require('child_process').execFileSync,
-	exec = require('child_process').exec,
 	concat = require('concat-stream'),
 	minimist = require('minimist'),
 	fromString = require('from2-string'),
-	recursive = require('recursive-readdir'),
 	Client = require('ssh2').Client;
 
 var state = {
@@ -15,11 +13,14 @@ var state = {
 	sftp: null,
 	doneCb: null,
 	localRoot: null,
+	maxFiles: 1000,
+	currentlyUploading: 0,
 	hash: {
 		production: '',
 		local: ''
 	},
-	files: []
+	files: [],
+	backlog: []
 }
 
 var argv = minimist(process.argv.slice(2), {
@@ -55,6 +56,17 @@ function sftpConnected(err, sftp) {
 	console.log('SFTP CLIENT :: CONNECTED')
 
 	state.sftp = sftp;
+
+	// Set the local root, where files will be taken from
+	if (argv.root)
+	{
+		if (argv.root[argv.root.length-1] !== '/')
+		{
+			throw 'Invalid root path option! Should be formatted like "public_html/"';
+			return;
+		}
+		state.localRoot = argv.root;
+	}
 
 	if (argv['upload-all-files-yes-i-am-sure']) {
 		console.log('YOU ARE ABOUT TO REDEPLOY ALL FILES');
@@ -114,7 +126,7 @@ function handleRevision(buf) {
 			var fileRet = getFileStat(compare);
 
 			// Toss it into the file array if it needs to be uploaded
-			if (fileRet !== undefined) {
+			if (fileRet !== null) {
 				// Notify user about the changed file
 				console.log('[' + fileRet + '] was modified and will be uploaded');
 
@@ -136,17 +148,6 @@ function handleRevision(buf) {
 function collectFiles() {
 
 	console.log('going to collect files now...');
-
-	// Set the local root, where files will be taken from
-	if (argv.root)
-	{
-		if (argv.root[argv.root.length-1] !== '/')
-		{
-			throw 'Invalid root path option! Should be formatted like "public_html/"';
-			return;
-		}
-		state.localRoot = argv.root;
-	}
 
 	// We don't have a revision from the server, so collect all the files
 	if (state.hash.production === ''){
@@ -177,11 +178,31 @@ function collectFiles() {
 }
 
 function getFileStat(stat) {
+
 	// Checks if a git diff line is a delete line
 	// if so, ignore this file, don't touch it!
 	var file = stat.split('\t')[1];
 	var status = stat.split('\t')[0];
+
+	if (file === undefined){
+		return null;
+	}
+
 	if (status !== 'D') {
+
+		// If we have a root make sure it's inside the root
+		if (state.localRoot !== null)
+		{
+			var paths = file.split('/');
+			if((paths[0] + '/') !== state.localRoot)
+			{
+				return null;
+			}
+
+			// Remove the root, because it's relative to the repo root
+			file = file.replace(state.localRoot, '');
+		}
+
 		return file;
 	}
 
@@ -192,7 +213,7 @@ function ensureDirectories(cb) {
 	state.files.forEach(function(file){
 		// This will ensure the file has a directory to live in
 		var destFile = file;
-		if (state.localRoot !== undefined)
+		if (state.localRoot !== null)
 		{
 			// We have a specified root, trim from the destination
 			destFile = file.replace(state.localRoot, '');
@@ -225,12 +246,30 @@ function sftpMkdirp(parentPath, directoriesToMake, file) {
 	});
 }
 
+function pullFromBacklog() {
+	if (state.backlog.length <= 0){
+		// No more files
+		return;
+	}
+
+	// Pop off the backlog
+	sftpFile(state.backlog.pop());
+}
+
 function sftpFile(file) {
 
 	if(!file || file == '')
 	{
 		// Bad file somewhere in the mix, stop tracking it
 		state.filesRemaining--;
+		return;
+	}
+
+	// Are we uploading a bit too much at one time?
+	if (state.currentlyUploading >= state.maxFiles)
+	{
+		// Put it into the backlog
+		state.backlog.push(file);
 		return;
 	}
 
@@ -251,6 +290,9 @@ function sftpFile(file) {
 
 	rs.pipe(ws);
 
+	state.currentlyUploading++;
+	console.log('currently uploading: ' + state.currentlyUploading);
+
 	ws.on('error', function(err) {
 		// Could not write becuase the directory does not exist
 		console.log('ERROR uploading file: ' + destFile);
@@ -260,6 +302,9 @@ function sftpFile(file) {
 		state.filesRemaining--;
 
 		console.log(localFile + ' -> ' + destFile);
+
+		state.currentlyUploading--;
+		pullFromBacklog();
 
 		// No more files to upload?
 		if (!state.filesRemaining) {
