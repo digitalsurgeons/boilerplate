@@ -259,17 +259,29 @@ function sftpFile(file) {
 	ws.on('finish', function() {
 		state.filesRemaining--;
 
-		console.log(file + ' -> ' + destFile);
+		console.log(localFile + ' -> ' + destFile);
 
 		// No more files to upload?
 		if (!state.filesRemaining) {
 			// Update the hash on the server
-			fromString(state.hash.production)
-				.pipe(state.sftp.createWriteStream('.revision-old'))
-			fromString(state.hash.local)
-				.pipe(state.sftp.createWriteStream('.revision'))
-			console.log('.revision updated:', state.hash.local);
+			writeRevisionAndQuit();
 		}
+	});
+}
+
+function writeRevisionAndQuit() {
+	var writeStreamOld = state.sftp.createWriteStream('.revision-old');
+	var writeStream = state.sftp.createWriteStream('.revision');
+
+	fromString(state.hash.production).pipe(writeStreamOld);
+
+	writeStreamOld.on('finish', function() {
+		fromString(state.hash.local).pipe(writeStream);
+	});
+
+	writeStream.on('finish', function() {
+		console.log('exiting');
+		process.exit(0);
 	});
 }
 
