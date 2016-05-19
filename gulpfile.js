@@ -33,8 +33,8 @@ var gulp = require('./gulp')([
     'polyfill',
 	'scss-lint',
 	'sass',
-    'watch'/* ,
-    'ftp-deploy'*/
+    'watch',
+    'ftp-deploy'
 ], [
 	'eslint',
     'browserify',

@@ -28,7 +28,8 @@ var argv = minimist(process.argv.slice(2), {
 		p: 'port',
 		u: 'username',
 		r: 'root',
-		'pass': 'password'
+		'pass': 'password',
+		'local-root': 'root'
 	}
 });
 
@@ -81,41 +82,6 @@ function handleNoRevision(cb) {
 	cb();
 }
 
-// Last step done before trying to upload stuff!
-function collectFiles() {
-
-	console.log('going to collect files now...');
-
-	// Set the local root, where files will be taken from
-	if (argv.root)
-	{
-		if (argv.root[argv.root.length-1] !== '/')
-		{
-			throw 'Invalid root path option! Should be formatted like "public_html/"';
-			return;
-		}
-		state.localRoot = argv.root;
-	}
-
-	// We don't have a revision from the server, so collect all the files
-	if (state.hash.production === ''){
-		console.log('collecting ALL files to upload...');
-		var public_html_files = spawn('find', [
-			state.localRoot || '.',
-			'-not', '-iwholename', '*.git*',
-			'-not', '-iwholename', '*node_modules*',
-			'!', '-type', 'd',
-			'-printf', '%P\n']).toString().split('\n');
-		state.files = state.files.concat(public_html_files);
-	}
-
-	// Ready to upload files!
-	state.filesRemaining = state.files.length;
-	console.log('about to deploy [' + state.filesRemaining  + '] files!');
-
-	state.files.forEach(sftpFile);
-}
-
 function handleRevision(buf) {
 	// Save the remote hash
 	state.hash.production = buf.toString().trim();
@@ -126,7 +92,7 @@ function handleRevision(buf) {
 	console.log(state.hash.local + ' :: ' + state.hash.production);
 
 	// Do the hashes match?
-	if (state.hash.local !== state.hash.remote) {
+	if (state.hash.local !== state.hash.production) {
 		// They don't so we need to run a diff and find out which files changed
 		console.log('local hash does not match remote hash, deploying changed files');
 		var results = spawn('git', ['diff', '--name-status', state.hash.production, state.hash.local]).toString();
@@ -154,6 +120,51 @@ function handleRevision(buf) {
 	}
 }
 
+
+// Last step done before trying to upload stuff!
+function collectFiles() {
+
+	console.log('going to collect files now...');
+
+	// Set the local root, where files will be taken from
+	if (argv.root)
+	{
+		if (argv.root[argv.root.length-1] !== '/')
+		{
+			throw 'Invalid root path option! Should be formatted like "public_html/"';
+			return;
+		}
+		state.localRoot = argv.root;
+	}
+
+	// We don't have a revision from the server, so collect all the files
+	if (state.hash.production === ''){
+		console.log('collecting ALL files to upload...');
+		var public_html_files = spawn('find', [
+			state.localRoot || '.',
+			'-not', '-iwholename', '*.git*',
+			'-not', '-iwholename', '*node_modules*',
+			'!', '-type', 'd',
+			'-printf', '%P\n']).toString().split('\n');
+		state.files = state.files.concat(public_html_files);
+
+		// Reorder output of `find` so it works with making
+		// directories. Deepest child first
+		state.files = state.files.reverse();
+	}
+
+	// Ready to upload files!
+	state.filesRemaining = state.files.length;
+	console.log('about to deploy [' + state.filesRemaining  + '] files!');
+
+	ensureDirectories(function(){
+		console.log('All directories are ready');
+
+		// Upload!
+		state.files.forEach(sftpFile);
+	});
+}
+
 function getFileStat(stat) {
 	// Checks if a git diff line is a delete line
 	// if so, ignore this file, don't touch it!
@@ -166,31 +177,79 @@ function getFileStat(stat) {
 	return null;
 }
 
-function sftpFile(file) {
+function ensureDirectories(cb) {
+	state.files.forEach(function(file){
+		// This will ensure the file has a directory to live in
+		var destFile = file;
+		if (state.localRoot !== undefined)
+		{
+			// We have a specified root, trim from the destination
+			destFile = file.replace(state.localRoot, '');
+		}
 
-	// If we get no file, an empty path, or a directory. Ignore.
-	if (!file || file == '' || fs.lstatSync(file).isDirectory())
+		var dirPath = destFile.substring(0, destFile.lastIndexOf("/"));
+		var dirsToMake = dirPath.split('\n');
+
+		sftpMkdirp('', dirsToMake, file);
+	});
+	cb();
+}
+
+function sftpMkdirp(parentPath, directoriesToMake, file) {
+
+	// Finished making the directories, stop and try to upload the file again
+	if (directoriesToMake.length == 0)
 	{
+		// We've made all the directories, we're done
 		return;
 	}
 
-	var rs = fs.createReadStream(file);
+	// Make the closest parent path
+	var newParentPath = parentPath + directoriesToMake[0] + '/';
+	console.log('going to try and make directory: ' + newParentPath);
+	state.sftp.mkdir(newParentPath, function(err) {
+		// Attention should be brought to the fact that we can't make directories
+		// Make the next directory
+		sftpMkdirp(newParentPath, directoriesToMake.slice(1), file);
+	});
+}
+
+function sftpFile(file) {
+
+	if(!file || file == '')
+	{
+		// Bad file somewhere in the mix, stop tracking it
+		state.filesRemaining--;
+		return;
+	}
+
 	var destFile = file;
+	var localFile = file;
 
 	if (state.localRoot !== undefined)
 	{
+		// Fix local file path
+		localFile = state.localRoot + file;
+
 		// We have a specified root, trim from the destination
-		destFile = file.replace(state.localRoot, '');
+		destFile = localFile.replace(state.localRoot, '');
 	}
 
-	var ws = state.sftp.createWriteStream(file);
+	var rs = fs.createReadStream(localFile);
+	var ws = state.sftp.createWriteStream(destFile);
 
 	rs.pipe(ws);
+
+	ws.on('error', function(err) {
+		// Could not write becuase the directory does not exist
+		console.log('ERROR uploading file: ' + destFile);
+	});
+
 	ws.on('finish', function() {
 		state.filesRemaining--;
 
-		// Let them know we uploaded the file
 		console.log(file + ' -> ' + destFile);
+
 		// No more files to upload?
 		if (!state.filesRemaining) {
 			// Update the hash on the server
@@ -200,8 +259,8 @@ function sftpFile(file) {
 				.pipe(state.sftp.createWriteStream('.revision'))
 			console.log('.revision updated:', state.hash.local);
 
-			// Tell Gulp we are all done
-			state.doneCb();
+			// We're done
+			process.exit(0);
 		}
 	});
 }
