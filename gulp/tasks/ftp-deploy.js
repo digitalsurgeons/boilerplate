@@ -56,8 +56,19 @@ function sftpConnected(err, sftp) {
 
 	state.sftp = sftp;
 
-	// Try and read the revison file from the server
-	var stream = sftp.createReadStream('.revision');
+	if (argv['upload-all-files-yes-i-am-sure']) {
+		console.log('YOU ARE ABOUT TO REDEPLOY ALL FILES');
+		handleNoRevision(collectFiles);
+		return;
+	}
+
+	if (argv.redo) {
+		// Force a compare to the old hash (one deployment ago)
+		var stream = sftp.createReadStream('.revision-old');
+	} else {
+		// Try and read the revison file from the server
+		var stream = sftp.createReadStream('.revision');
+	}
 
 	// We could not open the revision file, assume this is a new server?
 	stream.on('error', function(){
@@ -258,9 +269,6 @@ function sftpFile(file) {
 			fromString(state.hash.local)
 				.pipe(state.sftp.createWriteStream('.revision'))
 			console.log('.revision updated:', state.hash.local);
-
-			// We're done
-			process.exit(0);
 		}
 	});
 }
