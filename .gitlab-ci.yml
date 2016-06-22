@@ -18,36 +18,27 @@ before_script:
   - if [ "$CI_BUILD_REF_NAME" == "production" ] || [ "$CI_BUILD_REF_NAME" == "master" ] ; then gulp --prod --hint; else gulp --maps --hint; fi
   # Set permissions to something the web server can use
   # - ./perm.sh
-  # Remove files that don't need to be synced to the server
-  #   Symlink removal
-  - rm node_modules
-  #   Directories
-  - rm -rf .git/ .sass-cache/ gulp/
-  #   Prod has no sourcemaps, but other envs do, so conditionally remove src
-  - if [ "$CI_BUILD_REF_NAME" == "production" ] ; then rm -rf public_html/src; fi
-  #   Dotfiles and config files relevant only for compilation and dev
-  - rm .* bower.json gulpfile.js package.json README.md
   # Add private key so we can connect to destination server
   - echo "$SSH_PRIVATE_KEY" > id_rsa
   - chmod 0600 id_rsa
 
 deploy_prod:
   script:
-    - rsync --copy-unsafe-links -prvzcSle 'ssh -p 22 -o StrictHostKeyChecking=no -i id_rsa' --exclude 'id_rsa' ./ user@ip:/path/to/project
+    - rsync --copy-unsafe-links -prvzcSle 'ssh -p 22 -o StrictHostKeyChecking=no -i id_rsa' --exclude-from=.rsyncignore --exclude=public_html/src ./ user@ip:/path/to/project/
   stage: deploy
   only:
     - production
 
 deploy_stage:
   script:
-    - rsync --copy-unsafe-links -prvzcSle 'ssh -p 22 -o StrictHostKeyChecking=no -i id_rsa' --exclude 'id_rsa' ./ user@ip:/path/to/project
+    - rsync --copy-unsafe-links -prvzcSle 'ssh -p 22 -o StrictHostKeyChecking=no -i id_rsa' --exclude-from=.rsyncignore ./ user@ip:/path/to/project/
   stage: deploy
   only:
     - master
 
 deploy_dev:
   script:
-    - rsync --copy-unsafe-links -prvzcSle 'ssh -p 22 -o StrictHostKeyChecking=no -i id_rsa' --exclude 'id_rsa' ./ user@ip:/path/to/project
+    - rsync --copy-unsafe-links -prvzcSle 'ssh -p 22 -o StrictHostKeyChecking=no -i id_rsa' --exclude-from=.rsyncignore ./ user@ip:/path/to/project/
   stage: deploy
   only:
     - develop
