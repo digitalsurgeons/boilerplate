@@ -26,6 +26,7 @@ deploy_prod:
   script:
     - rsync --copy-unsafe-links -prvzcSle 'ssh -p 22 -o StrictHostKeyChecking=no -i id_rsa' --exclude-from=.rsyncignore --exclude=public_html/src ./ user@ip:/path/to/project/
   stage: deploy
+  environment: production
   only:
     - production
 
@@ -33,6 +34,7 @@ deploy_stage:
   script:
     - rsync --copy-unsafe-links -prvzcSle 'ssh -p 22 -o StrictHostKeyChecking=no -i id_rsa' --exclude-from=.rsyncignore ./ user@ip:/path/to/project/
   stage: deploy
+  environment: staging
   only:
     - master
 
@@ -40,5 +42,6 @@ deploy_dev:
   script:
     - rsync --copy-unsafe-links -prvzcSle 'ssh -p 22 -o StrictHostKeyChecking=no -i id_rsa' --exclude-from=.rsyncignore ./ user@ip:/path/to/project/
   stage: deploy
+  environment: development
   only:
     - develop
