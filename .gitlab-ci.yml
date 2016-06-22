@@ -1,8 +1,11 @@
+# Cacheing
+cache:
+  paths:
+    - node_modules/
+    - public_html/bower_components/
+    # - vendor
+
 before_script:
-  # Cacheing
-  - mkdir -p /cache/{node_modules,bower_components}
-  - ln -s /cache/node_modules node_modules
-  - ln -s /cache/bower_components public_html/bower_components
   # Install dependencies
   - npm install
   - bower install --allow-root
