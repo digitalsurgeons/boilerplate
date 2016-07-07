@@ -5,25 +5,35 @@ cache:
     - public_html/bower_components/
     # - vendor
 
-before_script:
-  # Install dependencies
-  - npm install
-  - bower install --allow-root
-  # Uncomment out the following 4 lines for Composer-based projects
-  # - touch composer.lock
-  # - rm composer.lock
-  # - composer install --prefer-source --no-interaction
-  # - composer dumpautoload
-  # Build steps
-  - if [ "$CI_BUILD_REF_NAME" == "production" ] || [ "$CI_BUILD_REF_NAME" == "master" ] ; then gulp --prod --hint; else gulp --maps --hint; fi
-  # Set permissions to something the web server can use
-  # - ./perm.sh
-  # Add private key so we can connect to destination server
-  - echo "$SSH_PRIVATE_KEY" > id_rsa
-  - chmod 0600 id_rsa
+# Uncomment out the following task for Composer-based projects
+# build_backend:
+#   script:
+#     - touch composer.lock
+#     - rm composer.lock
+#     - composer install --prefer-source --no-interaction
+#     - composer dumpautoload
+#   artifacts:
+#     paths:
+#       - vendor/composer/autoload_classmap.php
+#   stage: build
+
+build_frontend:
+  script:
+    # Install dependencies
+    - npm install
+    - bower install --allow-root
+    # Build steps
+    - if [ "$CI_BUILD_REF_NAME" == "production" ] || [ "$CI_BUILD_REF_NAME" == "master" ] ; then gulp --prod --hint; else gulp --maps --hint; fi
+  artifacts:
+    paths:
+      - public_html/dist/
+  stage: build
 
 deploy_prod:
   script:
+    # Add private key so we can connect to destination server
+    - echo "$SSH_PRIVATE_KEY" > id_rsa
+    - chmod 0600 id_rsa
     - rsync --copy-unsafe-links -prvzcSle 'ssh -p 22 -o StrictHostKeyChecking=no -i id_rsa' --exclude-from=.rsyncignore --exclude=public_html/src ./ user@ip:/path/to/project/
   stage: deploy
   environment: production
@@ -32,6 +42,9 @@ deploy_prod:
 
 deploy_stage:
   script:
+    # Add private key so we can connect to destination server
+    - echo "$SSH_PRIVATE_KEY" > id_rsa
+    - chmod 0600 id_rsa
     - rsync --copy-unsafe-links -prvzcSle 'ssh -p 22 -o StrictHostKeyChecking=no -i id_rsa' --exclude-from=.rsyncignore ./ user@ip:/path/to/project/
   stage: deploy
   environment: staging
@@ -40,6 +53,9 @@ deploy_stage:
 
 deploy_dev:
   script:
+    # Add private key so we can connect to destination server
+    - echo "$SSH_PRIVATE_KEY" > id_rsa
+    - chmod 0600 id_rsa
     - rsync --copy-unsafe-links -prvzcSle 'ssh -p 22 -o StrictHostKeyChecking=no -i id_rsa' --exclude-from=.rsyncignore ./ user@ip:/path/to/project/
   stage: deploy
   environment: development
