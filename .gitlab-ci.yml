@@ -31,6 +31,8 @@ build_frontend:
     paths:
       - public_html/dist/
   stage: build
+  only:
+      - branches
 
 ### Use one of the following in your script block in one
 ### of the deploy_* jobs for different transports.
@@ -43,7 +45,7 @@ build_frontend:
 
 ### For deployments that must be over FTP (bleh)
 ### This assumes that you are only deploying the public_html folder (no dynamic scripts).
-# - 
+# -
 
 ### For deployments to an S3 bucket (static sites or assets)
 ### This assumes that you are only deploying the public_html folder (no dynamic scripts).
