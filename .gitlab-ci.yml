@@ -45,7 +45,17 @@ build_frontend:
 
 ### For deployments that must be over FTP (bleh)
 ### This assumes that you are only deploying the public_html folder (no dynamic scripts).
-# -
+# - dandelion deploy
+### You will additionally need an environment section in your deploy job:
+# variables:
+#   DANDELION_HOST: "$HOST"
+#   DANDELION_PORT: "$PORT"
+#   DANDELION_USERNAME: "$FTP_STG_USERNAME"
+#   DANDELION_PASSWORD: "$FTP_STG_PASSWORD"
+#   # Dandelion has problems with UTF-8 when it
+#   # is set as the global ruby default. Unset
+#   # it here.
+#   RUBYOPT: ""
 
 ### For deployments to an S3 bucket (static sites or assets)
 ### This assumes that you are only deploying the public_html folder (no dynamic scripts).
