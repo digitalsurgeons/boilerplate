@@ -56,6 +56,22 @@ build_frontend:
 #   # is set as the global ruby default. Unset
 #   # it here.
 #   RUBYOPT: ""
+### Lastly, you will need to create a dandelion.yml file in the root
+### with the contents like the following, which is for a wordpress site:
+# adapter: sftp
+# host: <%= ENV['DANDELION_HOST'] %>
+# port: <%= ENV['DANDELION_PORT'] %>
+# username: <%= ENV['DANDELION_USERNAME'] %>
+# password: <%= ENV['DANDELION_PASSWORD'] %>
+# local_path: public_html/
+#
+# exclude:
+#     - wp-admin
+#     - wp-includes
+#
+# additional:
+#     - public_html/wp-content/themes/<themename>/dist/: wp-content/themes/<themename>/dist/
+
 
 ### For deployments to an S3 bucket (static sites or assets)
 ### This assumes that you are only deploying the public_html folder (no dynamic scripts).
