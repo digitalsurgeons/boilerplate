@@ -5,16 +5,7 @@
     "handlebars": "=4.0.5",
     "jquery": "=2.1.4",
     "lodash": "=3.10.1",
-    "vinyl-ftp": "=0.4.5"
-  },
-  "browserify-shim": {},
-  "browserify": {
-    "transform": [
-      "browserify-shim",
-      "hbsfy"
-    ]
-  },
-  "devDependencies": {
+    "vinyl-ftp": "=0.4.5",
     "browser-sync": "=2.12.5",
     "browserify": "=8.1.1",
     "browserify-shim": "=3.8.2",
@@ -47,5 +38,12 @@
     "minimist": "=1.2.0",
     "ssh2": "=0.5.0",
     "vinyl-transform": "=1.0.0"
+  },
+  "browserify-shim": {},
+  "browserify": {
+    "transform": [
+      "browserify-shim",
+      "hbsfy"
+    ]
   }
 }
