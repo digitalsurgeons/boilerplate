@@ -32,7 +32,6 @@
     "babel": "^6.5.2",
     "babel-preset-es2015": "^6.14.0",
     "babelify": "^7.3.0",
-    "bourbon-neat": "^1.8.0",
     "browser-sync": "^2.16.0",
     "browserify": "^13.1.0",
     "ecstatic": "^2.1.0",
@@ -49,6 +48,7 @@
     "watchify": "^3.7.0"
   },
   "dependencies": {
+    "bourbon-neat": "^1.8.0",
     "fastclick": "^1.0.6",
     "jquery": "^3.1.0",
     "node-bourbon": "^4.2.8",
