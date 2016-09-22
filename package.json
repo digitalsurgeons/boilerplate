@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "ecstatic --root public_html --cache 0 --port 8080",
-    "browsersync": "browser-sync start --proxy --files 'public_html/**/*'",
+    "browsersync": "browser-sync start --proxy $site",
     "build": "npm run build:js && npm run build:css",
     "build:css": "node-sass --include-path ./node_modules scss/app.scss public_html/dist/app.css",
     "build:js": "browserify js/index.js -g uglifyify | uglifyjs -cm | optimize-js > public_html/dist/bundle.js",

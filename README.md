@@ -11,5 +11,5 @@ open your browser to http://localhost:8080
 # browser-sync
 
 ```bash
-npm run browsersync
+site=[site url here] npm run browsersync
 ```
