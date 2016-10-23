@@ -1,0 +1,62 @@
+image: registry.gitlab.com/digitalsurgeons/build-base:latest
+
+# Cacheing
+cache:
+  paths:
+    - node_modules/
+
+build_frontend:
+  script:
+    # Install dependencies
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - public_html/dist/
+  stage: build
+
+deploy_prod:
+  variables:
+    DANDELION_HOST: "$HOST"
+    DANDELION_PORT: "$PORT"
+    DANDELION_USERNAME: "$FTP_PRD_USERNAME"
+    DANDELION_PASSWORD: "$FTP_PRD_PASSWORD"
+    # Dandelion has problems with UTF-8 when it
+    # is set as the global ruby default. Unset
+    # it here.
+    RUBYOPT: ""
+  script:
+    - dandelion deploy
+  stage: deploy
+  environment: production
+  only:
+    - production
+
+deploy_stage:
+  variables:
+    DANDELION_HOST: "$HOST"
+    DANDELION_PORT: "$PORT"
+    DANDELION_USERNAME: "$FTP_STG_USERNAME"
+    DANDELION_PASSWORD: "$FTP_STG_PASSWORD"
+    # Dandelion has problems with UTF-8 when it
+    # is set as the global ruby default. Unset
+    # it here.
+    RUBYOPT: ""
+  script:
+    - dandelion deploy
+  stage: deploy
+  environment: staging
+  only:
+    - master
+
+
+deploy_dev:
+  script:
+    # Add private key so we can connect to destination server
+    - echo "$SSH_PRIVATE_KEY" > id_rsa
+    - chmod 0600 id_rsa
+    - rsync --copy-unsafe-links -prvzcSle 'ssh -p 22 -o StrictHostKeyChecking=no -i id_rsa' --exclude-from '.rsyncignore' ./ digitals@104.131.52.140:/var/www/freshpet-letters
+  stage: deploy
+  environment: development
+  only:
+    - develop
