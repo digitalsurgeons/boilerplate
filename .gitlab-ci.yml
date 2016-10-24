@@ -55,7 +55,7 @@ deploy_dev:
     # Add private key so we can connect to destination server
     - echo "$SSH_PRIVATE_KEY" > id_rsa
     - chmod 0600 id_rsa
-    - rsync --copy-unsafe-links -prvzcSle 'ssh -p 22 -o StrictHostKeyChecking=no -i id_rsa' --exclude-from '.rsyncignore' ./ digitals@104.131.52.140:/var/www/freshpet-letters
+    - rsync --copy-unsafe-links -prvzcSle 'ssh -p 22 -o StrictHostKeyChecking=no -i id_rsa' --exclude-from '.rsyncignore' .user@host:path
   stage: deploy
   environment: development
   only:
