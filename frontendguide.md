@@ -25,7 +25,7 @@
 
 <a name="what-is-front-end"/>
 ## What Is Front End
-The [front end guild at 18F](https://github.com/18F/frontend) did a series of exercises to determine the fundamental differences between the front end design and front end developer roles. It came up with the following recommendations on knowing the difference between the two disciplines:
+The [front end guild at 18F](https://github.com/18F/frontend) did a series of exercises to determine the fundamental differences between the front end design and front end engineer roles. It came up with the following recommendations on knowing the difference between the two disciplines:
 
 **Front end designers** design, write, and implement the presentational code base for websites and applications. They should have a clear understanding of design fundamentals and systems, such as interface style guides, responsive design, grid systems, front end frameworks, and accessibility best practices. Front end designers should feel comfortable creating and implementing design systems using semantic HTML5, CSS/SASS and be able to assist in debugging this aspect of the code base.
 
