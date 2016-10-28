@@ -36,11 +36,15 @@ The [front end guild at 18F](https://github.com/18F/frontend) did a series of ex
 
 <a name="purpose"/>
 ### Purpose
-The purpose of the CSS coding styleguide is to create consistent CSS or preprocessor CSS code across Digital Surgeons. The styleguide should be treated as a guide — rules can be modified according to project needs.
+The purpose of the CSS coding styleguide is to create consistent CSS or preprocessor CSS code across Digital Surgeons projects. The styleguide should be treated as a guide — rules can be modified according to project needs.
 
 <a name="css-linting"/>
 ### Linting
-The styleguide provides a method of linting SASS code to ensure it conforms to the rules in the styleguide. This linting tool will go through all SASS code and issue warnings wherever the code differs from the styleguide. We've created a specific .scss-lint.yml file that's configured to work with the css coding styleguide.
+Digital Surgeons adheres to a specific SASS styleguide and uses a linting tool to ensure code never differs from this styleguide. We've created a specific `.scss-lint.yml` file that specifics our linting rules. Please refer to this file to find out what they are. Here is how to setup linting locally with ruby:
+
+1. Ensure the `.scss-lint.yml` file is at the base of your repository.
+2. Install the scss-lint gem with `gem install scss_lint`
+3. Run the linter with `npm run scss-lint`
 
 <a name="css-nesting"/>
 ### Nesting
