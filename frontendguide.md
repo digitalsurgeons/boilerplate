@@ -40,7 +40,9 @@ The purpose of the CSS coding styleguide is to create consistent CSS or preproce
 
 <a name="css-linting"/>
 ### Linting
-Digital Surgeons adheres to a specific SASS styleguide and uses a linting tool to ensure code never differs from this styleguide. We've created a specific `.scss-lint.yml` file that specifics our linting rules. Please refer to this file to find out what they are. Here is how to setup linting locally with ruby:
+Digital Surgeons adheres to a specific SASS styleguide and uses a linting tool to ensure code never differs from this styleguide. We've created a specific `.scss-lint.yml` file that specifics our linting rules. Please refer to [this file](https://github.com/digitalsurgeons/boilerplate/blob/redeux/.scss-lint.yml) to find out what they are.
+
+#### Linting setup with ruby:
 
 1. Ensure the `.scss-lint.yml` file is at the base of your repository.
 2. Install the scss-lint gem with `gem install scss_lint`
