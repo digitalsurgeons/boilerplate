@@ -121,6 +121,13 @@ Components should belong to their own component directory. For example, all gene
 ### IDs vs. Classes
 
 You should almost never need to use IDs. Broken behavior due to ID collisions are hard to track down and annoying.
+If you **must** select an ID, select it by its data attibute because data attributes have the same specificty as classes:
+
+```css
+[id='someID'] {
+  color: 'red';
+}
+```
 
 <a name="css-color-units"/>
 ### Color Units
