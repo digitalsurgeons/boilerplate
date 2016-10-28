@@ -94,7 +94,7 @@ Override or extend the base styles of a block or element with modifier styles. C
 - `.Expanding-section--expanded`
 
 <a name="css-bem-best-practices"/>
-### Best practices
+#### Best practices
 
 Don't `@extend` block modifiers with the block base.
 - Good: `<div class="My-block My-block--modifier">`
