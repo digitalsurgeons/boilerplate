@@ -34,7 +34,7 @@ The [front end guild at 18F](https://github.com/18F/frontend) did a series of ex
 <a name="css"/>
 ## CSS
 
-<a name="purpose"/>
+<a name="css-purpose"/>
 ### Purpose
 The purpose of the CSS coding styleguide is to create consistent CSS or preprocessor CSS code across Digital Surgeons projects. The styleguide should be treated as a guide — rules can be modified according to project needs.
 
