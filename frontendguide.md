@@ -69,7 +69,7 @@ Unique, meaningful names for a logical unit of style.
 
 Use a capitalized name (title case).
 - Good: `.Header`
-- Bad: `.header
+- Bad: `.header`
 
 Avoid excessive shorthand.
 - Good: `.Alert-box` or `.Recents-intro` or `.Button`
