@@ -14,10 +14,10 @@
     * [Element](#css-element)
     * [Modifier](#css-modifier)
     * [Best Practices](#css-bem-best-practices)
-    * [Componentizing](#css-componentizing)
-    * [IDs vs. Classes](#css-ids-vs-classes)
-    * [Color Units](#css-color-units)
-    * [Vendor Prefixes](#css-vendor-prefixes)
+  * [Componentizing](#css-componentizing)
+  * [IDs vs. Classes](#css-ids-vs-classes)
+  * [Color Units](#css-color-units)
+  * [Vendor Prefixes](#css-vendor-prefixes)
 
 
 - [Javascript](#javascript)
@@ -135,7 +135,7 @@ entirely):
 
 ```scss
 .Article {
-    display: flex;
+  display: flex;
 }
 ```
 ***
