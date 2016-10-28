@@ -6,18 +6,18 @@
 
 - [What Is Front End?](#what-is-front-end)
 - [CSS](#css)
-	* [Purpose](#css-purpose)
-	* [Linting](#css-linting)
-	* [Nesting](#css-nesting)
-	* [BEM](#css-bem)
-		* [Block](#css-block)
-		* [Element](#css-element)
-		* [Modifier](#css-modifier)
-		* [Best Practices](#css-bem-best-practices)
-		* [Componentizing](#css-componentizing)
-		* [IDs vs. Classes](#css-ids-vs-classes)
-		* [Color Units](#css-color-units)
-		* [Vendor Prefixes](#css-vendor-prefixes)
+  * [Purpose](#css-purpose)
+  * [Linting](#css-linting)
+  * [Nesting](#css-nesting)
+  * [BEM](#css-bem)
+    * [Block](#css-block)
+    * [Element](#css-element)
+    * [Modifier](#css-modifier)
+    * [Best Practices](#css-bem-best-practices)
+    * [Componentizing](#css-componentizing)
+    * [IDs vs. Classes](#css-ids-vs-classes)
+    * [Color Units](#css-color-units)
+    * [Vendor Prefixes](#css-vendor-prefixes)
 
 
 - [Javascript](#javascript)
@@ -50,15 +50,15 @@ Digital Surgeons adheres to a specific SASS styleguide and uses a linting tool t
 ### Nesting
 
 Nesting makes it harder to tell at a glance where css selector optimizations can be made. Avoid it unless it's being used as a convenience to extend the parent selector over targeting nested elements. For example:
-	```scss
-	.Block {
-			padding: 24px;
+```scss
+.Block {
+  padding: 24px;
 
-			&--mini {
-					padding: 12px;
-			}
-	}
-	```
+  &--mini {
+    padding: 12px;
+  }
+}
+```
 
 Nesting can be really easily avoided by smart class naming (with the help of BEM) and avoiding bare tag selectors.
 
@@ -111,7 +111,7 @@ Choose your modifiers wisely. These two rules have very different meaning:
 ### Componentizing
 Always look to abstract components. Digital Surgeons has a very strong, very consistent style and the reuse of components across designs helps to improve this consistency at an implementation level.
 
-A name like `.Homepage-nav` limits its use. Instead think about writing styles in such a way that they can be reused in other parts of the app. Instead of `.Homepage-nav`, try instead	`.Nav` or `.Nav-bar`. Ask yourself if this component could be reused in another context (chances are it could!).
+A name like `.Homepage-nav` limits its use. Instead think about writing styles in such a way that they can be reused in other parts of the app. Instead of `.Homepage-nav`, try instead  `.Nav` or `.Nav-bar`. Ask yourself if this component could be reused in another context (chances are it could!).
 
 Components should belong to their own component directory. For example, all general button definitions should belong in `components/Button/styles.scss`.
 
@@ -133,7 +133,7 @@ entirely):
 
 ```scss
 .Article {
-		display: flex;
+    display: flex;
 }
 ```
 ***
