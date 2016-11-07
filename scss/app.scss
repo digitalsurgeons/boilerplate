@@ -1,5 +1,20 @@
-@import 'normalize-scss/sass/normalize';
 @import 'bourbon/app/assets/stylesheets/bourbon';
 @import 'bourbon-neat/app/assets/stylesheets/neat';
 
-@include normalize();
+@import 'normalize.css';
+
+html {
+	box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+@include display-context(table) {
+ .display-table {
+   @include span-columns(6);
+  }
+}

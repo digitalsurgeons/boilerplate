@@ -30,3 +30,5 @@ linters:
     placeholder_convention: ^.|%
   ColorKeyword:
     enabled: false
+  PseudoElement:
+    enabled: false
