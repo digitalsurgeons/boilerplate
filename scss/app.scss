@@ -1,6 +1,8 @@
+// import scss libraries
 @import 'bourbon/app/assets/stylesheets/bourbon';
 @import 'bourbon-neat/app/assets/stylesheets/neat';
 
+// import css via postcss import
 @import 'normalize.css';
 
 html {
@@ -13,8 +15,19 @@ html {
 	box-sizing: inherit;
 }
 
+// example: use scss libraries
 @include display-context(table) {
- .display-table {
-   @include span-columns(6);
+	.display-table {
+		@include span-columns(6);
   }
+}
+
+// example: use postcss plugins
+@custom-media --small-viewport (max-width: 30em);
+
+@media (--small-viewport) {
+	div {
+		// automatically autoprefixed
+		display: flex;
+	}
 }
