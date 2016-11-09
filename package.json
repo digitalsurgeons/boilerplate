@@ -20,9 +20,9 @@
     "browsersync": "browser-sync start --proxy $site",
     "build": "npm run build:js && npm run build:css",
     "build:css": "ds-css scss/app.scss > public_html/dist/app.css && node-sass --output-style='compressed' --include-path ./node_modules public_html/dist/app.css public_html/dist/app.css",
-    "build:js": "browserify js/components/example.js js/index.js -g uglifyify -p [ factor-bundle -o /public_html/dist/example.js -o public_html/dist/bundle.js ] | uglifyjs -cm | optimize-js > public_html/dist/bundle.js",
+    "build:js": "browserify js/index.js -g uglifyify | uglifyjs -cm | optimize-js > public_html/dist/bundle.js",
     "watch": "npm run watch:js & npm run watch:css",
-    "watch:css": "node-sass --include-path ./node_modules -wr scss -o public_html/dist --source-map='public_html/dist' --source-map-embed --source-map-contents",
+    "watch:css": "onchange 'scss/*.scss' -i -- ds-css scss/app.scss > public_html/dist/app.css && node-sass --include-path ./node_modules -o public_html/dist --source-map='public_html/dist' --source-map-embed --source-map-contents",
     "watch:js": "watchify js/index.js -o public_html/dist/bundle.js -dv",
     "eslint": "eslint js/**/*"
   },
@@ -38,6 +38,7 @@
     "ecstatic": "^2.1.0",
     "eslint": "^3.5.0",
     "node-sass": "^3.10.0",
+    "onchange": "^3.0.2",
     "optimize-js": "^1.0.1",
     "sass-lint": "^1.9.1",
     "uglify-js": "^2.7.3",
@@ -45,7 +46,6 @@
     "watchify": "^3.7.0"
   },
   "dependencies": {
-    "factor-bundle": "^2.5.0",
     "fastclick": "^1.0.6",
     "jquery": "^3.1.0",
     "normalize.css": "^5.0.0"

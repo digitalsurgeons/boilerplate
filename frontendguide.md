@@ -117,6 +117,8 @@ A name like `.Homepage-nav` limits its use. Instead think about writing styles i
 
 Components should belong to their own component directory. For example, all general button definitions should belong in `components/Button/styles.scss`.
 
+All JavaScript that pertains only to that component should belong in `components/Button/index.js` and other JS files in that components directory.
+
 <a name="css-ids-vs-classes"/>
 ### IDs vs. Classes
 
