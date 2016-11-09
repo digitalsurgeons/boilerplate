@@ -137,6 +137,8 @@ When implementing feature styles, you should only be using color variables. Yes,
 ### Vendor Prefixes
 Digital Surgeons uses the [PostCSS](https://github.com/postcss/postcss) plugin called [autoprefixer](https://github.com/postcss/autoprefixer) to parse CSS and add vendor prefixes to CSS rules using values from [Can I Use](caniuse.com).
 
+This [CLI](https://github.com/digitalsurgeons/ds-css-cli) can be used to run autoprefixer on css files containing scss.
+
 Write your CSS rules without vendor prefixes (in fact, forget about them
 entirely):
 
