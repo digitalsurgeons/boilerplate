@@ -41,7 +41,7 @@ build_frontend:
 # Add private key so we can connect to destination server
 # - echo "$SSH_PRIVATE_KEY" > id_rsa
 # - chmod 0600 id_rsa
-# - rsync --copy-unsafe-links -prvzcSle 'ssh -p 22 -o StrictHostKeyChecking=no -i id_rsa' --exclude-from=.rsyncignore --exclude=public_html/src ./ user@ip:/path/to/project/
+# - rsync --copy-unsafe-links -rvzcSle 'ssh -p 22 -o StrictHostKeyChecking=no -i id_rsa' --exclude-from=.rsyncignore --exclude=public_html/src ./ user@ip:/path/to/project/
 
 ### For deployments that must be over FTP (bleh)
 ### This assumes that you are only deploying the public_html folder (no dynamic scripts).
@@ -108,7 +108,7 @@ deploy_dev:
     # Add private key so we can connect to destination server
     - echo "$SSH_PRIVATE_KEY" > id_rsa
     - chmod 0600 id_rsa
-    - rsync --copy-unsafe-links -prvzcSle 'ssh -p 22 -o StrictHostKeyChecking=no -i id_rsa' --exclude-from=.rsyncignore ./ digitals@104.131.52.140:/var/www/ds-boilerplate/
+    - rsync --copy-unsafe-links -rvzcSle 'ssh -p 22 -o StrictHostKeyChecking=no -i id_rsa' --exclude-from=.rsyncignore ./ digitals@104.131.52.140:/var/www/ds-boilerplate/
   stage: deploy
   environment: development
   only:
