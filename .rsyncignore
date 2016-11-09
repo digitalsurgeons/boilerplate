@@ -16,3 +16,5 @@ id_rsa
 gulp
 node_modules
 public_html/bower_components
+npm-debug.log
+yarn.lock
