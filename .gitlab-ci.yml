@@ -1,54 +1,62 @@
-before_script:
-  # Cacheing
-  - mkdir -p /cache/{node_modules,bower_components}
-  - ln -s /cache/node_modules node_modules
-  - ln -s /cache/bower_components public_html/bower_components
-  # Install dependencies
-  - npm install
-  - bower install --allow-root
-  # Build steps
-  - if [ "$CI_BUILD_REF_NAME" == "production" ] || [ "$CI_BUILD_REF_NAME" == "master" ] ; then gulp --prod --hint; else gulp --maps --hint; fi
-  # Set permissions to something the web server can use
-  # - ./perm.sh
-  # Remove files that don't need to be synced to the server
-  #   Symlink removal
-  - rm node_modules public_html/bower_components
-  #   Directories
-  - rm -rf .git/ .sass-cache/ gulp/
-  #   Prod has no sourcemaps, but other envs do, so conditionally remove src
-  - if [ "$CI_BUILD_REF_NAME" == "production" ] ; then rm -rf public_html/src; fi
-  #   Dotfiles and config files relevant only for compilation and dev
-  - rm .bowerrc .gitignore .jscsrc .jshintrc .npmrc .scss-lint.yml bower.json gulpfile.js package.json README.md
-  # Add private key so we can connect to destination server
-  - echo "$SSH_PRIVATE_KEY" > id_rsa
-  - chmod 0600 id_rsa
+image: registry.gitlab.com/digitalsurgeons/build-base:latest
+
+# Cacheing
+cache:
+  paths:
+    - node_modules/
+
+build_frontend:
+  script:
+    # Install dependencies
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - public_html/dist/
+  stage: build
 
 deploy_prod:
+  variables:
+    DANDELION_HOST: "$HOST"
+    DANDELION_PORT: "$PORT"
+    DANDELION_USERNAME: "$FTP_PRD_USERNAME"
+    DANDELION_PASSWORD: "$FTP_PRD_PASSWORD"
+    # Dandelion has problems with UTF-8 when it
+    # is set as the global ruby default. Unset
+    # it here.
+    RUBYOPT: ""
   script:
-    ## Transfer over Rsync/SSH
-    - rsync --copy-unsafe-links -prvzcSle 'ssh -p 22 -o StrictHostKeyChecking=no -i id_rsa' --exclude 'id_rsa' ./ user@ip:/path/to/project
-    ## Transfer over FTP/SFTP
-    # - lftp -c "open -u $FTP_PROD_USERNAME,$FTP_PROD_PASSWORD sftp://domain-or-ip; set ssl:verify-certificate no; mirror -v --exclude='id_rsa' -R ./ /path/to/project"
+    - dandelion deploy
   stage: deploy
+  environment: production
   only:
     - production
 
 deploy_stage:
+  variables:
+    DANDELION_HOST: "$HOST"
+    DANDELION_PORT: "$PORT"
+    DANDELION_USERNAME: "$FTP_STG_USERNAME"
+    DANDELION_PASSWORD: "$FTP_STG_PASSWORD"
+    # Dandelion has problems with UTF-8 when it
+    # is set as the global ruby default. Unset
+    # it here.
+    RUBYOPT: ""
   script:
-    ## Transfer over Rsync/SSH
-    - rsync --copy-unsafe-links -prvzcSle 'ssh -p 22 -o StrictHostKeyChecking=no -i id_rsa' --exclude 'id_rsa' ./ user@ip:/path/to/project
-    ## Transfer over FTP/SFTP
-    # - lftp -c "open -u $FTP_STAGE_USERNAME,$FTP_STAGE_PASSWORD sftp://domain-or-ip; set ssl:verify-certificate no; mirror -v --exclude='id_rsa' -R ./ /path/to/project"
+    - dandelion deploy
   stage: deploy
+  environment: staging
   only:
     - master
 
+
 deploy_dev:
   script:
-    ## Transfer over Rsync/SSH
-    - rsync --copy-unsafe-links -prvzcSle 'ssh -p 22 -o StrictHostKeyChecking=no -i id_rsa' --exclude 'id_rsa' ./ user@ip:/path/to/project
-    ## Transfer over FTP/SFTP
-    # - lftp -c "open -u $FTP_DEV_USERNAME,$FTP_DEV_PASSWORD sftp://domain-or-ip; set ssl:verify-certificate no; mirror -v --exclude='id_rsa' -R ./ /path/to/project"
+    # Add private key so we can connect to destination server
+    - echo "$SSH_PRIVATE_KEY" > id_rsa
+    - chmod 0600 id_rsa
+    - rsync --copy-unsafe-links -rvzcSle 'ssh -p 22 -o StrictHostKeyChecking=no -i id_rsa' --exclude-from '.rsyncignore' ./ digitals@104.131.52.140:/var/www/boilerplate/
   stage: deploy
+  environment: development
   only:
     - develop

@@ -1,15 +1,10 @@
-exclude:
-  - 'public_html/src/scss/base/**'
-  - 'public_html/src/scss/bourbon/**'
-  - 'public_html/src/scss/neat/**'
-
 linters:
   Comment:
     enabled: false
   Indentation: # Line should be indented 4 spaces, but was indented 2 spaces
     severity: warning
-    width: 1
-    character: tab
+    width: 2
+    character: space
   MergeableSelector:
     enabled: false
   SelectorFormat:
@@ -28,5 +23,7 @@ linters:
     enabled: false
   NameFormat:
     placeholder_convention: ^.|%
-  TrailingWhitespace:
+  ColorKeyword:
+    enabled: false
+  PseudoElement:
     enabled: false

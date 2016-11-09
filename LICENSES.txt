@@ -1,4 +1,4 @@
-Copyright (c) 2013 Jared Hardy
+Copyright (c) 2016 Digital Surgeons
 
 MIT License
 
