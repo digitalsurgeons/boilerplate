@@ -19,7 +19,7 @@
     "start": "ecstatic --root public_html --cache 0 --port 8080",
     "browsersync": "browser-sync start --proxy $site",
     "build": "npm run build:js && npm run build:css",
-    "build:css": "ds-css scss/app.scss > public_html/dist/app.css --scss && node-sass --output-style='compressed' --include-path ./node_modules public_html/dist/app.css public_html/dist/app.css",
+    "build:css": "ds-css scss/app.scss > public_html/dist/app.css && node-sass --output-style='compressed' --include-path ./node_modules public_html/dist/app.css public_html/dist/app.css",
     "build:js": "browserify js/index.js -g uglifyify | uglifyjs -cm | optimize-js > public_html/dist/bundle.js",
     "watch": "npm run watch:js & npm run watch:css",
     "watch:css": "node-sass --include-path ./node_modules -wr scss -o public_html/dist --source-map='public_html/dist' --source-map-embed --source-map-contents",
@@ -37,10 +37,6 @@
     "ds-css-cli": "^1.0.14",
     "ecstatic": "^2.1.0",
     "eslint": "^3.5.0",
-    "eslint-config-airbnb": "^11.1.0",
-    "eslint-plugin-import": "^1.15.0",
-    "eslint-plugin-jsx-a11y": "^2.2.2",
-    "eslint-plugin-react": "^6.3.0",
     "node-sass": "^3.10.0",
     "optimize-js": "^1.0.1",
     "sass-lint": "^1.9.1",
@@ -49,10 +45,8 @@
     "watchify": "^3.7.0"
   },
   "dependencies": {
-    "bourbon-neat": "^1.8.0",
     "fastclick": "^1.0.6",
     "jquery": "^3.1.0",
-    "node-bourbon": "^4.2.8",
     "normalize.css": "^5.0.0"
   }
 }
