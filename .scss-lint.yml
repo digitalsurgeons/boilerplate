@@ -14,7 +14,7 @@ linters:
   SelectorDepth:
     max_depth: 3
   SelectorFormat:
-    convention: hyphenated_BEM
+    enabled: false
   PlaceholderInExtend:
     enabled: false
   VendorPrefix:

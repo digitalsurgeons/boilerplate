@@ -1,14 +1,12 @@
 window.jQuery = window.$ = require('jquery')
 const FastClick = require('fastclick')
 
+const sayHelloInHeader = require('../components/Header/index')
+
 if ('addEventListener' in document) {
   document.addEventListener('DOMContentLoaded', () => {
-    FastClick.attach(document.body)
+    if (FastClick.attach) FastClick.attach(document.body)
   }, false)
 }
 
-const ui = {
-  header: document.querySelector('main header')
-}
-
-ui.header.innerHTML = '<h1>Welcome</h1>'
+sayHelloInHeader('hello!')
