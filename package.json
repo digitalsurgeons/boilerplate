@@ -22,7 +22,7 @@
     "build:css": "ds-css scss/app.scss > public_html/dist/app.css && node-sass --output-style='compressed' --include-path ./node_modules public_html/dist/app.css public_html/dist/app.css",
     "build:js": "browserify js/index.js -g uglifyify | uglifyjs -cm | optimize-js > public_html/dist/bundle.js",
     "watch": "npm run watch:js & npm run watch:css",
-    "watch:css": "onchange 'scss/*.scss' -i -- ds-css scss/app.scss > public_html/dist/app.css && node-sass --include-path ./node_modules -o public_html/dist --source-map='public_html/dist' --source-map-embed --source-map-contents",
+    "watch:css": "onchange 'scss/*.scss' 'components/**/*.scss' -i -- npm run build:css",
     "watch:js": "watchify js/index.js -o public_html/dist/bundle.js -dv",
     "eslint": "eslint js/**/*"
   },
