@@ -152,3 +152,23 @@ entirely):
 ***
 <a name="javascript"/>
 ## Javascript
+
+Our JavaScript style is an extension of the ["Recommended" ESLint ruleset](http://eslint.org/docs/rules/), with a few select linting rules to keep our code clean and consistent.
+
+Our code is written to follow [ES2015 conventions](http://es6-features.org/), utilizing features like:
+
+- [Arrow Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+-  [Template Strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
+-  [Classes & Constructors](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) (Including using `super` in the constructor for subclasses)
+- etc.
+
+Our linting rules are flexible to work with both server-side and client-side code. The rules we enforce are:
+
+- **2 spaces** – for indentation
+- **Single quotes for strings**
+- **No semicolons**
+- **No unused variables**
+- **Space after keywords** `if (condition) { ... }`
+- **Space after function name** `function name (arg) { ... }`
+
+As you might have noticed, these are the main rules of [standardJS](http://standardjs.com/), however we are only using the rules relevant to our team, rather than *all* of the standard rules.
