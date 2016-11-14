@@ -4,7 +4,6 @@ image: registry.gitlab.com/digitalsurgeons/build-base:latest
 cache:
   paths:
     - node_modules/
-    - public_html/bower_components/
     # - vendor
 
 ### Uncomment out the following job for Composer-based projects,
@@ -22,11 +21,8 @@ cache:
 
 build_frontend:
   script:
-    # Install dependencies
     - npm install
-    - bower install --allow-root
-    # Build steps
-    - if [ "$CI_BUILD_REF_NAME" == "production" ] || [ "$CI_BUILD_REF_NAME" == "master" ] ; then gulp --prod --hint; else gulp --maps --hint; fi
+    - npm run build
   artifacts:
     paths:
       - public_html/dist/
