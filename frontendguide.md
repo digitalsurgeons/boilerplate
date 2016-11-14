@@ -5,6 +5,8 @@
 ## Table of Contents
 
 - [What Is Front End?](#what-is-front-end)
+- [Project Structure & Composition](#structure)
+  * [Classing & Naming Conventions](#classing-conventions)
 - [CSS](#css)
   * [Purpose](#css-purpose)
   * [Linting](#css-linting)
@@ -14,14 +16,12 @@
     * [Element](#css-element)
     * [Modifier](#css-modifier)
     * [Best Practices](#css-bem-best-practices)
-  * [Componentizing](#css-componentizing)
   * [IDs vs. Classes](#css-ids-vs-classes)
   * [Color Units](#css-color-units)
   * [Vendor Prefixes](#css-vendor-prefixes)
-
-
 - [Javascript](#javascript)
-
+  * [Conventions](#js-conventions)
+  * [Linting & Style](#js-linting)
 
 <a name="what-is-front-end"/>
 ## What Is Front End
@@ -30,6 +30,32 @@ The [front end guild at 18F](https://github.com/18F/frontend) did a series of ex
 **Front end designers** design, write, and implement the presentational code base for websites and applications. They should have a clear understanding of design fundamentals and systems, such as interface style guides, responsive design, grid systems, front end frameworks, and accessibility best practices. Front end designers should feel comfortable creating and implementing design systems using semantic HTML5, CSS/SASS and be able to assist in debugging this aspect of the code base.
 
 **Front end engineers** architect, write, and implement the functional code base for websites and applications. They should have a clear understanding of client-side render and response, such as HTTP methods, API consumption, the browser loading/rendering pipeline, and accessibility best practices. Front end developers should feel comfortable developing and implementing client-side interactions and frameworks using semantic HTML5 and JavaScript, and should be able to help with debugging, testing, and performance optimization of the code base.
+
+<a name="structure"/>
+## Project Structure & Composition
+Our project structure is centered around the idea of components. A `components` folder houses individual folders for specific components. Each component has it's own folder, and the [javascript](#javascript) and [scss](#css) necessary for that component is housed in the folder.
+
+For example:
+
+```
+/
+/components
+/components/Header/
+/components/Header/index.js
+/components/Header/styles.scss
+```
+
+The main Javascript file, as well as Javascript unrelated to specific components, is housed in the `js` folder, e.g. `/js/index.js`.
+
+The main SCSS file, as well as SCSS unrelated to specific components, is housed in the `scss` folder, e.g. `/scss/app.scss`.
+
+We recognize that frameworks have their own way to do things, however this boilerplate is for vanilla projects and is framework agnostic.
+
+Always look to abstract components. Digital Surgeons has a very strong, very consistent style and the reuse of components across designs helps to improve this consistency at an implementation level.
+
+<a name="classing-conventions"/>
+### Classing & Naming Conventions
+A name like `.Homepage-nav` limits its use. Instead think about writing styles in such a way that they can be reused in other parts of the app. Instead of `.Homepage-nav`, try instead  `.Nav` or `.Nav-bar`. Ask yourself if this component could be reused in another context (chances are it could!).
 
 <a name="css"/>
 ## CSS
@@ -109,15 +135,6 @@ Choose your modifiers wisely. These two rules have very different meaning:
 .Block--modifier .Block__element { color: red; }
 .Block__element--modifier { color: red; }
 ```
-<a name="css-componentizing"/>
-### Componentizing
-Always look to abstract components. Digital Surgeons has a very strong, very consistent style and the reuse of components across designs helps to improve this consistency at an implementation level.
-
-A name like `.Homepage-nav` limits its use. Instead think about writing styles in such a way that they can be reused in other parts of the app. Instead of `.Homepage-nav`, try instead  `.Nav` or `.Nav-bar`. Ask yourself if this component could be reused in another context (chances are it could!).
-
-Components should belong to their own component directory. For example, all general button definitions should belong in `components/Button/styles.scss`.
-
-All JavaScript that pertains only to that component should belong in `components/Button/index.js` and other JS files in that components directory.
 
 <a name="css-ids-vs-classes"/>
 ### IDs vs. Classes
@@ -155,20 +172,69 @@ entirely):
 
 Our JavaScript style is an extension of the ["Recommended" ESLint ruleset](http://eslint.org/docs/rules/), with a few select linting rules to keep our code clean and consistent.
 
+<a name="js-conventions"/>
+### Conventions
+
 Our code is written to follow [ES2015 conventions](http://es6-features.org/), utilizing features like:
 
 - [Arrow Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
--  [Template Strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
--  [Classes & Constructors](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) (Including using `super` in the constructor for subclasses)
-- etc.
+
+- [Template Strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
+
+- [Classes & Constructors](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
+
+  E.g.
+
+  ```javascript
+  class Polygon {
+    constructor (height, width) {
+      this.height = height
+      this.width = width
+    }
+
+    get area () {
+      return this.calcArea()
+    }
+
+    calcArea () {
+      return this.height * this.width
+    }
+  }
+
+  const square = new Polygon(10, 10)
+  ```
+
+- `Super()` as a way to reference parent classes, e.g.
+
+  ```javascript
+  class Cat {
+    constructor (name) {
+      this.name = name
+    }
+
+    speak () {
+      console.log(this.name + ' makes a noise.')
+    }
+  }
+
+  class Lion extends Cat {
+    speak () {
+      super.speak()
+      console.log(this.name + ' roars.')
+    }
+  }
+  ```
+
+<a name="js-linting"/>
+### Linting & Style
 
 Our linting rules are flexible to work with both server-side and client-side code. The rules we enforce are:
 
-- **2 spaces** – for indentation
+- **2 spaces** – for indentation
 - **Single quotes for strings**
 - **No semicolons**
 - **No unused variables**
-- **Space after keywords** `if (condition) { ... }`
-- **Space after function name** `function name (arg) { ... }`
+- **Space after keywords** `if (condition) { ... }`
+- **Space after function name** `function name (arg) { ... }`
 
 As you might have noticed, these are the main rules of [standardJS](http://standardjs.com/), however we are only using the rules relevant to our team, rather than *all* of the standard rules.
