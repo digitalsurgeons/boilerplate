@@ -33,7 +33,7 @@ The [front end guild at 18F](https://github.com/18F/frontend) did a series of ex
 
 <a name="structure"/>
 ## Project Structure & Composition
-Our project structure is centered around the idea of components. A `components` folder houses individual folders for specific components. Each component has it's own folder, and the [javascript](#javascript) and [scss](#css) necessary for that component is housed in the folder.
+Our project structure is centered around the idea of components. A `components` folder houses individual folders for specific components, each containing the [javascript](#javascript) and [scss](#css) necessary for that component.
 
 For example:
 
@@ -41,15 +41,15 @@ For example:
 /
 /components
 /components/Header/
-/components/Header/index.js
-/components/Header/styles.scss
+/components/Header/header.js
+/components/Header/header.scss
 ```
 
-The main Javascript file, as well as Javascript unrelated to specific components, is housed in the `js` folder, e.g. `/js/index.js`.
+The main Javascript file, as well as Javascript unrelated to specific components, is housed in the `js` folder, e.g. `/js/app.js`.
 
 The main SCSS file, as well as SCSS unrelated to specific components, is housed in the `scss` folder, e.g. `/scss/app.scss`.
 
-We recognize that frameworks have their own way to do things, however this boilerplate is for vanilla projects and is framework agnostic.
+We recognize that frameworks have their own way of doing things, and oftentimes a project will require the advanced features and structure that frameworks offer. However this boilerplate is intended for baseline vanilla projects and is framework agnostic.
 
 Always look to abstract components. Digital Surgeons has a very strong, very consistent style and the reuse of components across designs helps to improve this consistency at an implementation level.
 
