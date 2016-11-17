@@ -1,0 +1,42 @@
+// Neat Breakpoints
+$medium-screen: 768px;
+$large-screen: 900px;
+$extra-large-screen: 1200px;
+
+// Layout settings
+$max-width: 73.75em !global;
+$column: 5em !global;
+$gutter: 1.25em !global;
+
+// Typography
+$base-font-family: 'proxima';
+$heading-font-family: 'proxima';
+
+// Line height
+$base-line-height: 28px;
+$heading-line-height: 1;
+
+// Font Sizes
+$base-font-size: 16px;
+$h1-font-size: 64px;
+$h2-font-size: 56px;
+$h3-font-size: 48px;
+$h4-font-size: 40px;
+$h5-font-size: 32px;
+$h6-font-size: 24px;
+
+// Line heights
+$h1-line-height: 64px;
+$h2-line-height: 66px;
+$h3-line-height: 48px;
+$h4-line-height: 50px;
+$h5-line-height: 42px;
+$h6-line-height: 34px;
+
+// Colors;
+$black: #000;
+$white: #fff;
+
+// Font Colors
+$base-background-color: $white;
+$base-font-color: $black;

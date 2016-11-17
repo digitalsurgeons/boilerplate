@@ -1,9 +1,20 @@
-const ui = {
-  Header: document.querySelector('header')
+export default class Header {
+  constructor(element, options) {
+    if (!element) {
+      return
+    }
+    this.element = element
+    this.message = options.message
+    this.sayHello(this.message)
+  }
+
+  sayHello (greeting = 'sup?') {
+    this.element.innerHTML += greeting
+  }
 }
 
-function sayHello (greeting) {
-  ui.Header.innerHTML += greeting
-}
+const header = document.querySelector('.Header')
 
-module.exports = sayHello
+new Header(header, {
+  message: 'hello!'
+})
