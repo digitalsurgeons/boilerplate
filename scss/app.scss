@@ -1,12 +1,13 @@
+@import './scss/library/settings';
+@import './scss/library/functions';
+@import './scss/library/font-face';
+
 @import 'normalize.css';
+
+@import './scss/base/elements';
+@import './scss/base/fonts';
+
+// ==========================================================================
+// Components
+// ==========================================================================
 @import './components/Header/header';
-
-html {
-  box-sizing: border-box;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
