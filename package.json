@@ -21,11 +21,11 @@
     "build": "npm run build:js && npm run build:css",
     "build:css": "ds-css scss/app.scss > public_html/dist/app.css && node-sass --output-style='compressed' --include-path ./node_modules public_html/dist/app.css public_html/dist/app.css",
     "build:js": "browserify js/app.js -g uglifyify | uglifyjs -cm | optimize-js > public_html/dist/bundle.js",
-    "build:sprite": "./node_modules/.bin/svg-sprite-generate -d icons -o public_html/dist/symbol-defs.svg",
+    "build:sprite": "./node_modules/.bin/svg-sprite-generate -d public_html/icons -o public_html/dist/symbol-defs.svg",
     "watch": "npm run watch:js & npm run watch:css & npm run watch:icons",
     "watch:css": "onchange 'scss/**/*.scss' 'components/**/*.scss' -i -- npm run build:css",
     "watch:js": "watchify js/app.js -o public_html/dist/bundle.js -dv",
-    "watch:icons": "onchange 'icons/*.svg' -i -- npm run build:sprite",
+    "watch:icons": "onchange 'public_html/icons/*.svg' -i -- npm run build:sprite",
     "eslint": "eslint **/*.js"
   },
   "author": "Digital Surgeons",
