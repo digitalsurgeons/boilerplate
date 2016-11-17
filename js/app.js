@@ -1,7 +1,7 @@
 window.jQuery = window.$ = require('jquery')
 const FastClick = require('fastclick')
 
-const sayHelloInHeader = require('./components/Header/header')
+const sayHelloInHeader = require('../components/Header/header')
 
 if ('addEventListener' in document) {
   document.addEventListener('DOMContentLoaded', () => {
