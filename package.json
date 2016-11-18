@@ -16,12 +16,11 @@
     ]
   },
   "scripts": {
-    "webpack:dev": "webpack --config ./webpack.config.prod.js --progress --colors",
+    "webpack:dev": "SITE=$site webpack --colors --watch",
     "webpack:prod": "webpack --config ./webpack.config.prod.js --progress --colors",
     "prestart": "NODE_ENV=production npm run webpack:prod",
     "start": "ecstatic --root public_html --cache 0 --port 8080",
-    "dev": "concurrently --kill-others 'ecstatic --root public_html --cache 0 --port 8080' 'webpack --colors --watch'",
-    "browsersync": "browser-sync start --proxy $site",
+    "dev": "concurrently --kill-others 'ecstatic --root public_html --cache 0 --port 8080' 'npm run webpack:dev'",
     "eslint": "eslint **/*.js"
   },
   "author": "Digital Surgeons",
