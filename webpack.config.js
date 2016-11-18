@@ -13,7 +13,6 @@ const exec = require('child_process').exec
 const vendor = require('./js/vendor')
 
 module.exports = {
-  context: path.join(__dirname),
   devtool: 'source-map',
   entry: {
     bundle: './js/app.js',
@@ -52,13 +51,13 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
-        loader: 'file-loader?name=dist/img/[name].[ext]',
+        loader: 'file-loader?name=public_html/dist/[path]/[name].[ext]',
         include: path.join(__dirname, 'img')
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
-        loader: 'file-loader?name=dist/fonts/[folder]/[name].[ext]',
-        include: path.join(__dirname, 'fonts')
+        loader: 'file-loader?name=public_html/dist/[path]/[name].[ext]',
+        include: path.join(__dirname, 'public_html/dist/fonts')
       }
     ]
   },
