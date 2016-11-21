@@ -89,9 +89,9 @@ export default {
       port: 3000,
       files: 'public_html'
     }),
-    new CompilerPlugin('compilation', function () {
+    new CompilerPlugin('done', function () {
       // Generate sprite
-      exec('npm run sprite')
+      exec(`onchange '${paths.publicPath}icons' -i -- ./node_modules/.bin/svg-sprite-generate -d ${paths.publicPath}icons -o ${paths.dist}symbol-defs.svg`)
     })
   ]
 }

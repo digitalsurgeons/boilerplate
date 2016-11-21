@@ -7,8 +7,7 @@
     "webpack:dev": "SITE=$site webpack --colors --watch",
     "webpack:prod": "NODE_ENV=production webpack --config ./webpack.config.prod.babel.js --progress --colors",
     "start": "concurrently --kill-others 'ecstatic --root public_html --cache 0 --port 8080' 'npm run webpack:prod'",
-    "dev": "concurrently --kill-others 'ecstatic --root public_html --cache 0 --port 8080' 'npm run webpack:dev'",
-    "sprite": "onchange 'public_html/icons' -i -- ./node_modules/.bin/svg-sprite-generate -d public_html/icons -o public_html/dist/symbol-defs.svg && browser-sync reload"
+    "dev": "concurrently --kill-others 'ecstatic --root public_html --cache 0 --port 8080' 'npm run webpack:dev'"
   },
   "author": "Digital Surgeons",
   "license": "MIT",
