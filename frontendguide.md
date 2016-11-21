@@ -22,6 +22,7 @@
 - [Javascript](#javascript)
   * [Conventions](#js-conventions)
   * [Linting & Style](#js-linting)
+- [Icons](#icons)
 
 <a name="what-is-front-end"/>
 ## What Is Front End
@@ -238,3 +239,12 @@ Our linting rules are flexible to work with both server-side and client-side cod
 - **Space after function name** `function name (arg) { ... }`
 
 As you might have noticed, these are the main rules of [standardJS](http://standardjs.com/), however we are only using the rules relevant to our team, rather than *all* of the standard rules.
+
+<a name="icons"/>
+## Icons
+The build process takes a list of SVG files inside the icons directory and creates a single sprite file using <symbol> elements. You can reference them inside your html like this:
+```
+<svg class="icon">
+  <use xlink:href="/dist/symbol-defs.svg#facebook"></use>
+</svg>
+```
