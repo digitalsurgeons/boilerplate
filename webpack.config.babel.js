@@ -75,17 +75,19 @@ export default {
       root: process.cwd()
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: [
+      names: [
         'vendor',
         'svgxuse'
-      ]
+      ],
+      children: true // (select all children of chosen chunks)
     }),
     new WebpackNotifierPlugin({ title: 'Webpack', contentImage: path.join(__dirname, `${paths.publicPath}img/ds-logo.jpg`) }),
     new BrowserSyncPlugin({
       // browse to http://localhost:3000/ during development,
       host: 'localhost',
       proxy: process.env.SITE || 'http://0.0.0.0:8080',
-      port: 3000
+      port: 3000,
+      files: 'public_html'
     }),
     new CompilerPlugin('compilation', function () {
       // Generate sprite
