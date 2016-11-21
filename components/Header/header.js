@@ -1,3 +1,5 @@
+import $ from 'jquery'
+
 export default class Header {
   constructor(element, options) {
     if (!element) {
@@ -13,7 +15,7 @@ export default class Header {
   }
 }
 
-const header = document.querySelector('.Header')
+const header = $('.Header')[0]
 
 new Header(header, {
   message: 'hello!'

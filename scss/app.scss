@@ -1,11 +1,12 @@
-@import './scss/library/settings';
-@import './scss/library/functions';
-@import './scss/library/font-face';
+@import './library/settings';
+@import './library/functions';
+@import './library/font-face';
 
-@import 'normalize.css';
+@import '~normalize.css/normalize.css';
 
-@import './scss/base/elements';
-@import './scss/base/fonts';
+@import './base/elements';
+@import './base/fonts';
+@import './base/icons';
 
 // ==========================================================================
 // Components
