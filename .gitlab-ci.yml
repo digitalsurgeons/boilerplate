@@ -22,7 +22,7 @@ cache:
 build_frontend:
   script:
     - npm install
-    - npm run build
+    - npm start
   artifacts:
     paths:
       - public_html/dist/

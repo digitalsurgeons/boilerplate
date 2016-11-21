@@ -3,25 +3,12 @@
   "version": "2.0.0",
   "description": "remixed and reduced ds boilerplate",
   "main": "public_html/index.html",
-  "browserify": {
-    "transform": [
-      [
-        "babelify",
-        {
-          "presets": [
-            "es2015"
-          ]
-        }
-      ]
-    ]
-  },
   "scripts": {
     "webpack:dev": "SITE=$site webpack --colors --watch",
-    "webpack:prod": "webpack --config ./webpack.config.prod.js --progress --colors",
-    "prestart": "NODE_ENV=production npm run webpack:prod",
-    "start": "ecstatic --root public_html --cache 0 --port 8080",
+    "webpack:prod": "NODE_ENV=production webpack --config ./webpack.config.prod.babel.js --progress --colors",
+    "start": "concurrently --kill-others 'ecstatic --root public_html --cache 0 --port 8080' 'npm run webpack:prod'",
     "dev": "concurrently --kill-others 'ecstatic --root public_html --cache 0 --port 8080' 'npm run webpack:dev'",
-    "eslint": "eslint **/*.js"
+    "sprite": "onchange 'public_html/icons' -i -- ./node_modules/.bin/svg-sprite-generate -d public_html/icons -o public_html/dist/symbol-defs.svg && browser-sync reload" 
   },
   "author": "Digital Surgeons",
   "license": "MIT",
@@ -39,11 +26,11 @@
     "compiler-webpack-plugin": "0.0.1",
     "concurrently": "^3.1.0",
     "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.26.0",
     "ds-css-cli": "^1.0.14",
     "ecstatic": "^2.1.0",
     "eslint": "^3.5.0",
     "extract-text-webpack-plugin": "^1.0.1",
-    "factor-bundle": "^2.5.0",
     "fastclick": "^1.0.6",
     "file-loader": "^0.9.0",
     "jquery": "^3.1.0",
@@ -56,10 +43,9 @@
     "postcss-remify": "^1.0.1",
     "sass-lint": "^1.9.1",
     "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
     "svg-sprite-generator": "0.0.7",
     "svgxuse": "^1.1.23",
-    "uglify-js": "^2.7.3",
-    "uglifyify": "^3.0.3",
     "url-loader": "^0.5.7",
     "watchify": "^3.7.0",
     "webpack": "^1.13.3",
