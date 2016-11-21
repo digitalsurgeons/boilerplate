@@ -8,11 +8,7 @@ import path from 'path'
 import webpack from 'webpack'
 import { exec } from 'child_process'
 import vendor from './js/vendor'
-
-const paths = {
-  dist: 'public_html/dist/',
-  publicPath: 'public_html/'
-}
+import config from './config'
 
 export default {
   entry: {
@@ -24,7 +20,7 @@ export default {
   output: {
     publicPath: '/',
     path: __dirname,
-    filename: `${paths.dist}[name].js`
+    filename: `${config.paths.dist}[name].js`
   },
   stats: {
     children: false
@@ -49,13 +45,13 @@ export default {
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
-        loader: `file-loader?name=${paths.publicPath}[path]/[name].[ext]`,
+        loader: `file-loader?name=${config.paths.publicPath}[path]/[name].[ext]`,
         include: path.join(__dirname, 'img')
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
-        loader: `file-loader?name=${paths.publicPath}[path]/[name].[ext]`,
-        include: path.join(__dirname, paths.publicPath + 'fonts')
+        loader: `file-loader?name=${config.paths.publicPath}[path]/[name].[ext]`,
+        include: path.join(__dirname, config.paths.publicPath + 'fonts')
       }
     ]
   },
@@ -67,8 +63,8 @@ export default {
     ]
   },
   plugins: [
-    new ExtractTextPlugin(`${paths.dist}[name].css`, { allChunks: false }),
-    new CleanWebpackPlugin([path.join(__dirname, paths.dist)], {
+    new ExtractTextPlugin(`${config.paths.dist}[name].css`, { allChunks: false }),
+    new CleanWebpackPlugin([path.join(__dirname, config.paths.dist)], {
       root: process.cwd()
     }),
     new webpack.optimize.CommonsChunkPlugin({
@@ -80,7 +76,7 @@ export default {
     }),
     new CompilerPlugin('done', function () {
       // Generate sprite
-      exec(`onchange '${paths.publicPath}icons' -i -- ./node_modules/.bin/svg-sprite-generate -d ${paths.publicPath}icons -o ${paths.dist}symbol-defs.svg`)
+      exec(`onchange '${config.paths.publicPath}icons' -i -- ./node_modules/.bin/svg-sprite-generate -d ${config.paths.publicPath}icons -o ${config.paths.dist}symbol-defs.svg`)
     })
   ]
 }
