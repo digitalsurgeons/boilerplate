@@ -2,7 +2,6 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import WebpackNotifierPlugin from 'webpack-notifier'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 import CompilerPlugin from 'compiler-webpack-plugin'
-import autoprefixer from 'autoprefixer'
 import postcssRemify from 'postcss-remify'
 import postcssEmify from 'postcss-emify'
 import postcssImport from 'postcss-import'
@@ -68,7 +67,6 @@ export default {
   },
   postcss: function () {
     return [
-      autoprefixer,
       postcssRemify,
       postcssEmify,
       postcssImport,
