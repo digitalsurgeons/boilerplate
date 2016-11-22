@@ -45,13 +45,13 @@ export default {
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
-        loader: `file-loader?name=${config.paths.publicPath}[path]/[name].[ext]`,
-        include: path.join(__dirname, 'img')
+        loader: `file-loader?name=${config.paths.publicPath}img/[name].[ext]`,
+        include: path.join(__dirname, `${config.paths.publicPath}img`)
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
-        loader: `file-loader?name=${config.paths.publicPath}[path]/[name].[ext]`,
-        include: path.join(__dirname, config.paths.publicPath + 'fonts')
+        loader: `file-loader?name=${config.paths.publicPath}fonts/[name].[ext]`,
+        include: path.join(__dirname, `${config.paths.publicPath}fonts`)
       }
     ]
   },
@@ -76,7 +76,7 @@ export default {
     }),
     new CompilerPlugin('done', function () {
       // Generate sprite
-      exec(`onchange '${config.paths.publicPath}icons' -i -- ./node_modules/.bin/svg-sprite-generate -d ${config.paths.publicPath}icons -o ${config.paths.dist}symbol-defs.svg`)
+      exec(`./node_modules/.bin/svg-sprite-generate -d ${config.paths.publicPath}icons -o ${config.paths.dist}symbol-defs.svg`)
     })
   ]
 }
