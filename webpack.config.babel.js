@@ -48,12 +48,18 @@ export default {
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
-        loader: `file-loader?name=${config.paths.publicPath}img/[name].[ext]`,
+        loader: 'file-loader',
+        query: {
+          name: `${config.paths.publicPath}img/[name].[ext]`
+        },
         include: path.join(__dirname, `${config.paths.publicPath}img`)
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
-        loader: `file-loader?name=${config.paths.publicPath}fonts/[name].[ext]`,
+        loader: 'file-loader',
+        query: {
+          name: `${config.paths.publicPath}fonts/[name].[ext]`
+        },
         include: path.join(__dirname, `${config.paths.publicPath}fonts`)
       }
     ]
