@@ -33,12 +33,12 @@ export default {
       // Extract css files
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+        loader: ExtractTextPlugin.extract('css-loader')
       },
       // Load SCSS
       {
         test: /\.scss/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!sass-loader', { allChunks: true }),
+        loader: ExtractTextPlugin.extract('css-loader!postcss-loader!sass-loader', { allChunks: true }),
         include: path.join(__dirname, 'scss')
       },
       {
