@@ -4,6 +4,8 @@ import CompilerPlugin from 'compiler-webpack-plugin'
 import autoprefixer from 'autoprefixer'
 import postcssRemify from 'postcss-remify'
 import postcssEmify from 'postcss-emify'
+import postcssImport from 'postcss-import'
+import cssNext from 'postcss-cssnext'
 import path from 'path'
 import webpack from 'webpack'
 import { exec } from 'child_process'
@@ -59,7 +61,9 @@ export default {
     return [
       autoprefixer,
       postcssRemify,
-      postcssEmify
+      postcssEmify,
+      postcssImport,
+      cssNext
     ]
   },
   plugins: [
