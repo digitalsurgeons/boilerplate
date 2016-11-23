@@ -42,8 +42,8 @@ For example:
 /
 /components
 /components/Header/
-/components/Header/header.js
-/components/Header/header.scss
+/components/Header/index.js
+/components/Header/styles.scss
 ```
 
 The main Javascript file, as well as Javascript unrelated to specific components, is housed in the `js` folder, e.g. `/js/app.js`.
