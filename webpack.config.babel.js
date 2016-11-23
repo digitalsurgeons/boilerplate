@@ -2,11 +2,9 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import WebpackNotifierPlugin from 'webpack-notifier'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 import CompilerPlugin from 'compiler-webpack-plugin'
-import autoprefixer from 'autoprefixer'
 import postcssImport from 'postcss-import'
 import postcssRemify from 'postcss-remify'
 import postcssEmify from 'postcss-emify'
-import postcssImport from 'postcss-import'
 import cssNext from 'postcss-cssnext'
 import path from 'path'
 import BrowserSyncPlugin from 'browser-sync-webpack-plugin'
@@ -69,7 +67,6 @@ export default {
   },
   postcss: function () {
     return [
-      autoprefixer,
       postcssRemify,
       postcssEmify,
       postcssImport,
