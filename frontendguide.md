@@ -245,6 +245,6 @@ As you might have noticed, these are the main rules of [standardJS](http://stand
 The build process takes a list of SVG files inside the icons directory and creates a single sprite file using `<symbol>` elements. You can reference them inside your html like this:
 ```
 <svg class="icon">
-  <use xlink:href="/dist/symbol-defs.svg#facebook"></use>
+  <use href="/dist/symbol-defs.svg#facebook"></use>
 </svg>
 ```
