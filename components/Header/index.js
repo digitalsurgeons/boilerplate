@@ -5,18 +5,13 @@ export default class Header {
     if (!element) {
       return
     }
+
     this.element = element
     this.message = options.message
     this.sayHello(this.message)
   }
 
   sayHello (greeting = 'sup?') {
-    this.element.innerHTML += greeting
+    $(this.element).html(greeting)
   }
 }
-
-const header = $('.Header')[0]
-
-new Header(header, {
-  message: 'hello!'
-})

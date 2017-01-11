@@ -1,8 +1,5 @@
 .Header {
-  font-size: 2em;
-  margin: .2em;
-
-  @media (min-width: 40em) {
-    font-size: 6em;
-  }
+  background: $black;
+  color: $white;
+  padding: 1.25em;
 }
