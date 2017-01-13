@@ -6,7 +6,7 @@
   "scripts": {
     "webpack:dev": "SITE=$site webpack --colors --watch",
     "webpack:prod": "NODE_ENV=production webpack --config ./webpack.config.prod.babel.js --colors",
-    "prestart": "npm run webpack:prod",
+    "prestart": "eslint **/*.js && npm run webpack:prod",
     "start": "ecstatic --root public_html --cache 0 --port 8080",
     "dev": "concurrently --kill-others 'ecstatic --root public_html --cache 0 --port 8080' 'npm run webpack:dev'"
   },
