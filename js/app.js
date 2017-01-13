@@ -7,5 +7,5 @@ import $ from 'jquery'
 import Header from '../components/Header'
 
 new Header($('[data-header]'), {
-   message: 'hello!'
+  message: 'hello!'
 })
