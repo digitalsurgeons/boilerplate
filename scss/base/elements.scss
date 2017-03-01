@@ -2,12 +2,6 @@
   box-sizing: border-box;
 }
 
-body,
-html {
-  height: 100%;
-  width: 100%;
-}
-
 body {
   font-family: $base-font-family;
   font-weight: 100;
@@ -19,8 +13,7 @@ h2,
 h3,
 h4,
 h5,
-h6,
-.Heading {
+h6 {
   font-family: $heading-font-family;
   font-weight: 500;
   line-height: 1;
@@ -28,13 +21,11 @@ h6,
   text-transform: uppercase;
 }
 
-h1,
-.Heading--one {
+h1 {
   font-size: 3.75em;
 }
 
-h2,
-.Heading--two {
+h2 {
   font-size: 2.5em;
 }
 
