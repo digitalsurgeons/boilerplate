@@ -1,15 +1,37 @@
 * {
-	box-sizing: border-box;
-}
-
-body,
-html {
-	height: 100%;
-	width: 100%;
+  box-sizing: border-box;
 }
 
 body {
-	font-family: $base-font-family;
-	font-weight: 200;
-	overflow: hidden;
+  font-family: $base-font-family;
+  font-weight: 100;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $heading-font-family;
+  font-weight: 500;
+  line-height: 1;
+  margin: .166666667em 0;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: 3.75em;
+}
+
+h2 {
+  font-size: 2.5em;
+}
+
+input,
+textarea {
+  font-family: $base-font-family;
+  font-weight: 200;
+  padding: .625em;
 }
