@@ -79,11 +79,7 @@ export default {
       root: process.cwd()
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      names: [
-        'vendor',
-        'svgxuse'
-      ],
-      children: true // (select all children of chosen chunks)
+      name: 'vendor'
     }),
     new WebpackNotifierPlugin({ title: 'Webpack', contentImage: path.join(__dirname, `${config.paths.publicPath}img/ds-logo.jpg`) }),
     new BrowserSyncPlugin({
