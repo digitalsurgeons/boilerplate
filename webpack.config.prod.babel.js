@@ -70,11 +70,7 @@ export default {
       root: process.cwd()
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      names: [
-        'vendor',
-        'svgxuse'
-      ],
-      children: true // (select all children of chosen chunks)
+      name: 'vendor'
     }),
     new CompilerPlugin('done', function () {
       // Generate sprite
