@@ -79,6 +79,7 @@ export default {
     new CompilerPlugin('done', function () {
       // Generate sprite
       exec(`./node_modules/.bin/svg-sprite-generate -d ${config.paths.publicPath}icons -o ${config.paths.dist}symbol-defs.svg`)
-    })
+    }),
+    new webpack.optimize.UglifyJsPlugin()
   ]
 }
