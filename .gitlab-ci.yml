@@ -63,6 +63,7 @@ build_frontend:
 # exclude:
 #     - wp-admin
 #     - wp-includes
+#     - wp-content/mu-plugins
 #
 # additional:
 #     - public_html/wp-content/themes/<themename>/dist/: wp-content/themes/<themename>/dist/
