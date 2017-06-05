@@ -10,14 +10,13 @@ cache:
 ### then remove this notice.
 # build_backend:
 #   script:
-#     - touch composer.lock
-#     - rm composer.lock
-#     - composer install --prefer-source --no-interaction
-#     - composer dumpautoload
+#     - composer install --no-interaction
 #   artifacts:
 #     paths:
-#       - vendor/composer/autoload_classmap.php
+#       - vendor/
 #   stage: build
+#   only:
+#     - branches
 
 build_frontend:
   script:
@@ -28,7 +27,7 @@ build_frontend:
       - public_html/dist/
   stage: build
   only:
-      - branches
+    - branches
 
 ### Use one of the following in your script block in one
 ### of the deploy_* jobs for different transports.
@@ -64,6 +63,7 @@ build_frontend:
 # exclude:
 #     - wp-admin
 #     - wp-includes
+#     - wp-content/mu-plugins
 #
 # additional:
 #     - public_html/wp-content/themes/<themename>/dist/: wp-content/themes/<themename>/dist/

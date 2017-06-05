@@ -1,22 +1,25 @@
 import $ from 'jquery'
 
-export default class Header {
-  constructor(element, options) {
-    if (!element) {
+class Header {
+  constructor (element, options) {
+    this.element = $(element)
+    this.message = options.message
+  }
+
+  init () {
+    if (!this.element.length) {
       return
     }
-    this.element = element
-    this.message = options.message
     this.sayHello(this.message)
   }
 
   sayHello (greeting = 'sup?') {
-    this.element.innerHTML += greeting
+    $(this.element).html(greeting)
   }
 }
 
-const header = $('.Header')[0]
-
-new Header(header, {
+const header = new Header('.header', {
   message: 'hello!'
 })
+
+header.init()
