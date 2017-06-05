@@ -41,9 +41,9 @@ For example:
 ```
 /
 /components
-/components/Header/
-/components/Header/index.js
-/components/Header/styles.scss
+/components/header/
+/components/header/index.js
+/components/header/styles.scss
 ```
 
 The main Javascript file, as well as Javascript unrelated to specific components, is housed in the `js` folder, e.g. `/js/app.js`.
@@ -80,7 +80,7 @@ Digital Surgeons adheres to a specific SASS styleguide and uses a linting tool t
 
 Nesting makes it harder to tell at a glance where css selector optimizations can be made. Avoid it unless it's being used as a convenience to extend the parent selector over targeting nested elements. For example:
 ```scss
-.Block {
+.block {
   padding: 24px;
 
   &--mini {
@@ -101,40 +101,40 @@ Nesting can be really easily avoided by smart class naming (with the help of BEM
 Unique, meaningful names for a logical unit of style.
 
 Use a capitalized name (title case).
-- Good: `.Header`
-- Bad: `.header`
+- Good: `.videoMasthead`
+- Bad: `.video-masthead`
 
 Avoid excessive shorthand.
-- Good: `.Alert-box` or `.Recents-intro` or `.Button`
-- Bad: `.Feature` or `.Content` or `.Btn`
+- Good: `.alertBox` or `.recentsIntro` or `.button`
+- Bad: `.feature` or `.content` or `.btn`
 
 <a name="css-element"/>
 #### Element
 Styles that only apply to children of a block. Elements can also be blocks themselves. Class name is a concatenation of the block name, two underscores and the element name. Examples:
-- `.Alert-box__close`
-- `.Expanding-section__section`
+- `.alertBox__close`
+- `.expandingSection__title`
 
 <a name="css-modifier"/>
 #### Modifier
 Override or extend the base styles of a block or element with modifier styles. Class name is a concatenation of the block (or element) name, two hyphens and the modifier name. Use it to change appearance, behavior or state. Examples:
-- `.Alert-box--success`
-- `.Expanding-section--expanded`
+- `.alertBox--success`
+- `.expandingSection--expanded`
 
 <a name="css-bem-best-practices"/>
 #### Best practices
 
 Don't `@extend` block modifiers with the block base.
-- Good: `<div class="My-block My-block--modifier">`
-- Bad: `<div class="My-block--modifier">`
+- Good: `<div class="myBlock myBlock--modifier">`
+- Bad: `<div class="myBlock--modifier">`
 
 Don't create elements inside elements. If you find yourself needing this, consider converting your element into a block.
-- Bad: `.Alert-box__close__button`
+- Bad: `.alertBox__close__button`
 
 Choose your modifiers wisely. These two rules have very different meaning:
 
 ```scss
-.Block--modifier .Block__element { color: red; }
-.Block__element--modifier { color: red; }
+.block--modifier .block__element { color: red; }
+.block__element--modifier { color: red; }
 ```
 
 <a name="css-ids-vs-classes"/>
@@ -163,7 +163,7 @@ Write your CSS rules without vendor prefixes (in fact, forget about them
 entirely):
 
 ```scss
-.Article {
+.article {
   display: flex;
 }
 ```
@@ -245,6 +245,6 @@ As you might have noticed, these are the main rules of [standardJS](http://stand
 The build process takes a list of SVG files inside the icons directory and creates a single sprite file using `<symbol>` elements. You can reference them inside your html like this:
 ```
 <svg class="icon">
-  <use href="/dist/symbol-defs.svg#facebook"></use>
+  <use xlink:href="/dist/symbol-defs.svg#facebook"></use>
 </svg>
 ```
