@@ -1,15 +1,13 @@
 // Neat Breakpoints
-$small-screen: 36.25em;
-$medium-screen: 48em;
-$large-screen: 64.375em;
-
-// Layout settings
-$max-width: 75em !global;
-$max-width-padd: 77.5em !global;
+$small-screen: 480px;
+$medium-screen: 960px;
+$large-screen: 1200px;
 
 // Typography
 $base-font-family: 'opensans';
 $heading-font-family: 'khand';
+
+$gutter-width: 30px;
 
 // Colors;
 $black: #000;
@@ -18,3 +16,5 @@ $white: #fff;
 // Font Colors
 $base-background-color: $white;
 $base-font-color: $black;
+
+$primary-color: $black;

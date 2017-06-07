@@ -1,0 +1,32 @@
+.splitPanel {
+
+}
+
+.splitPanel__container {
+  @include m-outer-container();
+  display: flex;
+  flex-direction: column;
+
+  @media(min-width: $medium-screen) {
+    flex-direction: row;
+  }
+}
+
+.splitPanel__image {
+
+}
+
+.splitPanel__content {
+
+}
+
+// Modifier: --left
+.splitPanel--left {
+  .splitPanel__image {
+    order: 1;
+  }
+
+  .splitPanel__content {
+    order: 2;
+  }
+}
