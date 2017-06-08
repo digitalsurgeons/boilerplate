@@ -1,6 +1,7 @@
 @import './library/settings';
 @import './library/functions';
 @import './library/font-face';
+@import './library/mixins';
 
 @import 'normalize.css';
 
@@ -14,4 +15,4 @@
 // ==========================================================================
 // Components
 // ==========================================================================
-@import '../components/Header/styles';
+@import '../components/header/styles';

@@ -48,9 +48,23 @@
   <meta name='theme-color' content='xxx'>
 </head>
 <body>
-  <h1 class="center-align">UI Kit</h1>
-  <p class="center-align">Header</p>
-  <header class="header"></header>
+  <header class="header header--fixed">
+    <div class="header__container">
+      <svg class="header__logo"><use xlink:href="/dist/symbol-defs.svg#logo"></use></svg>
+      <div class="header__primaryNav">
+        <a class="header__primaryNavLink" href="#">Link 1</a>
+        <a class="header__primaryNavLink" href="#">Link 2</a>
+        <a class="header__primaryNavLink" href="#">Link 3</a>
+        <div class="header__hamburger">
+          <div class="header__hamburgerContainer">
+            <span class="header__hamburgerBar header__hamburgerBar--top"></span>
+            <span class="header__hamburgerBar header__hamburgerBar--middle"></span>
+            <span class="header__hamburgerBar header__hamburgerBar--bottom"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
   <p class="center-align">Icons</p>
   <div class="center-align">
     <svg class="icon">
