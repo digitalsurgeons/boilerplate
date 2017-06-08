@@ -37,6 +37,7 @@
     "jquery": "^3.1.0",
     "node-sass": "^3.10.0",
     "normalize.css": "^5.0.0",
+    "object-fit-images": "^3.2.3",
     "onchange": "^3.0.2",
     "optimize-js": "^1.0.1",
     "postcss-cssnext": "^2.8.0",
