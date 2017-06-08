@@ -3,6 +3,7 @@
   transition: transform .3s ease-in-out, background-color .3s;
   width: 100%;
   will-change: transform;
+  z-index: 10;
 }
 
 .header__container {
@@ -26,6 +27,10 @@
 }
 
 .header__primaryNav {
+  display: flex;
+}
+
+.header__primaryNavList {
   align-items: center;
   display: none;
 

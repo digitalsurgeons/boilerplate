@@ -4,7 +4,9 @@ import Headroom from 'headroom.js'
 class Header {
   constructor (element, options) {
     this.element = $(element)
-    this.message = options.message
+    this.hamburger = $(options.hamburger)
+    this.menu = $(options.menu)
+    this.body = $(options.body)
   }
 
   init () {
@@ -12,6 +14,7 @@ class Header {
       return
     }
     this.initHeadroom()
+    this.onClickHamburger()
   }
 
   initHeadroom () {
@@ -40,10 +43,19 @@ class Header {
 
     headroom.init()
   }
+
+  onClickHamburger () {
+    this.hamburger.on('click', () => {
+      this.menu.addClass('isActive')
+      this.body.css('overflow', 'hidden')
+    })
+  }
 }
 
 const header = new Header('.header', {
-  hamburger: 'header__hamburger!'
+  hamburger: '.header__hamburger',
+  menu: '.menu',
+  body: 'body'
 })
 
 header.init()

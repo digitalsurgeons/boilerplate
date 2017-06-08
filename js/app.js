@@ -7,3 +7,4 @@ import './polyfills'
 // Components
 // ==========================================================================
 import '../components/header'
+import '../components/menu'

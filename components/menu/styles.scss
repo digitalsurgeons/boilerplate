@@ -1,0 +1,76 @@
+.menu {
+  background-color: $black;
+  height: 100%;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  transform: translateY(-100%) translate3d(0, 0, 0);
+  transition: all .5s cubic-bezier(.86, 0, .07, 1);
+  width: 100%;
+  z-index: 20;
+
+  &.isActive {
+    opacity: 1;
+    transform: translateY(0) translate3d(0, 0, 0);
+    transition: all .5s cubic-bezier(.86, 0, .07, 1);
+  }
+}
+
+.menu__nav {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  width: 100%;
+
+  @media(min-width: $medium-screen) {
+    padding: 30px 20px;
+  }
+}
+
+.menu__logo {
+  color: $white;
+  height: 20px;
+  width: 50px;
+}
+
+.menu__closeButton {
+  cursor: pointer;
+  height: 24px;
+  top: 33px;
+  width: 24px;
+}
+
+.menu__closeButton:hover {
+  .menu__closeButtonBar {
+    border-color: $orange;
+  }
+}
+
+.menu__closeButtonContainer {
+  align-items: center;
+  display: flex;
+  height: 24px;
+  position: relative;
+  width: 24px;
+}
+
+.menu__closeButtonBar {
+  backface-visibility: hidden;
+  border-top: 2px solid $white;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.menu__closeButtonBar:nth-child(1) {
+  backface-visibility: hidden;
+  transform: rotate(45deg);
+  transition: .2s;
+}
+
+.menu__closeButtonBar:nth-child(2) {
+  backface-visibility: hidden;
+  transform: rotate(-45deg);
+  transition: .2s;
+}
