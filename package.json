@@ -41,6 +41,7 @@
     "postcss-remify": "^1.0.1",
     "sass-lint": "^1.9.1",
     "sass-loader": "^4.0.2",
+    "slick-carousel": "^1.6.0",
     "style-loader": "^0.13.1",
     "svg-sprite-generator": "0.0.7",
     "url-loader": "^0.5.7",
