@@ -19,3 +19,7 @@ $base-background-color: $white;
 $base-font-color: $black;
 
 $primary-color: $orange;
+
+// Animations
+$ease: cubic-bezier(0.16, 0.68, 0.43, 0.99);
+// another good one: cubic-bezier(.7,0,.3,1)

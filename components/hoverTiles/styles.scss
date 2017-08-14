@@ -1,0 +1,93 @@
+$tileHeight: 485px;
+$cols: 3;
+
+.hoverTiles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hoverTiles__item {
+  $padding: 50px;
+
+  position: relative;
+  z-index: 0;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $padding;
+  min-width: 0;
+  min-height: calc(#{$tileHeight} - (#{$padding} * 2));
+  color: $white;
+  text-align: center;
+  background-color: $black;
+  overflow: hidden;
+  transition: transform 500ms;
+
+  &:hover {
+    .hoverTiles__item__title,
+    .hoverTiles__item__text,
+    .hoverTiles__item__button { 
+      transform: translateY(0); 
+      opacity: 1;
+    }
+    .hoverTiles__item__content { transform: translateY(15px); }
+    .hoverTiles__item__background { opacity: 0; }
+  }
+
+  @media(min-width: $medium-screen) {
+    flex-basis: calc(100% / #{$cols});
+  }
+}
+
+.hoverTiles__item__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  opacity: 0.15;
+  transition: opacity 500ms $ease;
+}
+
+.hoverTiles__item__content {
+  transform: translateY(50%);
+  transition: transform 500ms $ease;
+}
+
+.hoverTiles__item__title {
+  margin-bottom: 15px;
+  font-weight: 800;
+  font-size: 30px;
+  color: $white;
+  line-height: 38px;
+  transform: translateY(-50%);
+  transition: transform 500ms $ease;
+}
+
+.hoverTiles__item__text {
+  margin-bottom: 40px;   
+  font-size: 18px;
+  color: $white;
+  line-height: 32px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 500ms $ease, transform 500ms $ease;
+}
+
+.hoverTiles__item__button {
+  display: block;
+  font-weight: 900;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(100px);
+  transition: opacity 500ms $ease, transform 500ms $ease;
+}
