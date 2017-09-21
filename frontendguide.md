@@ -56,7 +56,7 @@ Always look to abstract components. Digital Surgeons has a very strong, very con
 
 <a name="classing-conventions"/>
 ### Classing & Naming Conventions
-A name like `.Homepage-nav` limits its use. Instead think about writing styles in such a way that they can be reused in other parts of the app. Instead of `.Homepage-nav`, try instead  `.Nav` or `.Nav-bar`. Ask yourself if this component could be reused in another context (chances are it could!).
+A name like `.homepageNav` limits its use. Instead think about writing styles in such a way that they can be reused in other parts of the app. Instead of `.homepageNav`, try instead  `.nav` or `.navBar`. Ask yourself if this component could be reused in another context (chances are it could!).
 
 <a name="css"/>
 ## CSS
