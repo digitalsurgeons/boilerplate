@@ -1,18 +1,17 @@
 .icon {
   display: inline-block;
   fill: currentColor;
-  height: 1em;
+  height: 20px;
   stroke: currentColor;
   stroke-width: 0;
-  width: 1em;
+  width: 20px;
 }
 
 [class^='icon-'],
 [class*=' icon-'] {
-	/* use !important to prevent issues with browser extensions that change fonts */
+  // use !important to prevent issues with browser extensions that change fonts
   // scss-lint:disable ImportantRule
   font-family: 'icomoon' !important;
-  // scss-lint:enable ImportantRule
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-style: normal;
