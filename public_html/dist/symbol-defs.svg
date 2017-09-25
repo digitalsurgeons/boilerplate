@@ -63,4 +63,18 @@
         </g>
     </g>
 
+</symbol>
+<symbol id="logo" viewBox="0 0 66 26">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>Logo</title>
+    <desc>Created with Sketch.</desc>
+    <defs/>
+    <g id="Material-Design-Stickersheet" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-size="28" font-family="SFUIDisplay-Heavy, SF UI Display" font-weight="600">
+        <g id="Desktop-Copy" transform="translate(-43.000000, -558.000000)" fill="currentColor">
+            <text id="Logo">
+                <tspan x="42" y="578">Logo</tspan>
+            </text>
+        </g>
+    </g>
+
 </symbol></svg>

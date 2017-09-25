@@ -100,7 +100,7 @@ Nesting can be really easily avoided by smart class naming (with the help of BEM
 #### Block
 Unique, meaningful names for a logical unit of style.
 
-Use a capitalized name (title case).
+Use a camelCase name.
 - Good: `.videoMasthead`
 - Bad: `.video-masthead`
 

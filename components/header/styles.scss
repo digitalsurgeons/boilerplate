@@ -1,5 +1,130 @@
 .header {
-  background: $black;
+  background-color: $black;
+  transition: transform .3s ease-in-out, background-color .3s;
+  width: 100%;
+  will-change: transform;
+  z-index: 10;
+}
+
+.header__container {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  width: 100%;
+
+  @media(min-width: $medium-screen) {
+    padding: 30px 20px;
+  }
+}
+
+.header__logo {
   color: $white;
-  padding: 1.25em;
+  height: 20px;
+  width: 50px;
+}
+
+.header__primaryNav {
+  display: flex;
+}
+
+.header__primaryNavList {
+  align-items: center;
+  display: none;
+
+  @media(min-width: $medium-screen) {
+    display: flex;
+  }
+}
+
+.header__primaryNavLink {
+  color: $white;
+  display: block;
+  margin-right: 20px;
+}
+
+.header__hamburger {
+  color: $white;
+  cursor: pointer;
+  display: block;
+  height: 100%;
+  position: relative;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  width: 30px;
+}
+
+.header__hamburgerContainer {
+  height: 18px;
+  width: 30px;
+}
+
+.header__hamburgerBar {
+  backface-visibility: hidden;
+  border-top: 2px solid $white;
+  left: 0;
+  position: absolute;
+  transition: transform .2s, border-color .2s;
+  transition-timing-function: cubic-bezier(.64, .57, .67, 1.53);
+  width: 100%;
+}
+
+.header__hamburgerBar--top {
+  transform: translateY(0);
+}
+
+.header__hamburgerBar--middle {
+  transform: translateY(8px);
+}
+
+.header__hamburgerBar--bottom {
+  transform: translateY(16px);
+}
+
+.header__hamburger:hover {
+  .header__hamburgerBar--top {
+    border-color: $orange;
+    transform: translateY(2px);
+    transition: transform .2s, border-color .2s;
+    transition-timing-function: cubic-bezier(.64, .57, .67, 1.53);
+  }
+
+  .header__hamburgerBar--middle {
+    border-color: $orange;
+    transition: border-color .2s;
+  }
+
+  .header__hamburgerBar--bottom {
+    border-color: $orange;
+    transform: translateY(14px);
+    transition: transform .2s, border-color .2s;
+    transition-timing-function: cubic-bezier(.64, .57, .67, 1.53);
+  }
+}
+
+
+// Modifier: --fixed
+.header--fixed {
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: transform .3s ease-in-out, background-color .3s;
+  z-index: 10;
+
+  &.headroom--not-top {
+    background-color: $white;
+  }
+
+  &.headroom--unpinned {
+    transform: translateY(-100%);
+    transition: transform .3s ease-in-out, background-color .3s;
+  }
+
+  &.headroom--pinned {
+    background-color: $white;
+    transform: translateY(0);
+    transition: transform .3s ease-in-out, background-color .3s;
+  }
 }

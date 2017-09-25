@@ -1,3 +1,6 @@
 module.exports = [
-  'jquery'
+  'fastclick',
+  'headroom.js',
+  'jquery',
+  'object-fit-images'
 ]

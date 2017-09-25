@@ -2,36 +2,78 @@
   box-sizing: border-box;
 }
 
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
-  font-family: $base-font-family;
-  font-weight: 100;
-  line-height: 1.6;
+  font: 16px/1 sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
 }
 
 h1,
 h2,
 h3,
 h4,
-h5,
-h6 {
-  font-family: $heading-font-family;
-  font-weight: 500;
-  line-height: 1;
-  margin: .166666667em 0;
-  text-transform: uppercase;
+p,
+blockquote,
+figure,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
 }
 
-h1 {
-  font-size: 3.75em;
+main,
+li {
+  display: block;
 }
 
-h2 {
-  font-size: 2.5em;
+h1,
+h2,
+h3,
+h4 {
+  font-size: inherit;
 }
 
-input,
-textarea {
-  font-family: $base-font-family;
-  font-weight: 200;
-  padding: .625em;
+strong {
+  font-weight: bold;
+}
+
+a,
+button {
+  color: inherit;
+  transition: .3s;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  -webkit-font-smoothing: inherit;
+  letter-spacing: inherit;
+  overflow: visible;
+}
+
+::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+:focus {
+  outline: 0;
+}
+
+img {
+  border: 0;
+  height: auto;
+  max-width: 100%;
 }

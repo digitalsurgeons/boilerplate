@@ -48,15 +48,215 @@
   <meta name='theme-color' content='xxx'>
 </head>
 <body>
-  <h1 class="center-align">UI Kit</h1>
-  <p class="center-align">Header</p>
-  <header class="header"></header>
+  <header class="header header--fixed">
+    <div class="header__container">
+      <svg class="header__logo"><use xlink:href="/dist/symbol-defs.svg#logo"></use></svg>
+      <div class="header__primaryNav">
+        <div class="header__primaryNavList">
+          <a class="header__primaryNavLink" href="#">Link 1</a>
+          <a class="header__primaryNavLink" href="#">Link 2</a>
+          <a class="header__primaryNavLink" href="#">Link 3</a>
+        </div>
+        <div class="header__hamburger">
+          <div class="header__hamburgerContainer">
+            <span class="header__hamburgerBar header__hamburgerBar--top"></span>
+            <span class="header__hamburgerBar header__hamburgerBar--middle"></span>
+            <span class="header__hamburgerBar header__hamburgerBar--bottom"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="menu">
+    <div class="menu__nav">
+      <svg class="menu__logo"><use xlink:href="/dist/symbol-defs.svg#logo"></use></svg>
+      <div class="menu__closeButton">
+        <div class="menu__closeButtonContainer">
+          <span class="menu__closeButtonBar"></span>
+          <span class="menu__closeButtonBar"></span>
+        </div>
+      </div>
+    </div>
+  </div>
   <p class="center-align">Icons</p>
   <div class="center-align">
     <svg class="icon">
       <use href="/dist/symbol-defs.svg#facebook"></use>
     </svg>
   </div>
+<div class="masthead">
+    <div class="masthead__lampshade"></div>
+    <picture>
+      <source srcset="http://placehold.it/1440x800?text=desktop+masthead" media="(min-width: 1024px)">
+      <source srcset="http://placehold.it/375x667?text=mobile+masthead" media="(min-width: 960px)">
+      <img class="masthead__image" srcset="http://placehold.it/375x667?text=mobile+masthead">
+    </picture>
+    <div class="masthead__container">
+      <article class="masthead__content">
+        <h3 class="masthead__subheading">This is the subheader</h3>
+        <h2 class="masthead__heading">This is the header</h2>
+      </article>
+    </div>
+  </div>
+  <div class="cards">
+      <div class="cards__list">
+        <div class="cards__listItem">
+          <div class="cards__card">
+            <h3 class="cards__header">Header</h3>
+            <div class="cards__body">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error culpa laborum consequuntur quas incidunt quibusdam cupiditate necessitatibus dolore maxime ad iste numquam dolorem, laudantium sequi ducimus, ut suscipit aliquid praesentium.
+            </div>
+            <a class="cards__button" href="#">Click Here</a>
+          </div>
+        </div>
+        <div class="cards__listItem">
+          <div class="cards__card">
+            <h3 class="cards__header">Header</h3>
+            <div class="cards__body">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error culpa laborum consequuntur quas incidunt quibusdam cupiditate necessitatibus dolore maxime ad iste numquam dolorem, laudantium sequi ducimus, ut suscipit aliquid praesentium.
+            </div>
+            <a class="cards__button" href="#">Click Here</a>
+          </div>
+        </div>
+        <div class="cards__listItem">
+          <div class="cards__card">
+            <h3 class="cards__header">Header</h3>
+            <div class="cards__body">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error culpa laborum consequuntur quas incidunt quibusdam cupiditate necessitatibus dolore maxime ad iste numquam dolorem, laudantium sequi ducimus, ut suscipit aliquid praesentium.
+            </div>
+            <a class="cards__button" href="#">Click Here</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="textPanel">
+    <div class="textPanel__container">
+      <div class="textPanel__wrapper">
+        <h2 class="textPanel__heading">Text Panel Header</h2>
+        <div class="textPanel__body">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde distinctio impedit animi magnam mollitia nam excepturi possimus officia odit ab expedita cupiditate nihil laboriosam consequuntur aliquam, repellendus doloremque commodi deserunt! Ea dignissimos neque dolores culpa sit, libero minus repellat est quasi fugit veritatis nemo veniam officiis sapiente, perferendis quod numquam totam iusto!
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="quote">
+    <div class="quote__container">
+      <div class="quote__wrapper">
+        <div class="quote__quote">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis recusandae sit maxime, adipisci nisi, alias saepe molestiae?
+        </div>
+        <div class="quote__author">
+          Quote Author
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="logoWall">
+    <div class="logoWall__container">
+      <div class="logoWall__logos">
+        <div class="logoWall__logo">
+          <img class="logoWall__image" src="http://placehold.it/250x250?text=lorem">
+          <span class="logoWall__caption">Lorem</span>
+        </div>
+        <div class="logoWall__logo">
+          <img class="logoWall__image" src="http://placehold.it/250x250?text=lorem">
+          <span class="logoWall__caption">Lorem</span>
+        </div>
+        <div class="logoWall__logo">
+          <img class="logoWall__image" src="http://placehold.it/250x250?text=lorem">
+          <span class="logoWall__caption">Lorem</span>
+        </div>
+        <div class="logoWall__logo">
+          <img class="logoWall__image" src="http://placehold.it/250x250?text=lorem">
+          <span class="logoWall__caption">Lorem</span>
+        </div>
+        <div class="logoWall__logo">
+          <img class="logoWall__image" src="http://placehold.it/250x250?text=lorem">
+          <span class="logoWall__caption">Lorem</span>
+        </div>
+        <div class="logoWall__logo">
+          <img class="logoWall__image" src="http://placehold.it/250x250?text=lorem">
+          <span class="logoWall__caption">Lorem</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="buttons">
+    <a href="#" class="button">button</a>
+    <a href="#" class="button button--fill">button--fill</a>
+    <a href="#" class="button button--primary">button--primary</a>
+    <a href="#" class="button button--inverse">button--inverse</a>
+  </div>
+
+<div class="gallery">
+  <div class="gallery__container">
+    <h2 class="gallery__heading">Lorem Ipsum Dolor Sit Amet</h2>
+    <div class="gallery__list">
+      <div class="gallery__item">
+        <div class="gallery__image" style="background-image: url('http://placehold.it/500x500?text=item+1')"></div>
+        <span class="gallery__caption">Item 1</span>
+      </div>
+      <div class="gallery__item">
+        <div class="gallery__image" style="background-image: url('http://placehold.it/500x500?text=item+2')"></div>
+        <span class="gallery__caption">Item 2</span>
+      </div>
+      <div class="gallery__item">
+        <div class="gallery__image" style="background-image: url('http://placehold.it/500x500?text=item+3')"></div>
+        <span class="gallery__caption">Item 3</span>
+      </div>
+    </div>
+    <span class="gallery__controls">
+      <svg class="gallery__arrow gallery__arrow--left gallery__arrow--disabled"><use xlink:href="/dist/symbol-defs.svg#arrow-left"></use></svg>
+      <span class="gallery__count">
+        <span class="gallery__currentPage">1</span>
+        <span class="gallery__countDivider">/</span>
+        <span class="gallery__countTotal">3</span>
+      </span>
+      <svg class="gallery__arrow gallery__arrow--right"><use xlink:href="/dist/symbol-defs.svg#arrow-right"></use></svg>
+    </span>
+  </div>
+</div>
+
+<div class="hoverTiles">
+
+  <a href="#" class="hoverTiles__item">
+    <div class="hoverTiles__item__background" style="background-image: url(http://placehold.it/500x500?text=lorem)"></div>
+    <article class="hoverTiles__item__content">
+      <h3 class="hoverTiles__item__title">Dolor Sit Amet</h3>
+      <p class="hoverTiles__item__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima perspiciatis ipsa doloremque blanditiis veritatis quod!</p>
+      <div class="hoverTiles__item__button">
+        <span class="button button--inverse">Explore</span>
+      </div>
+    </article>
+  </a>
+
+  <a href="#" class="hoverTiles__item">
+    <div class="hoverTiles__item__background" style="background-image: url(http://placehold.it/500x500?text=lorem)"></div>
+    <article class="hoverTiles__item__content">
+      <h3 class="hoverTiles__item__title">Dolor Sit Amet</h3>
+      <p class="hoverTiles__item__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima perspiciatis ipsa doloremque blanditiis veritatis quod!</p>
+      <div class="hoverTiles__item__button">
+        <span class="button button--inverse">Explore</span>
+      </div>
+    </article>
+  </a>
+
+  <a href="#" class="hoverTiles__item">
+    <div class="hoverTiles__item__background" style="background-image: url(http://placehold.it/500x500?text=lorem)"></div>
+    <article class="hoverTiles__item__content">
+      <h3 class="hoverTiles__item__title">Dolor Sit Amet</h3>
+      <p class="hoverTiles__item__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima perspiciatis ipsa doloremque blanditiis veritatis quod!</p>
+      <div class="hoverTiles__item__button">
+        <span class="button button--inverse">Explore</span>
+      </div>
+    </article>
+  </a>
+
+</div>
+
+
+
   <script defer src='dist/svgxuse.js'></script>
   <script src='dist/vendor.js'></script>
   <script src='dist/bundle.js'></script>

@@ -1,6 +1,7 @@
 @import './library/settings';
 @import './library/functions';
 @import './library/font-face';
+@import './library/mixins';
 
 @import 'normalize.css';
 
@@ -14,4 +15,14 @@
 // ==========================================================================
 // Components
 // ==========================================================================
-@import '../components/Header/styles';
+@import '../components/header/styles';
+@import '../components/menu/styles';
+@import '../components/cards/styles';
+@import '../components/splitPanel/styles';
+@import '../components/textPanel/styles';
+@import '../components/masthead/styles';
+@import '../components/quote/styles';
+@import '../components/logoWall/styles';
+@import '../components/buttons/styles';
+@import '../components/gallery/styles';
+@import '../components/hoverTiles/styles';
