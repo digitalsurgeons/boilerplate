@@ -26,7 +26,6 @@ module.exports = {
       {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
           use: ['css-loader', 'postcss-loader', 'sass-loader']
         })
       },
@@ -34,7 +33,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin('styles.css'),
+    new ExtractTextPlugin('style.css'),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor'
     }),

@@ -24,7 +24,6 @@ module.exports = {
       {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
           use: ['css-loader', 'postcss-loader', 'sass-loader']
         })
       },
@@ -32,7 +31,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin('styles.css'),
+    new ExtractTextPlugin('style.css'),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor'
     }),
@@ -41,9 +40,8 @@ module.exports = {
     }),
     new CompilerPlugin('done', function() {
       child_process.exec(
-        `onchange '${config.paths
-          .publicPath}icons' -i -- ./node_modules/.bin/svg-sprite-generate -d ${config
-          .paths.publicPath}icons -o ${config.paths.dist}symbol-defs.svg`
+        `./node_modules/.bin/svg-sprite-generate -d ${config.paths
+          .publicPath}icons -o ${config.paths.dist}symbol-defs.svg`
       )
     }),
     new webpack.optimize.UglifyJsPlugin()
