@@ -1,0 +1,36 @@
+/* 
+Custom Media Queries
+-p queries are breakpoints + standard gutter
+*/
+
+@custom-media --small-screen (width >= 480px);
+@custom-media --small-screen-p (width >= 480px);
+@custom-media --medium-screen (width >= 960px);
+@custom-media --medium-screen-p (width >= 1110px);
+@custom-media --large-screen (width >= 1140px);
+@custom-media --large-screen-p (width >= 1190px);
+@custom-media --xlarge-screen (width >= 1440px);
+@custom-media --xlarge-screen-p (width >= 1490px);
+
+/* Global Vars */
+:root {
+  --small-screen: 480px;
+  --medium-screen: 960px;
+  --large-screen: 1140px;
+  --xlarge-screen: 1440px;
+
+  --gutter-width: 30px;
+
+  /* Typography */
+  --primary-font: 'Futura', 'Trebuchet MS', 'Helvetica-Neue', Helvetica, Arial;
+  --secondary-font: 'Brush Script MT', cursive;
+
+  /* Colors */
+  --black: #000;
+  --white: #fff;
+
+  /* Font Colors */
+  --base-background-color: var(--white);
+  --base-font-color: var(--gray);
+  --primary-color: var(--blue);
+}

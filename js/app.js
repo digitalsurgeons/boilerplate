@@ -11,6 +11,4 @@ import 'slick-carousel'
 // ==========================================================================
 // Components
 // ==========================================================================
-import '../components/header'
-import '../components/menu'
-import '../components/gallery'
+// Components are globbed and included automagically within Webpack

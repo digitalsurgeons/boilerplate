@@ -7,7 +7,7 @@
 }
 
 .masthead__container {
-  @include m-outer-container();
+  @extend %outer-container();
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -17,7 +17,7 @@
   width: 100%;
   z-index: 1;
 
-  @media(min-width: $medium-screen) {
+  @media (--medium-screen) {
     height: auto;
     min-height: 520px;
   }
@@ -38,7 +38,7 @@
 }
 
 .masthead__lampshade {
-  background-color: rgba(70, 83, 97, .6);
+  background-color: rgba(70, 83, 97, 0.6);
   height: 100%;
   left: 0;
   position: absolute;
@@ -47,12 +47,12 @@
 }
 
 .masthead__heading {
-  color: $white;
+  color: var(--white);
   font-size: 34px;
   font-weight: 300;
   line-height: 50px;
 
-  @media(min-width: $medium-screen) {
+  @media (--medium-screen) {
     font-size: 48px;
     font-weight: 300;
     line-height: 65px;
@@ -60,13 +60,13 @@
 }
 
 .masthead__subheading {
-  color: $white;
-  font-family: $heading-font-family;
+  color: var(--white);
+  font-family: var(--primary-font);
   font-size: 20px;
   font-weight: 400;
   line-height: 32px;
 
-  @media(min-width: $medium-screen) {
+  @media (--medium-screen) {
     font-size: 20px;
     font-weight: 400;
     line-height: 32px;

@@ -1,11 +1,11 @@
 .logoWall {
-  @media(min-width: $medium-screen) {
+  @media (--medium-screen) {
     padding: 50px 0;
   }
 }
 
 .logoWall__container {
-  @include m-outer-container();
+  @extend %outer-container();
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -16,7 +16,7 @@
   flex-wrap: wrap;
   justify-content: center;
 
-  @media(min-width: $medium-screen) {
+  @media (--medium-screen) {
     padding-left: 40px;
   }
 }
