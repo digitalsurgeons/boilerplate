@@ -1,21 +1,21 @@
 .textPanel {
-  font-family: $base-font-family;
+  font-family: var(--primary-font);
   padding: 50px 0;
 }
 
 .textPanel__container {
-  @include m-outer-container();
+  @extend %outer-container();
 }
 
 .textPanel__wrapper {
-  @media(min-width: $medium-screen) {
+  @media (--medium-screen) {
     margin: 0 auto;
     max-width: 66.666666%;
   }
 }
 
 .textPanel__heading {
-  color: $orange;
+  color: var(--orange);
   font-size: 30px;
   font-weight: 400;
   line-height: 44px;

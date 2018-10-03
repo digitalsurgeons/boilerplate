@@ -1,0 +1,14 @@
+@import './library/settings.css';
+@import './library/mixins.css';
+
+@import 'normalize.css';
+
+@import './base/elements.css';
+@import './base/icons.css';
+@import './base/global.css';
+@import './base/fonts.css';
+
+/*@import 'slick-carousel/slick/slick.css';*/
+
+/* Glob all css files in component folders */
+@import '../components/**/*.css';

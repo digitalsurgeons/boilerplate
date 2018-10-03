@@ -1,13 +1,12 @@
 .splitPanel {
-
 }
 
 .splitPanel__container {
-  @include m-outer-container();
+  @extend %outer-container();
   display: flex;
   flex-direction: column;
 
-  @media(min-width: $medium-screen) {
+  @media (--medium-screen) {
     flex-direction: row;
   }
 }
@@ -30,16 +29,13 @@
 }
 
 .splitPanel__header {
-
 }
 
 .splitPanel__body {
-
 }
 
 // Modifier: --left
 .splitPanel--left {
-
   .splitPanel__image-wrapper {
     order: 1;
   }
@@ -48,9 +44,9 @@
     order: 2;
   }
 
-  @media(min-width: medium-screen) {
+  @media (min-width: medium-screen) {
     .splitPanel__image-wrapper {
-      margin-right: $gutter-width;
+      margin-right: var(--gutter-width);
     }
   }
 }
@@ -65,9 +61,9 @@
     order: 2;
   }
 
-  @media(min-width: medium-screen) {
+  @media (min-width: medium-screen) {
     .splitPanel__image-wrapper {
-      margin-left: $gutter-width;
+      margin-left: var(--gutter-width);
       order: 2;
     }
 

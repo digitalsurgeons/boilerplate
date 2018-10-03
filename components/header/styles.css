@@ -1,6 +1,6 @@
 .header {
-  background-color: $black;
-  transition: transform .3s ease-in-out, background-color .3s;
+  background-color: var(--black);
+  transition: transform 0.3s ease-in-out, background-color 0.3s;
   width: 100%;
   will-change: transform;
   z-index: 10;
@@ -15,13 +15,13 @@
   padding-top: 20px;
   width: 100%;
 
-  @media(min-width: $medium-screen) {
+  @media (--medium-screen) {
     padding: 30px 20px;
   }
 }
 
 .header__logo {
-  color: $white;
+  color: var(--white);
   height: 20px;
   width: 50px;
 }
@@ -34,19 +34,19 @@
   align-items: center;
   display: none;
 
-  @media(min-width: $medium-screen) {
+  @media (--medium-screen) {
     display: flex;
   }
 }
 
 .header__primaryNavLink {
-  color: $white;
+  color: var(--white);
   display: block;
   margin-right: 20px;
 }
 
 .header__hamburger {
-  color: $white;
+  color: var(--white);
   cursor: pointer;
   display: block;
   height: 100%;
@@ -62,11 +62,11 @@
 
 .header__hamburgerBar {
   backface-visibility: hidden;
-  border-top: 2px solid $white;
+  border-top: 2px solid var(--white);
   left: 0;
   position: absolute;
-  transition: transform .2s, border-color .2s;
-  transition-timing-function: cubic-bezier(.64, .57, .67, 1.53);
+  transition: transform 0.2s, border-color 0.2s;
+  transition-timing-function: cubic-bezier(0.64, 0.57, 0.67, 1.53);
   width: 100%;
 }
 
@@ -84,25 +84,24 @@
 
 .header__hamburger:hover {
   .header__hamburgerBar--top {
-    border-color: $orange;
+    border-color: var(--orange);
     transform: translateY(2px);
-    transition: transform .2s, border-color .2s;
-    transition-timing-function: cubic-bezier(.64, .57, .67, 1.53);
+    transition: transform 0.2s, border-color 0.2s;
+    transition-timing-function: cubic-bezier(0.64, 0.57, 0.67, 1.53);
   }
 
   .header__hamburgerBar--middle {
-    border-color: $orange;
-    transition: border-color .2s;
+    border-color: var(--orange);
+    transition: border-color 0.2s;
   }
 
   .header__hamburgerBar--bottom {
-    border-color: $orange;
+    border-color: var(--orange);
     transform: translateY(14px);
-    transition: transform .2s, border-color .2s;
-    transition-timing-function: cubic-bezier(.64, .57, .67, 1.53);
+    transition: transform 0.2s, border-color 0.2s;
+    transition-timing-function: cubic-bezier(0.64, 0.57, 0.67, 1.53);
   }
 }
-
 
 // Modifier: --fixed
 .header--fixed {
@@ -110,21 +109,21 @@
   position: fixed;
   right: 0;
   top: 0;
-  transition: transform .3s ease-in-out, background-color .3s;
+  transition: transform 0.3s ease-in-out, background-color 0.3s;
   z-index: 10;
 
   &.headroom--not-top {
-    background-color: $white;
+    background-color: var(--white);
   }
 
   &.headroom--unpinned {
     transform: translateY(-100%);
-    transition: transform .3s ease-in-out, background-color .3s;
+    transition: transform 0.3s ease-in-out, background-color 0.3s;
   }
 
   &.headroom--pinned {
-    background-color: $white;
+    background-color: var(--white);
     transform: translateY(0);
-    transition: transform .3s ease-in-out, background-color .3s;
+    transition: transform 0.3s ease-in-out, background-color 0.3s;
   }
 }

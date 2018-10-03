@@ -1,6 +1,6 @@
 .cards {
-  @include m-outer-container();
-  padding: $gutter-width 0;
+  @extend %outer-container;
+  padding: var(--gutter-width) 0;
 }
 
 .cards__list {
@@ -8,34 +8,34 @@
   flex-direction: column;
   flex-flow: row wrap;
 
-  @media(min-width: $medium-screen) {
+  @media (--medium-screen) {
     flex-direction: row;
-    margin-left: -$gutter-width / 2;
-    margin-right: -$gutter-width / 2;
+    margin-left: -var(--gutter-width) / 2;
+    margin-right: -var(--gutter-width) / 2;
   }
 }
 
 .cards__listItem {
   display: flex;
-  margin-bottom: $gutter-width;
+  margin-bottom: var(--gutter-width);
   width: 100%;
 
-  @media(min-width: $medium-screen) {
+  @media (--medium-screen) {
     flex: 1 0 33.333%;
     padding: 0 15px;
   }
 }
 
 .cards__card {
-  color: $black;
+  color: var(--black);
   display: flex;
   flex-direction: column;
-  padding: $gutter-width;
+  padding: var(--gutter-width);
   width: 100%;
 }
 
 .cards__header {
-  color: $black;
+  color: var(--black);
   font-size: 48px;
   font-weight: 200;
   line-height: 56px;
@@ -46,19 +46,19 @@
 .cards__body {
   flex-grow: 1;
   line-height: 24px;
-  margin-bottom: $gutter-width;
+  margin-bottom: var(--gutter-width);
 }
 
 .cards__button {
-  border: 1px solid $black;
-  color: $black;
+  border: 1px solid var(--black);
+  color: var(--black);
   display: block;
-  font-family: $base-font-family;
+  font-family: var(--primary-font);
   padding: 8px;
   text-align: center;
   text-decoration: none;
 
   &:hover {
-    background: $primary-color;
+    background: var(--primary-color);
   }
 }
