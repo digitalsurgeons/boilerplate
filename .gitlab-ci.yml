@@ -1,9 +1,12 @@
-# Since we run our tests against deployed environments, we have to
-# reverse the typical order
-stages:
-  - build
-  - deploy
-  - test
+include:
+  # Generic dev/feature deployments
+  - local: /.gitlab-ci.features.yml
+  # Generic front-end build:
+  - local: /.gitlab-ci.build-frontend.yml
+  # Generic composer build:
+  - local: /.gitlab-ci.build-composer.yml
+  # Generic cypress testing:
+  - local: /.gitlab-ci.cypress.yml
 
 variables:
   # Use these to define user@ip details for each destination server.
@@ -14,84 +17,6 @@ variables:
   SERVER_DETAILS_PRD: user@ip
   # Change this to digitalsurgeonsdev.com if you need to
   DEV_DOMAIN: digitalsurgeons.dev
-
-# Build steps for composer based backends (laravel, craft 3)
-build_backend:
-  image: composer
-  script:
-    - composer install --prefer-dist --no-dev --no-interaction --no-progress --optimize-autoloader
-  cache:
-    key: composer
-    paths:
-      - vendor/
-  artifacts:
-    paths:
-      - vendor/
-    expire_in: 2 mos
-  stage: build
-  only:
-    - branches
-
-# Build steps for boilerplate frontend
-build_frontend:
-  image: node:9
-  script:
-    # Install dependencies
-    - npm install
-    - npm run webpack:prod
-  cache:
-    key: npm
-    paths:
-      - node_modules/
-  artifacts:
-    paths:
-      - public_html/dist/
-    expire_in: 2 mos
-  stage: build
-  only:
-    - branches
-
-# Manually run cypress integration testing
-test:
-  image: cypress/base
-  script:
-    - export CYPRESS_BASE_URL=$(cat cypress_env)
-    - echo $CYPRESS_BASE_URL
-    - npm install cypress
-    - npx cypress run
-  cache:
-    key: cypress
-    paths:
-      - node_modules/
-  artifacts:
-    paths:
-      - cypress/screenshots
-      - cypress/videos
-    expire_in: 2 mos
-  stage: test
-  when: manual
-  only:
-    - branches
-
-.deploy:
-  image: sebble/deploy
-  before_script:
-    # Set up the .ssh directory
-    - mkdir ~/.ssh
-    - chmod 0700 ~/.ssh
-    # Adds host keys for all deployed environments, so we know when something goes wrong
-    - echo -n "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-    - chmod 0600 ~/.ssh/known_hosts
-    # Adds private key so we can connect to destination server
-    - echo -n "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
-    - chmod 0600 ~/.ssh/id_ed25519
-    # Export the environment url, which only exists in the child jobs,
-    # so that we can set cypress' base url in the test phase
-    - echo -n "$CI_ENVIRONMENT_URL" > cypress_env
-  artifacts:
-    paths:
-      - cypress_env
-  stage: deploy
 
 deploy_prod:
   extends: .deploy
@@ -120,44 +45,13 @@ deploy_stage:
     # noise.
     - /^(master|hotfix\/|release\/)/
 
-# The dev and feature deployments should be entirely generic to any
-# project. Only modify if you have things like symlinking upload
-# directories or other script actions to worry about
-
-deploy_dev:
-  extends: .deploy
-  script:
-    - echo "$DEV_DOTENV" > .env
-    - rsync --copy-unsafe-links -rvzcSl --exclude-from '.rsyncignore' ./ $SERVER_DETAILS_DEV:/var/www/$CI_PROJECT_NAME/
-  environment:
-    name: development
-    url: http://$CI_PROJECT_NAME.$DEV_DOMAIN
-  only:
-    - develop
-
-deploy_feature:
-  extends: .deploy
-  script:
-    - echo "$DEV_DOTENV" > .env
-    - rsync --copy-unsafe-links -rvzcSl --exclude-from '.rsyncignore' ./ $SERVER_DETAILS_DEV:/var/www/$CI_PROJECT_NAME-$CI_ENVIRONMENT_SLUG/
-  environment:
-    name: $CI_COMMIT_REF_NAME
-    url: http://$CI_PROJECT_NAME-$CI_ENVIRONMENT_SLUG.digitalsurgeons.dev
-    on_stop: teardown_feature
-  only:
-    - /^feature\//
-
-teardown_feature:
-  extends: .deploy
-  variables:
-    GIT_STRATEGY: none
-  script:
-    - ssh $SERVER_DETAILS_DEV rm -rf /var/www/$CI_PROJECT_NAME-$CI_ENVIRONMENT_SLUG/
-  environment:
-    name: $CI_COMMIT_REF_NAME
-    action: stop
-  when: manual
-  only:
-    - /^feature\//
-
+# Dev and feature deployments are generic and included from the
+# .gitlab-ci.features.yml. If you need you modify you can configure
+# here, but be careful to copy the script contents from the included
+# file if you're going to alter them, or use after_script
+#
+# Example:
+# deploy_dev:
+#   after_script:
+#     - ssh ln -s /var/www/$CI_PROJECT_NAME/public/uploads /var/www/$CI_PROJECT_NAME-$CI_ENVIRONMENT_SLUG/public/uploads
 

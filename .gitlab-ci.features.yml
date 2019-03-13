@@ -1,0 +1,62 @@
+.deploy:
+  image: sebble/deploy
+  before_script:
+    # Set up the .ssh directory
+    - mkdir ~/.ssh
+    - chmod 0700 ~/.ssh
+    # Adds host keys for all deployed environments, so we know when something goes wrong
+    - echo -n "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+    - chmod 0600 ~/.ssh/known_hosts
+    # Adds private key so we can connect to destination server
+    - echo -n "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+    - chmod 0600 ~/.ssh/id_ed25519
+    # Export the environment url, which only exists in the child jobs,
+    # so that we can set cypress' base url in the test phase
+    - echo -n "$CI_ENVIRONMENT_URL" > cypress_env
+  artifacts:
+    paths:
+      - cypress_env
+  stage: deploy
+
+# The dev and feature deployments should be entirely generic to any
+# project. Only modify if you have things like symlinking upload
+# directories or other script actions to worry about Furthermore, if you
+# need to modify you can override from the .gitlab-ci.yml main file
+
+deploy_dev:
+  extends: .deploy
+  script:
+    - echo "$DEV_DOTENV" > .env
+    - rsync --copy-unsafe-links -rvzcSl --exclude-from '.rsyncignore' ./ $SERVER_DETAILS_DEV:/var/www/$CI_PROJECT_NAME/
+  environment:
+    name: development
+    url: http://$CI_PROJECT_NAME.$DEV_DOMAIN
+  only:
+    - develop
+
+deploy_feature:
+  extends: .deploy
+  script:
+    - echo "$DEV_DOTENV" > .env
+    - rsync --copy-unsafe-links -rvzcSl --exclude-from '.rsyncignore' ./ $SERVER_DETAILS_DEV:/var/www/$CI_PROJECT_NAME-$CI_ENVIRONMENT_SLUG/
+  environment:
+    name: $CI_COMMIT_REF_NAME
+    url: http://$CI_PROJECT_NAME-$CI_ENVIRONMENT_SLUG.digitalsurgeons.dev
+    on_stop: teardown_feature
+  only:
+    - /^feature\//
+
+teardown_feature:
+  extends: .deploy
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - ssh $SERVER_DETAILS_DEV rm -rf /var/www/$CI_PROJECT_NAME-$CI_ENVIRONMENT_SLUG/
+  environment:
+    name: $CI_COMMIT_REF_NAME
+    action: stop
+  when: manual
+  only:
+    - /^feature\//
+
+

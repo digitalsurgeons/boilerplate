@@ -1,0 +1,17 @@
+# Build steps for composer based backends (laravel, craft 3)
+build_backend:
+  image: composer
+  script:
+    - composer install --prefer-dist --no-dev --no-interaction --no-progress --optimize-autoloader
+  cache:
+    key: composer
+    paths:
+      - vendor/
+  artifacts:
+    paths:
+      - vendor/
+    expire_in: 2 mos
+  stage: build
+  only:
+    - branches
+

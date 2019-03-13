@@ -1,0 +1,29 @@
+# Since we run our tests against deployed environments, we have to
+# reverse the typical order
+stages:
+  - build
+  - deploy
+  - test
+
+# Manually run cypress integration testing
+test:
+  image: cypress/base
+  script:
+    - export CYPRESS_BASE_URL=$(cat cypress_env)
+    - echo $CYPRESS_BASE_URL
+    - npm install cypress
+    - npx cypress run
+  cache:
+    key: cypress
+    paths:
+      - node_modules/
+  artifacts:
+    paths:
+      - cypress/screenshots
+      - cypress/videos
+    expire_in: 2 mos
+  stage: test
+  when: manual
+  only:
+    - branches
+

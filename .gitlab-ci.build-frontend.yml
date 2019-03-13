@@ -1,0 +1,19 @@
+# Build steps for boilerplate frontend
+build_frontend:
+  image: node:9
+  script:
+    # Install dependencies
+    - npm install
+    - npm run webpack:prod
+  cache:
+    key: npm
+    paths:
+      - node_modules/
+  artifacts:
+    paths:
+      - public_html/dist/
+    expire_in: 2 mos
+  stage: build
+  only:
+    - branches
+
