@@ -1,111 +1,163 @@
-image: registry.gitlab.com/digitalsurgeons/build-base:latest
+# Since we run our tests against deployed environments, we have to
+# reverse the typical order
+stages:
+  - build
+  - deploy
+  - test
 
-# Cacheing
-cache:
-  paths:
-    - node_modules/
-    # - vendor
+variables:
+  # Use these to define user@ip details for each destination server.
+  # This way you wont have to worry about making changes in multiple
+  # places
+  SERVER_DETAILS_DEV: deployments@162.243.173.73
+  SERVER_DETAILS_STG: user@ip
+  SERVER_DETAILS_PRD: user@ip
+  # Change this to digitalsurgeonsdev.com if you need to
+  DEV_DOMAIN: digitalsurgeons.dev
 
-### Uncomment out the following job for Composer-based projects,
-### then remove this notice.
-# build_backend:
-#   script:
-#     - composer install --no-interaction
-#   artifacts:
-#     paths:
-#       - vendor/
-#   stage: build
-#   only:
-#     - branches
-
-build_frontend:
+# Build steps for composer based backends (laravel, craft 3)
+build_backend:
+  image: composer
   script:
-    - npm install
-    - npm start
+    - composer install --prefer-dist --no-dev --no-interaction --no-progress --optimize-autoloader
+  cache:
+    key: composer
+    paths:
+      - vendor/
   artifacts:
     paths:
-      - public_html/dist/
+      - vendor/
+    expire_in: 2 mos
   stage: build
   only:
     - branches
 
-### Use one of the following in your script block in one
-### of the deploy_* jobs for different transports.
-
-### For deployments where we have ssh access
-# Add private key so we can connect to destination server
-# - echo "$SSH_PRIVATE_KEY" > id_rsa
-# - chmod 0600 id_rsa
-# - rsync --copy-unsafe-links -rvzcSle 'ssh -p 22 -o StrictHostKeyChecking=no -i id_rsa' --exclude-from=.rsyncignore --exclude=public_html/src ./ user@ip:/path/to/project/
-
-### For deployments that must be over FTP (bleh)
-### This assumes that you are only deploying the public_html folder (no dynamic scripts).
-# - dandelion deploy
-### You will additionally need an environment section in your deploy job:
-# variables:
-#   DANDELION_HOST: "$HOST"
-#   DANDELION_PORT: "$PORT"
-#   DANDELION_USERNAME: "$FTP_STG_USERNAME"
-#   DANDELION_PASSWORD: "$FTP_STG_PASSWORD"
-#   # Dandelion has problems with UTF-8 when it
-#   # is set as the global ruby default. Unset
-#   # it here.
-#   RUBYOPT: ""
-### Lastly, you will need to create a dandelion.yml file in the root
-### with the contents like the following, which is for a wordpress site:
-# adapter: sftp
-# host: <%= ENV['DANDELION_HOST'] %>
-# port: <%= ENV['DANDELION_PORT'] %>
-# username: <%= ENV['DANDELION_USERNAME'] %>
-# password: <%= ENV['DANDELION_PASSWORD'] %>
-# local_path: public_html/
-#
-# exclude:
-#     - wp-admin
-#     - wp-includes
-#     - wp-content/mu-plugins
-#
-# additional:
-#     - public_html/wp-content/themes/<themename>/dist/: wp-content/themes/<themename>/dist/
-
-
-### For deployments to an S3 bucket (static sites or assets)
-### This assumes that you are only deploying the public_html folder (no dynamic scripts).
-### For staging deployments you can remove the exclude for the src folder
-# - aws s3 sync --exclude 'src/*' --exclude 'bower_components/*' public_html/ s3://$S3_BUCKET_NAME/
-
-### Uncomment the following for staging and production
-### deployments. Remove all of the above comments when done.
-
-# deploy_prod:
-#   script:
-#     # Add lines from one of the deployment options above
-#   stage: deploy
-#   environment: production
-#   only:
-#     - production
-#
-# deploy_stage:
-#   script:
-#     # Add lines from one of the deployment options above
-#   stage: deploy
-#   environment: staging
-#   only:
-#     - master
-
-### The following is set to deploy to dsdev for boilerplate,
-### PLEASE REPLACE "ds-boilerplate" in the path at the end of
-### the rsync command to the subdomain name for this project,
-### or, if not deploying to dsdev, change the user, ip and path
-### to match the desired development environment
-### Remove this notice when complete.
-deploy_dev:
+# Build steps for boilerplate frontend
+build_frontend:
+  image: node:9
   script:
-    # Add private key so we can connect to destination server
-    - echo "$SSH_PRIVATE_KEY" > id_rsa
-    - chmod 0600 id_rsa
-    - rsync --copy-unsafe-links -rvzcSle 'ssh -p 22 -o StrictHostKeyChecking=no -i id_rsa' --exclude-from=.rsyncignore ./ digitals@104.131.52.140:/var/www/ds-boilerplate/
+    # Install dependencies
+    - npm install
+    - npm run webpack:prod
+  cache:
+    key: npm
+    paths:
+      - node_modules/
+  artifacts:
+    paths:
+      - public_html/dist/
+    expire_in: 2 mos
+  stage: build
+  only:
+    - branches
+
+# Manually run cypress integration testing
+test:
+  image: cypress/base
+  script:
+    - export CYPRESS_BASE_URL=$(cat cypress_env)
+    - echo $CYPRESS_BASE_URL
+    - npm install cypress
+    - npx cypress run
+  cache:
+    key: cypress
+    paths:
+      - node_modules/
+  artifacts:
+    paths:
+      - cypress/screenshots
+      - cypress/videos
+    expire_in: 2 mos
+  stage: test
+  when: manual
+  only:
+    - branches
+
+.deploy:
+  image: sebble/deploy
+  before_script:
+    # Set up the .ssh directory
+    - mkdir ~/.ssh
+    - chmod 0700 ~/.ssh
+    # Adds host keys for all deployed environments, so we know when something goes wrong
+    - echo -n "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+    - chmod 0600 ~/.ssh/known_hosts
+    # Adds private key so we can connect to destination server
+    - echo -n "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+    - chmod 0600 ~/.ssh/id_ed25519
+    # Export the environment url, which only exists in the child jobs,
+    # so that we can set cypress' base url in the test phase
+    - echo -n "$CI_ENVIRONMENT_URL" > cypress_env
+  artifacts:
+    paths:
+      - cypress_env
   stage: deploy
-  environment: development
+
+deploy_prod:
+  extends: .deploy
+  script:
+    - echo "Unimplemented!"; return 1
+    # - rsync --copy-unsafe-links -rvzcSle --exclude-from '.rsyncignore' ./ $SERVER_DETAILS_PRD:/var/www/production/
+  environment:
+    name: production
+    url: https://domain.com
+  when: manual
+  only:
+    - master
+
+deploy_stage:
+  extends: .deploy
+  script:
+    - echo "Unimplemented!"; return 1
+    # - rsync --copy-unsafe-links -rvzcSl --exclude-from '.rsyncignore' ./ $SERVER_DETAILS_STG:/var/www/staging/
+  environment:
+    name: staging
+    url: https://stage.domain.com
+  only:
+    # Deploy from hotfix and release branches as well as master, so we
+    # can test and make modifications on those branches before finishing
+    # out a branch. This leads to fewer version bumps and less repo
+    # noise.
+    - /^(master|hotfix\/|release\/)/
+
+# The dev and feature deployments should be entirely generic to any
+# project. Only modify if you have things like symlinking upload
+# directories or other script actions to worry about
+
+deploy_dev:
+  extends: .deploy
+  script:
+    - echo "$DEV_DOTENV" > .env
+    - rsync --copy-unsafe-links -rvzcSl --exclude-from '.rsyncignore' ./ $SERVER_DETAILS_DEV:/var/www/$CI_PROJECT_NAME/
+  environment:
+    name: development
+    url: http://$CI_PROJECT_NAME.$DEV_DOMAIN
   only:
     - develop
+
+deploy_feature:
+  extends: .deploy
+  script:
+    - echo "$DEV_DOTENV" > .env
+    - rsync --copy-unsafe-links -rvzcSl --exclude-from '.rsyncignore' ./ $SERVER_DETAILS_DEV:/var/www/$CI_PROJECT_NAME-$CI_ENVIRONMENT_SLUG/
+  environment:
+    name: $CI_COMMIT_REF_NAME
+    url: http://$CI_PROJECT_NAME-$CI_ENVIRONMENT_SLUG.digitalsurgeons.dev
+    on_stop: teardown_feature
+  only:
+    - /^feature\//
+
+teardown_feature:
+  extends: .deploy
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - ssh $SERVER_DETAILS_DEV rm -rf /var/www/$CI_PROJECT_NAME-$CI_ENVIRONMENT_SLUG/
+  environment:
+    name: $CI_COMMIT_REF_NAME
+    action: stop
+  when: manual
+  only:
+    - /^feature\//
+
+
