@@ -13,7 +13,12 @@ const vendor = require('./js/vendor')
 
 let localEnv = Dotenv.definitions['process.env.LOCAL_URL']
 localEnv = localEnv.substring(1, localEnv.length - 1)
-const jsGlob = glob.sync('./components/**/index.js')
+
+const websiteBundle = glob.sync('./components/website/**/index.js')
+const uiBundle = glob.sync('./components/ui/**/index.js')
+const sharedBundle = glob.sync('./components/shared/**/index.js')
+
+const websiteStyles = glob.sync('./components')
 
 module.exports = {
   entry: {
