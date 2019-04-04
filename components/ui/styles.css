@@ -1,19 +1,91 @@
+body {
+  background-color: #F8F7FF;
+}
+
+.header {
+  color: var(--gray-light);
+  display: block;
+  padding: 12px 0 32px;
+  width: 100%;
+}
+
+.block {
+  background-color: #fff;
+  border: 1px solid #E8EBF5;
+  border-radius: 3px;
+  margin-bottom: 30px;
+  padding: 12px 30px 20px 30px;
+}
+
+.block h1,h2,h3,h4,h5,h6 {
+  padding-bottom: 16px;
+}
+
+.icon-container {
+  padding: 12px 0;
+  width: 100%;
+}
+
+.logo {
+  height: 100px;
+  max-width: 400px;
+  width: 100%;
+}
+
+.colors {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.color {
+  position: relative;
+  height: 250px;
+  width: 25%;
+}
+
+.color__title {
+  text-shadow: 0 1px #ccc;
+  font-size: 18px;
+  bottom: 10px;
+  display: block;
+  left: 10px;
+  position: absolute;
+  width: 100%;
+}
+
+.color__swatch {
+  display: block;
+  height: 100%;
+}
+
+.overlay__container {
+  margin-top: 100px;
+  width: 704px;
+}
+
 .ui {
-  padding-top: 80px;
-}
-
-.ui__heading {
-  background-color: var(--black);
-  color: var(--white);
-  font-family: var(--primary-font);
-  font-size: 34px;
-  font-weight: 400;
-  line-height: 50px;
+  margin: 0 auto;
+  max-width: 1170px;
   padding-bottom: 30px;
-  padding-top: 30px;
-  text-align: center;
+  width: 100%;
 }
 
-.ui__spacer {
-  height: 80px;
+.ui-top.icon {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.ui-icon {
+  height: 60px;
+  width: 60px;
+}
+
+.row {
+  padding: 16px 0;
+  width: 100%;
+}
+
+.row--dark.row {
+  background-color: var(--black);
 }

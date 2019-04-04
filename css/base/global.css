@@ -1,4 +1,6 @@
+/* Global CSS */
 body {
-  background-color: var(--white);
-  height: 100%;
+  color: var(--black);
+  font-family: var(--secondary-font);
+  font-size: 18px;
 }

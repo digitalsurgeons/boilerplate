@@ -1,0 +1,5 @@
+:focus {
+  outline: 2px auto var(--blue);
+  outline-offset: 4px;
+  transition: 0.5s;
+}

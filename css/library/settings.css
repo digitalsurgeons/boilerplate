@@ -1,36 +1,72 @@
 /* 
-Custom Media Queries
--p queries are breakpoints + standard gutter
-*/
-
+  Custom Media Queries
+  -p queries are breakpoints + standard gutter
+  */
 @custom-media --small-screen (width >= 480px);
-@custom-media --small-screen-p (width >= 480px);
+/*@custom-media --small-screen-p (width >= 480px);*/
 @custom-media --medium-screen (width >= 960px);
 @custom-media --medium-screen-p (width >= 1110px);
 @custom-media --large-screen (width >= 1140px);
-@custom-media --large-screen-p (width >= 1190px);
+@custom-media --large-screen-p (width >= 1170px);
 @custom-media --xlarge-screen (width >= 1440px);
-@custom-media --xlarge-screen-p (width >= 1490px);
 
 /* Global Vars */
 :root {
   --small-screen: 480px;
   --medium-screen: 960px;
   --large-screen: 1140px;
+  --large-screen-p: 1170px;
   --xlarge-screen: 1440px;
+  --max-width: 1170px;
 
   --gutter-width: 30px;
 
   /* Typography */
-  --primary-font: 'Futura', 'Trebuchet MS', 'Helvetica-Neue', Helvetica, Arial;
-  --secondary-font: 'Brush Script MT', cursive;
+  --primary-font: 'Sarabun', 'Futura', 'Trebuchet MS', 'Helvetica-Neue',
+    Helvetica, Arial, sans-serif;
+  --secondary-font: 'Source Sans Pro', 'Helvetica', Arial, sans-serif;
 
   /* Colors */
-  --black: #000;
+  --black: #2a2c32;
+  --gray: #656a7a;
+  --gray-light: #cbd0dd;
+  --gray-lighter: #e8ebf5;
+  --gray-lightest: #f8f7ff;
   --white: #fff;
 
-  /* Font Colors */
-  --base-background-color: var(--white);
-  --base-font-color: var(--gray);
-  --primary-color: var(--blue);
+  --blue: #152b9b;
+  --blue-gray: #3e4351;
+  --green: #72d001;
+  --pink: #fe6d6d;
+  --teal: #13e1c9;
+
+  /* Gradients */
+  --gradient-pbt: linear-gradient(
+    90deg,
+    rgba(19, 225, 201, 1) 0%,
+    rgba(16, 96, 205, 1) 33%,
+    rgba(101, 3, 224, 1) 66%,
+    rgba(142, 13, 210, 1) 100%
+  );
+  --gradient-pb: linear-gradient(
+    90deg,
+    rgba(21, 43, 155, 1) 0%,
+    rgba(85, 37, 253, 1) 60%,
+    rgba(18, 137, 255, 1) 100%
+  );
+  --gradient-p: linear-gradient(
+    0deg,
+    rgba(13, 0, 88, 1) 0%,
+    rgba(21, 43, 155, 1) 100%
+  );
+  --gradient-w: linear-gradient(
+    0deg,
+    rgba(232, 235, 245, 1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  --gradient-gt: linear-gradient(
+    35deg,
+    rgba(114, 208, 1, 1) 0%,
+    rgba(19, 225, 201, 1) 100%
+  );
 }

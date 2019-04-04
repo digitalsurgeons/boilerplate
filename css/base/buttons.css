@@ -1,0 +1,149 @@
+.btn {
+  border-color: transparent;
+  border-radius: 99em;
+  border-style: solid;
+  border-width: 2px;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  padding: 7px 13px;
+  position: relative;
+}
+
+.btn__icon {
+  color: inherit;
+  display: inline-block;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+}
+
+.btn__text {
+  color: inherit;
+  display: inline-block;
+}
+
+/* Colors */
+.btn--pink.btn {
+  background-color: var(--pink);
+  color: var(--white);
+}
+
+.btn--blue.btn {
+  color: var(--blue);
+}
+
+.btn--white.btn {
+  color: var(--white);
+}
+
+.btn--black.btn {
+  color: var(--black);
+}
+
+/* Styles */
+.btn--hollow.btn {
+  border-color: inherit;
+}
+
+/* Icons*/
+.btn--icon-left {
+  padding-left: 42px;
+
+  & .btn__icon {
+    left: 16px;
+  }
+}
+
+.btn--icon-right {
+  padding-right: 42px;
+
+  & .btn__icon {
+    right: 16px;
+  }
+}
+
+/* Animated Icons */
+.btn--animate-icon.btn--icon-left.btn {
+  padding-left: 15px;
+  transition: padding-left 0.15s ease 0.25s;
+
+  & .btn__icon {
+    max-width: 0;
+    transition: max-width 0.15s ease 0.25s;
+  }
+}
+
+.btn--animate-icon.btn--icon-left.btn:hover {
+  padding-left: 40px;
+  transition: padding-left 0.3s ease;
+
+  & .btn__icon {
+    max-width: 20px;
+    transition: max-width 0.3s;
+  }
+}
+
+.btn--animate-icon.btn--icon-right.btn {
+  padding-right: 15px;
+  transition: padding-right 0.15s ease 0.25s;
+
+  & .btn__icon {
+    max-width: 0;
+    transition: max-width 0.15s ease 0.25s;
+  }
+}
+
+.btn--animate-icon.btn--icon-right.btn:hover {
+  padding-right: 40px;
+  transition: padding-right 0.3s ease;
+
+  & .btn__icon {
+    max-width: 20px;
+    transition: max-width 0.3s;
+  }
+}
+
+/* Animated Text */
+.btn--animate-text.btn {
+  max-width: 20px;
+  position: relative;
+  transition: max-width 0.4s;
+
+  & .btn__text {
+    left: -100%;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    white-space: nowrap;
+    width: 100%;
+  }
+
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 1em;
+    position: relative;
+    width: 0;
+  }
+}
+
+.btn--animate-text.btn:hover {
+  max-width: 300px;
+  transition: max-width 1s;
+
+  & .btn__text {
+    height: auto;
+    left: 0;
+    opacity: 1;
+    position: relative;
+    transition: opacity 0.1s ease 0.3s;
+  }
+
+  &:before {
+    position: absolute;
+  }
+}

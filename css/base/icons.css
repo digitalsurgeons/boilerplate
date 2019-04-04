@@ -7,18 +7,18 @@
   width: 1em;
 }
 
-[class^='icon-'],
-[class*=' icon-'] {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
+.icon__chevron {
+  position: relative;
+  top: 4px;
+}
 
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Icon Animations */
+.type__a > .icon__chevron--right {
+  transition: 0.2s;
+}
+
+.type__a:hover > .icon__chevron--right,
+.type__a:active > .icon__chevron--right {
+  transition: 0.4s;
+  transform: translateX(4px);
 }
