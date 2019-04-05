@@ -1,0 +1,6 @@
+{% extends "_layout.twig" %}
+{% block content %}
+  {% for block in post.get_field('components') %}
+    {% include '_components/' ~ block.acf_fc_layout ~ '/index.twig' %}
+  {% endfor %}
+{% endblock %}

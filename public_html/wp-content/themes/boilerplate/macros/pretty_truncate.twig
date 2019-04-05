@@ -1,0 +1,23 @@
+{# -== Pretty Truncate ==- #}
+{# Takes a block of copy and limits it by word to a rough length #}
+{# 
+  Expects:
+  text: [String] Paragraph(s) of text
+  limit: [Int] Max number of characters to show
+  class: [String(optional)] If set, outputed <p> tag will have this class 
+#}
+
+{% macro do(text, limit, class) %}
+  {% set words =  text|split(' ') %}
+  {% set truncated = "" %}
+
+  {% for word in words if truncated|length < limit %}
+  {% set truncated = truncated ~ " " ~ word %}
+  {% endfor %}
+
+  {% if text|length > limit %}
+    <p {% if class %}class="{{ class }}"{% endif %}>{{ truncated|trim }}...</p>
+    {% else %}
+    <p {% if class %}class="{{ class }}"{% endif %}>{{ text|trim }}</p>
+  {% endif %}
+{% endmacro %}

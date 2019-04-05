@@ -1,0 +1,52 @@
+{
+    "key": "group_5b32551db3e60",
+    "title": "Components",
+    "fields": [
+        {
+            "key": "field_5b3255216f9d7",
+            "label": "Components",
+            "name": "components",
+            "type": "flexible_content",
+            "instructions": "Components will be included by their Name in the Components file. E.g. exampleComponent will get looked up in the \/components\/exampleComponent directory, looking for an index.twig file.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layouts": {
+                "5b32552ae366f": {
+                    "key": "5b32552ae366f",
+                    "name": "exampleComponent",
+                    "label": "Example Component",
+                    "display": "block",
+                    "sub_fields": [],
+                    "min": "",
+                    "max": ""
+                }
+            },
+            "button_label": "Add Row",
+            "min": "",
+            "max": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1530025326
+}

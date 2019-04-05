@@ -1,0 +1,128 @@
+{% set isUI = false %}
+{% if post.slug == 'ui' %}
+  {% set isUI = true %}
+{% endif %}
+
+{% extends "_layout.twig" %}
+{% block content %}
+    <h1 class="styleguide__title">FreshPet Redesign UI</h1>
+
+    <h2 class="styleguide__component-title">Logo</h2>
+    <div class="styleguide__row">
+      <img src="/img/freshpet-logo.svg" style="margin-right: 50px; max-width: 250px;" />
+    </div>
+
+
+    <h2 class="styleguide__component-title">Colors</h2>
+    {% include '_components/_ui/styleguideColors/index.twig' with {
+      colors: [
+      '#1f4e34',
+      '#517231',
+      '#78a22f',
+      '#fcd233',
+      '#efeee9',
+      '#d05f2f',
+      '#f9f7f3',
+      '#484746',
+      '#f4f0ee',
+      '#56aa46',
+      '#286140',
+      '#bda388',
+      '#776e6c',
+      '#ede6e3',
+      '#efebe4',
+      '#a22502',
+      '#785f49',
+      '#8eb8cd',
+      '#655e5d',
+      '#3d240d'
+      ]
+    } %}
+
+    <h2 class="styleguide__component-title">Typography</h2>
+    {% include '_components/_ui/styleguideTypography/index.twig' with {
+        types: [
+          {title: 'Brandon&reg; Bold', style: 'color: #111; font-weight: 700;' },
+          {title: 'Brandon&reg; Black', style: 'color: #111; font-weight: 900;' },
+        ]
+      } %}
+
+    <h2 class="styleguide__component-title">Buttons</h2>
+    <div class="styleguide__row">
+      <a href="#" class="button" style="margin-right: 10px;">
+        Default Button
+      </a>
+      <a href="#" class="button button--green-light" style="margin-right: 10px;">
+        Light Green Button
+      </a>
+      <a href="#" class="button button--orange" style="margin-right: 10px;">
+        Orange Button
+      </a>
+      <a href="#" class="button button--white" style="margin-right: 10px;">
+        White Button
+      </a>
+      <a href="#" class="button button--hollow" style="margin-right: 10px;">
+        Hollow Button
+      </a>
+      <a href="#" class="button button--red" style="margin-right: 10px;">
+        Red Button
+      </a>
+    </div>
+
+    <h2 class="styleguide__component-title">Icons</h2>
+    <div class="styleguide__row">
+      {% include '_components/_ui/styleguideIcons/index.twig' with {
+          icons: [
+            'bag',
+            'bone',
+            'bowl',
+            'cat',
+            'check',
+            'check-circle',
+            'chub',
+            'close',
+            'close-circle',
+            'dog',
+            'down',
+            'facebook',
+            'filter',
+            'hamburger',
+            'instagram',
+            'left',
+            'pin',
+            'play',
+            'right',
+            'search',
+            'search',
+            'sun',
+            'twitter',
+            'up',
+            'youtube',
+          ]
+        } %}
+    </div>
+
+    <h2 class="styleguide__component-title">Header</h2>
+    {% include '_components/_ui/header/index.twig' with {static: true} %}
+
+    <h2 class="styleguide__component-title">Footer</h2>
+    {% include '_components/_ui/footer/index.twig' %}
+
+    <h2 class="styleguide__component-title">reviewListing</h2>
+    {% include '_components/reviewListing/index.twig' %}
+
+    <h2 class="styleguide__component-title">benefitsPanel</h2>
+    {% include '_components/benefitsPanel/index.twig' %}
+
+    <h2 class="styleguide__component-title">pagination</h2>
+    {% include '_components/_ui/pagination/index.twig' with {
+      current_page: 1,
+      total_pages: 27,
+      link_base: ''
+    } %}
+
+  {% for block in post.get_field('components') %}
+    <a class="styleguide__link" href="#{{ block.acf_fc_layout }}"><h2 id="{{ block.acf_fc_layout }}" class="styleguide__component-title">{{ block.acf_fc_layout }}</h2></a>
+    {% include '_components/' ~ block.acf_fc_layout ~ '/index.twig' %}
+  {% endfor %}
+{% endblock %}

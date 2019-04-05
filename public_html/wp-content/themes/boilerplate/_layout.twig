@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0" />
+  <link rel="stylesheet" href="/dist/style.css" />
+  
+{#
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-YOURID');</script>
+   <!-- End Google Tag Manager -->
+#}
+
+{#   
+  {% if env != 'production' %}
+    <script type='text/javascript'>
+    (function (d, t) {
+      var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      bh.type = 'text/javascript';
+      bh.src = 'https://www.bugherd.com/sidebarv2.js?apikey=put_you_api_key_here';
+      s.parentNode.insertBefore(bh, s);
+      })(document, 'script');
+  </script>
+  {% endif %}
+ #}
+
+  {{ wp_head() }}
+</head>
+<body>
+
+{#
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-YOURID"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+   <!-- End Google Tag Manager (noscript) -->
+#}
+
+  {% if isUI == true %}
+    <div class="styleguide">
+  {% else %}
+  {# Add any components that are on every page #}
+{#     
+    {% include '_components/_ui/header/index.twig' %}
+    {% include '_components/_ui/navDesktop/index.twig' %}
+    {% include '_components/_ui/navMobile/index.twig' %}
+    {% include '_components/_ui/search/index.twig' %}
+ #}    
+  {% endif %}
+
+  {% block content %}
+    {# Content will be appended here #}
+  {% endblock %}
+
+  {% if isUI == true %}
+    </div>
+  {% else %}
+    {# {% include '_components/_ui/footer/index.twig' %} #}
+  {% endif %}
+
+  {{ wp_footer() }}
+  <script src='/dist/vendor.js'></script>
+  <script src='/dist/bundle.js'></script>
+  <script src="/dist/app.js"></script>
+  <script defer src='/dist/svgxuse.js'></script>
+  <script src="/dist/polyfills.js" async defer></script>
+
+</body>
+</html>
