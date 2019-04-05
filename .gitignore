@@ -50,7 +50,7 @@ dwsync.xml
 #public_html/sitemap.xml
 
 /web/dist
-
+/config/license.key
 /node_modules
 /vendor
 npm-debug.log
