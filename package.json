@@ -6,8 +6,7 @@
   "scripts": {
     "webpack:dev": "SITE=$site webpack --watch --colors",
     "webpack:prod": "NODE_ENV=production webpack --config ./webpack.config.prod.js --colors",
-    "start": "npm run webpack:prod",
-    "predev": "npm run webpack:dev",
+    "prod": "npm run webpack:prod",
     "dev": "npm run webpack:dev",
     "precommit": "lint-staged"
   },

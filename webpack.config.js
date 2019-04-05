@@ -9,23 +9,26 @@ const path = require('path')
 const glob = require('glob')
 const child_process = require('child_process')
 const config = require('./config')
-const vendor = require('./js/vendor')
 
 let localEnv = Dotenv.definitions['process.env.LOCAL_URL']
 localEnv = localEnv.substring(1, localEnv.length - 1)
 
-const websiteBundle = glob.sync('./components/website/**/index.js')
-const uiBundle = glob.sync('./components/ui/**/index.js')
-const sharedBundle = glob.sync('./components/shared/**/index.js')
-
-const websiteStyles = glob.sync('./components')
+const websiteBundle = glob.sync('./components/website/**/*.js')
+const uiBundle = glob.sync('./components/ui/**/*.js')
+const sharedBundle = glob.sync('./components/shared/**/*.js')
+const vendor = require('./js/vendor')
+const polyfills = require('./js/polyfills')
 
 module.exports = {
   entry: {
-    bundle: jsGlob,
-    style: './css/app.css',
-    svgxuse: './node_modules/svgxuse/svgxuse.js',
-    vendor: vendor
+    websitebundle: websiteBundle,
+    uibundle: uiBundle,
+    sharedbundle: sharedBundle,
+    vendor: vendor,
+
+    websitestyles: './css/website.pcss',
+    uistyles: './css/ui.pcss',
+    svgxuse: './node_modules/svgxuse/svgxuse.js'
   },
   output: {
     publicPath: '/',
@@ -35,7 +38,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.pcss$/,
         exclude: /node_modules/,
         use: ExtractTextPlugin.extract([
           {

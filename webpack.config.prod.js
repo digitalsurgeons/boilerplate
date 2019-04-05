@@ -6,12 +6,20 @@ const path = require('path')
 const glob = require('glob')
 const child_process = require('child_process')
 const config = require('./config')
+
+const websiteBundle = glob.sync('./components/website/**/*.js')
+const uiBundle = glob.sync('./components/ui/**/*.js')
+const sharedBundle = glob.sync('./components/shared/**/*.js')
 const vendor = require('./js/vendor')
 
 module.exports = {
   entry: {
-    bundle: glob.sync('./components/**/index.js'),
-    style: './scss/app.css',
+    websitebundle: websiteBundle,
+    uibundle: uiBundle,
+    sharedbundle: sharedBundle,
+
+    websitestyles: './css/website.pcss',
+    uistyles: './css/ui.pcss',
     svgxuse: './node_modules/svgxuse/svgxuse.js',
     vendor: vendor
   },
@@ -23,7 +31,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.pcss$/,
         exclude: /node_modules/,
         use: ExtractTextPlugin.extract([
           {
