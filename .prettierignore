@@ -1,0 +1,4 @@
+craft/**/*.js
+craft/**/*.scss
+craft/**/*.css
+craft/**/*.json

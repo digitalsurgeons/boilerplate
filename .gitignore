@@ -52,5 +52,6 @@ dwsync.xml
 /web/dist
 
 /node_modules
+/vendor
 npm-debug.log
 yarn.lock
