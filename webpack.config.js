@@ -17,7 +17,6 @@ const websiteBundle = glob.sync('./components/website/**/*.js')
 const uiBundle = glob.sync('./components/ui/**/*.js')
 const sharedBundle = glob.sync('./components/shared/**/*.js')
 const vendor = require('./js/vendor')
-const polyfills = require('./js/polyfills')
 
 module.exports = {
   entry: {
