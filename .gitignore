@@ -54,3 +54,6 @@ public_html/dist
 node_modules
 npm-debug.log
 yarn.lock
+/vendor
+/storage
+/config
