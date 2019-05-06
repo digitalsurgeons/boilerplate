@@ -1,4 +1,4 @@
-@import 'normalize.css';
+@import-normalize;
 
 @import './library/settings.css';
 @import './library/mixins.css';
@@ -10,6 +10,3 @@
 @import './base/typography.css';
 @import './base/animated-icons.css';
 @import './base/buttons.css';
-
-@import '../components/shared/**/*.css';
-@import '../components/ui/**/*.css';
