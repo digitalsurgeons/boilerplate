@@ -1,4 +1,5 @@
-const atImport = (module.exports = {
+module.exports = {
+  syntax: "postcss-scss",
   plugins: [
     require("postcss-normalize"),
     require("postcss-easy-import"),
@@ -12,4 +13,4 @@ const atImport = (module.exports = {
       preset: "default"
     })
   ]
-});
+};
