@@ -1,10 +1,10 @@
-const webpack = require('webpack')
-const webpackMerge = require('webpack-merge')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const modeConfig = env => require(`./build-utils/webpack.${env}`)(env)
-const loadPresets = require('./build-utils/loadPresets')
+const webpack = require("webpack");
+const webpackMerge = require("webpack-merge");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const modeConfig = env => require(`./build-utils/webpack.${env}`)(env);
+const loadPresets = require("./build-utils/loadPresets");
 
-module.exports = ({ mode, presets } = { mode: 'production', presets: [] }) =>
+module.exports = ({ mode, presets } = { mode: "production", presets: [] }) =>
   webpackMerge(
     {
       mode,
@@ -15,24 +15,23 @@ module.exports = ({ mode, presets } = { mode: 'production', presets: [] }) =>
             test: /\.css$/,
             exclude: /node_modules/,
             use: [
-              'style-loader',
               {
                 loader: MiniCssExtractPlugin.loader,
                 options: {
-                  hmr: mode === 'development'
+                  hmr: mode === "development"
                 }
               },
-              'css-loader',
-              'postcss-loader'
+              "css-loader",
+              "postcss-loader"
             ]
           },
           {
             test: /\.m?js$/,
             exclude: /node_modules/,
             use: {
-              loader: 'babel-loader',
+              loader: "babel-loader",
               options: {
-                presets: ['@babel/preset-env']
+                presets: ["@babel/preset-env"]
               }
             }
           }
@@ -41,7 +40,7 @@ module.exports = ({ mode, presets } = { mode: 'production', presets: [] }) =>
     },
     modeConfig(mode),
     loadPresets({ mode, presets })
-  )
+  );
 
 // const ExtractTextPlugin = require('extract-text-webpack-plugin')
 // const webpack = require('webpack')
