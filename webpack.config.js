@@ -16,12 +16,14 @@ module.exports = ({ mode, presets } = { mode: "production", presets: [] }) =>
             test: /\.css$/,
             exclude: /node_modules/,
             use: [
-              {
-                loader: MiniCssExtractPlugin.loader,
-                options: {
-                  hmr: mode === "development"
-                }
-              },
+              mode === "development"
+                ? "style-loader"
+                : {
+                    loader: MiniCssExtractPlugin.loader,
+                    options: {
+                      hmr: mode === "development"
+                    }
+                  },
               "css-loader",
               "postcss-loader"
             ]
