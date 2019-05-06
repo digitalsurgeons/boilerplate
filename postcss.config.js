@@ -1,15 +1,15 @@
-const atImport = require('postcss-easy-import')
-
-module.exports = {
+const atImport = (module.exports = {
   plugins: [
-    atImport({
-      plugins: [require('stylelint')]
-    }),
-    require('postcss-preset-env')({
+    require("postcss-normalize"),
+    require("postcss-easy-import"),
+    require("postcss-preset-env")({
       autoprefixer: { grid: true },
       features: {
-        'nesting-rules': true
+        "nesting-rules": true
       }
+    }),
+    require("cssnano")({
+      preset: "default"
     })
   ]
-}
+});
