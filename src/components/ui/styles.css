@@ -1,5 +1,5 @@
 body {
-  background-color: #F8F7FF;
+  background-color: #f8f7ff;
 }
 
 .header {
@@ -11,13 +11,18 @@ body {
 
 .block {
   background-color: #fff;
-  border: 1px solid #E8EBF5;
+  border: 1px solid #e8ebf5;
   border-radius: 3px;
   margin-bottom: 30px;
   padding: 12px 30px 20px 30px;
 }
 
-.block h1,h2,h3,h4,h5,h6 {
+.block h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   padding-bottom: 16px;
 }
 
