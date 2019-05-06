@@ -3,12 +3,13 @@ const webpackMerge = require("webpack-merge");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const modeConfig = env => require(`./build-utils/webpack.${env}`)(env);
 const loadPresets = require("./build-utils/loadPresets");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = ({ mode, presets } = { mode: "production", presets: [] }) =>
   webpackMerge(
     {
       mode,
-      plugins: [new webpack.ProgressPlugin()],
+      plugins: [new CleanWebpackPlugin(), new webpack.ProgressPlugin()],
       module: {
         rules: [
           {

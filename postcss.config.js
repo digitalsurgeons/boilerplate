@@ -1,5 +1,5 @@
 module.exports = {
-  syntax: "postcss-scss",
+  parser: "postcss-scss",
   plugins: [
     require("postcss-normalize"),
     require("postcss-easy-import"),
@@ -8,9 +8,6 @@ module.exports = {
       features: {
         "nesting-rules": true
       }
-    }),
-    require("cssnano")({
-      preset: "default"
     })
   ]
 };
