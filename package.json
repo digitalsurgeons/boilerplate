@@ -29,8 +29,6 @@
     "css-loader": "^2.1.1",
     "cssnano": "^4.1.10",
     "glob": "^7.1.3",
-    "husky": "^2.2.0",
-    "lint-staged": "^8.1.6",
     "mini-css-extract-plugin": "^0.6.0",
     "object-fit-images": "^3.2.4",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
@@ -39,7 +37,7 @@
     "postcss-normalize": "^7.0.1",
     "postcss-preset-env": "^6.6.0",
     "postcss-scss": "^2.0.0",
-    "prettier": "^1.17.0",
+    "prettier": "^1.18.2",
     "style-loader": "^0.23.1",
     "terser-webpack-plugin": "^1.2.3",
     "webpack": "^4.30.0",
@@ -50,11 +48,6 @@
   "dependencies": {},
   "resolutions": {
     "webpack/acorn": "6.1.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.{js,css,json,md}": [
