@@ -74,7 +74,7 @@
     "jquery": "~3.3.1",
     "normalize.css": "^5.0.0",
     "object-fit-images": "~3.2.4",
-    "postcss": "~7.0.4",
+    "postcss": "~8.2.10",
     "postcss-easy-import": "~3.0.0",
     "postcss-scss": "~2.0.0",
     "postcss-strip-inline-comments": "~0.1.5",
